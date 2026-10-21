@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-21T10:51:29-0400",
+  "fetched_at": "2026-10-21T15:51:35-0400",
   "pages": {
     "deepgram": {
       "url": "https://deepgram.com/pricing",
@@ -8,14 +8,6 @@
       "error": null,
       "final_url": "https://deepgram.com/pricing",
       "chars": 21357
-    },
-    "elevenlabs": {
-      "url": "https://elevenlabs.io/pricing/api",
-      "ok": true,
-      "status": 200,
-      "error": null,
-      "final_url": "https://elevenlabs.io/pricing/api",
-      "chars": 14482
     },
     "bland": {
       "url": "https://www.bland.ai/pricing",
@@ -33,6 +25,14 @@
       "final_url": "https://synthflow.ai/pricing",
       "chars": 3134
     },
+    "retell": {
+      "url": "https://www.retellai.com/pricing",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://www.retellai.com/pricing",
+      "chars": 17360
+    },
     "vapi": {
       "url": "https://vapi.ai/pricing",
       "ok": true,
@@ -41,13 +41,13 @@
       "final_url": "https://vapi.ai/pricing",
       "chars": 6014
     },
-    "livekit": {
-      "url": "https://livekit.io/pricing",
+    "elevenlabs": {
+      "url": "https://elevenlabs.io/pricing/api",
       "ok": true,
       "status": 200,
       "error": null,
-      "final_url": "https://livekit.com/pricing",
-      "chars": 20732
+      "final_url": "https://elevenlabs.io/pricing/api",
+      "chars": 14503
     },
     "ultravox": {
       "url": "https://www.ultravox.ai/pricing",
@@ -57,13 +57,21 @@
       "final_url": "https://www.ultravox.ai/pricing",
       "chars": 1669
     },
-    "retell": {
-      "url": "https://www.retellai.com/pricing",
+    "cartesia": {
+      "url": "https://cartesia.ai/pricing",
       "ok": true,
       "status": 200,
       "error": null,
-      "final_url": "https://www.retellai.com/pricing",
-      "chars": 17372
+      "final_url": "https://www.cartesia.ai/pricing",
+      "chars": 8268
+    },
+    "livekit": {
+      "url": "https://livekit.io/pricing",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://livekit.com/pricing",
+      "chars": 20805
     },
     "openai_docs": {
       "url": "https://platform.openai.com/docs/pricing",
@@ -73,14 +81,6 @@
       "final_url": "https://developers.openai.com/api/docs/pricing",
       "chars": 20174
     },
-    "openai_api": {
-      "url": "https://openai.com/api/pricing/",
-      "ok": true,
-      "status": 200,
-      "error": null,
-      "final_url": "https://openai.com/business/pricing/#api",
-      "chars": 9077
-    },
     "assemblyai": {
       "url": "https://www.assemblyai.com/pricing",
       "ok": true,
@@ -88,46 +88,6 @@
       "error": null,
       "final_url": "https://www.assemblyai.com/pricing",
       "chars": 37088
-    },
-    "cartesia": {
-      "url": "https://cartesia.ai/pricing",
-      "ok": true,
-      "status": 200,
-      "error": null,
-      "final_url": "https://www.cartesia.ai/pricing",
-      "chars": 8160
-    },
-    "google_tts": {
-      "url": "https://cloud.google.com/text-to-speech/pricing",
-      "ok": true,
-      "status": 200,
-      "error": null,
-      "final_url": "https://cloud.google.com/text-to-speech/pricing",
-      "chars": 39978
-    },
-    "speechmatics": {
-      "url": "https://www.speechmatics.com/pricing",
-      "ok": true,
-      "status": 200,
-      "error": null,
-      "final_url": "https://www.speechmatics.com/pricing",
-      "chars": 35444
-    },
-    "polly": {
-      "url": "https://aws.amazon.com/polly/pricing/",
-      "ok": true,
-      "status": 200,
-      "error": null,
-      "final_url": "https://aws.amazon.com/polly/pricing/",
-      "chars": 14942
-    },
-    "azure_speech": {
-      "url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
-      "ok": true,
-      "status": 200,
-      "error": null,
-      "final_url": "https://azure.microsoft.com/en-us/pricing/details/speech/",
-      "chars": 52423
     },
     "google_stt": {
       "url": "https://cloud.google.com/speech-to-text/pricing",
@@ -137,6 +97,22 @@
       "final_url": "https://cloud.google.com/speech-to-text/pricing",
       "chars": 43072
     },
+    "openai_api": {
+      "url": "https://openai.com/api/pricing/",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://openai.com/business/pricing/#api",
+      "chars": 9077
+    },
+    "google_tts": {
+      "url": "https://cloud.google.com/text-to-speech/pricing",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://cloud.google.com/text-to-speech/pricing",
+      "chars": 39978
+    },
     "aws_transcribe": {
       "url": "https://aws.amazon.com/transcribe/pricing/",
       "ok": true,
@@ -144,6 +120,22 @@
       "error": null,
       "final_url": "https://aws.amazon.com/transcribe/pricing/",
       "chars": 24115
+    },
+    "polly": {
+      "url": "https://aws.amazon.com/polly/pricing/",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://aws.amazon.com/polly/pricing/",
+      "chars": 14942
+    },
+    "speechmatics": {
+      "url": "https://www.speechmatics.com/pricing",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://www.speechmatics.com/pricing",
+      "chars": 35444
     },
     "rev": {
       "url": "https://www.rev.ai/pricing",
@@ -153,6 +145,14 @@
       "final_url": "https://www.rev.ai/pricing",
       "chars": 2341
     },
+    "azure_speech": {
+      "url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://azure.microsoft.com/en-us/pricing/details/speech/",
+      "chars": 52423
+    },
     "soniox": {
       "url": "https://soniox.com/pricing",
       "ok": true,
@@ -160,14 +160,6 @@
       "error": null,
       "final_url": "https://soniox.com/pricing",
       "chars": 6013
-    },
-    "gladia": {
-      "url": "https://www.gladia.io/pricing",
-      "ok": true,
-      "status": 200,
-      "error": null,
-      "final_url": "https://www.gladia.io/pricing",
-      "chars": 10362
     },
     "fish_docs": {
       "url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits",
@@ -185,6 +177,14 @@
       "final_url": "https://fish.audio/plan/",
       "chars": 6215
     },
+    "gladia": {
+      "url": "https://www.gladia.io/pricing",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://www.gladia.io/pricing",
+      "chars": 10362
+    },
     "inworld": {
       "url": "https://inworld.ai/pricing",
       "ok": true,
@@ -199,6 +199,14 @@
       "status": null,
       "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://play.ht/pricing/",
       "final_url": null
+    },
+    "hume": {
+      "url": "https://www.hume.ai/pricing",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://www.hume.ai/",
+      "chars": 4536
     },
     "lmnt": {
       "url": "https://www.lmnt.com/pricing",
@@ -215,14 +223,6 @@
       "error": null,
       "final_url": "https://www.rime.ai/pricing",
       "chars": 6718
-    },
-    "hume": {
-      "url": "https://www.hume.ai/pricing",
-      "ok": true,
-      "status": 200,
-      "error": null,
-      "final_url": "https://www.hume.ai/",
-      "chars": 4536
     }
   }
 }
