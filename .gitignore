@@ -1,0 +1,14 @@
+# local env / build output
+.venv/
+__pycache__/
+*.pyc
+site/
+screens/
+node_modules/
+*.log
+server.log
+.env
+.env.*
+# raw snapshots: keep only gzipped text in git (rendered HTML and plain text are too big)
+data/raw/**/*.html.gz
+data/raw/**/*.txt

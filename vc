@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# VoiceCost helper.  Usage: ./vc daily | update | reextract | build | serve | screens
+set -euo pipefail
+cd "$(dirname "$0")"
+PY=.venv/bin/python
+[ -x "$PY" ] || { python3 -m venv .venv && .venv/bin/pip install -q playwright requests beautifulsoup4 lxml; }
+case "${1:-daily}" in
+  update)    $PY scripts/update.py ;;                 # fetch pages, extract, dated snapshot, diff
+  reextract) $PY scripts/update.py --offline ;;       # re-run extraction on today's saved pages (no network)
+  build)     $PY scripts/build.py ;;                  # regenerate site/ from data/latest.json
+  daily)     $PY scripts/update.py && $PY scripts/build.py ;;
+  serve)     exec python3 -m http.server "${PORT:-8787}" --bind 127.0.0.1 --directory site ;;
+  screens)   $PY scripts/screens.py ;;
+  *) echo "usage: ./vc [daily|update|reextract|build|serve|screens]"; exit 1 ;;
+esac
