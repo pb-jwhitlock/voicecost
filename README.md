@@ -26,3 +26,11 @@ Cron example (06:00 daily): `0 6 * * * /workspace/voicecost/vc daily >> /workspa
 - If a page fails or a rule stops matching, the row becomes `unknown` (never a guessed number) and the
   update prints a status change so the rule can be fixed.
 - Set `VOICECOST_URL` before building to put the real domain in canonical tags and the sitemap.
+
+## Deploy (GitHub Pages)
+1. Create the empty public repo `pb-jwhitlock/voicecost` (no README).
+2. Push: `git remote add origin https://github.com/pb-jwhitlock/voicecost.git && git push -u origin main`
+3. Repo Settings → Pages → Build and deployment → Source: **GitHub Actions**.
+4. Actions → "Daily price update + deploy" → Run workflow (it then runs daily at 10:00 UTC,
+   commits the new snapshot to `data/`, and deploys `site/` with actions/deploy-pages).
+Live URL: https://pb-jwhitlock.github.io/voicecost/
