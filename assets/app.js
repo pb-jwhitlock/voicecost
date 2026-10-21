@@ -73,6 +73,8 @@
     $('r-min').textContent=money(perMin,4); $('r-call').textContent=money(perMin*min,3); $('r-month').textContent=money(perMin*min*calls,0);
     $('r-bars').innerHTML=parts.map(function(p){return '<div class="bar">'+p[0]+' <b style="float:right">$'+p[1].toFixed(4)+'/min</b><i style="width:'+Math.max(2,p[1]/mx*100)+'%"></i></div>'}).join('');
     $('r-note').textContent=note+(note?' ':'')+'Prices from '+D.date+'.';
+    var vids=[]; (mode==='diy'?[find(D.stt,$('c-stt').value),find(D.platform,$('c-plat').value),find(D.tts,$('c-tts').value)]:[find(D.agent,$('c-agent').value)]).forEach(function(o){if(o&&o.vid&&D.aff&&D.aff[o.vid]&&vids.indexOf(o.vid)<0)vids.push(o.vid)});
+    var rt=$('r-try'); if(rt){rt.hidden=!vids.length; rt.innerHTML=vids.length?vids.map(function(v){var a=D.aff[v];var l=document.createElement('a');l.href=a.url;l.rel='sponsored noopener';l.target='_blank';l.className='visit';l.setAttribute('data-aff','1');l.textContent='Try '+a.name+' \u2197';return l.outerHTML}).join(' ')+' <span class="muted">Affiliate link'+(vids.length>1?'s':'')+' · <a href="'+rt.dataset.disc+'">disclosure</a></span>':'';}
   }
   document.querySelectorAll('.calc input,.calc select').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc)});
   setMode(mode);

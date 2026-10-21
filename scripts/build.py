@@ -83,11 +83,24 @@ def cheapest(vid, cat):
     ver = [r for r in ROWS if r["vendor_id"] == vid and r["category"] == cat and r["status"] == "verified"]
     return min(ver, key=lambda r: r["price"]) if ver else None
 
+def affurl(vid): return (aff.get(vid) or "").strip()
+
 def outlink(vid):
-    a = (aff.get(vid) or "").strip()
+    a = affurl(vid)
     url = a or VEND[vid]["site"]
     rel = "sponsored noopener" if a else "noopener"
-    return f'<a class="btn" href="{e(url)}" rel="{rel}" target="_blank" data-affiliate-slot="{e(vid)}">Visit {e(VEND[vid]["name"])} →</a>'
+    verb = "Try" if a else "Visit"
+    return f'<a class="btn" href="{e(url)}" rel="{rel}" target="_blank" data-affiliate-slot="{e(vid)}"{" data-aff=\"1\"" if a else ""}>{verb} {e(VEND[vid]["name"])} →</a>'
+
+def aff_note(vids, prefix):
+    if not any(affurl(v) for v in vids): return ""
+    return f'<span class="small muted aff-note">Affiliate link · <a href="{prefix}about.html">disclosure</a></span>'
+
+def visit_link(vid):
+    a = affurl(vid)
+    if a:
+        return f'<a class="visit" href="{e(a)}" rel="sponsored noopener" target="_blank" title="Affiliate link" data-aff="1">Try {e(VEND[vid]["name"])} ↗</a>'
+    return f'<a class="visit" href="{e(VEND[vid]["site"])}" rel="noopener" target="_blank">Visit site ↗</a>'
 
 def slug_pair(a, b): return f"{a}-vs-{b}"
 
@@ -153,7 +166,7 @@ def table(cat, rows, prefix, show_vendor=True, tid=None):
             badge = f' <span class="chg {"up" if up else "down"}" title="was {fmt(c["old"], cat)}">{"▲" if up else "▼"}{abs(c["pct"] or 0):.0f}%</span>'
         tds = []
         if show_vendor:
-            tds.append(f'<td data-v="{e(r["vendor"])}"><a href="{prefix}vendors/{r["vendor_id"]}.html">{e(r["vendor"])}</a></td>')
+            tds.append(f'<td data-v="{e(r["vendor"])}"><a href="{prefix}vendors/{r["vendor_id"]}.html">{e(r["vendor"])}</a><br>{visit_link(r["vendor_id"])}</td>')
         tds.append(f'<td>{e(r["product"])}' + (f' <span class="tier">{e(r["tier"])}</span>' if r.get("tier") else "") +
                    (f'<div class="show-s"><span class="scope s-{e(r.get("scope") or "na")}">{e(SCOPE_LABEL.get(r.get("scope"), ""))}</span></div>' if cat == "agent" and r.get("scope") else "") +
                    (f'<div class="note">{e(r["note"])}</div>' if r.get("note") else "") + "</td>")
@@ -168,14 +181,19 @@ def table(cat, rows, prefix, show_vendor=True, tid=None):
         cls = "" if r["status"] == "verified" else ' class="is-unk"'
         hd = ' data-head="1"' if r.get("headline") else ""
         body.append(f"<tr{cls}{hd}>" + "".join(tds) + "</tr>")
-    return f'<div class="tbl"><table class="sortable" {f"id={tid!r}" if tid else ""}><thead><tr>{head}</tr></thead><tbody>{"".join(body)}</tbody></table></div>'
+    foot = ""
+    if show_vendor:
+        names = sorted({VEND[r["vendor_id"]]["name"] for r in rows if affurl(r["vendor_id"])})
+        if names:
+            foot = f'<p class="small muted aff-note">"Try" links for {" and ".join(names)} are affiliate links. Source links go to official pricing pages. <a href="{prefix}about.html">Disclosure</a></p>'
+    return f'<div class="tbl"><table class="sortable" {f"id={tid!r}" if tid else ""}><thead><tr>{head}</tr></thead><tbody>{"".join(body)}</tbody></table></div>{foot}'
 
 def sorted_rows(rows):
     return sorted(rows, key=lambda r: (r["status"] != "verified", r["price"] if r["price"] is not None else 0))
 
 # ------------------------------------------------------------------ calculator data
 def calc_data():
-    opt = lambda r: {"id": key(r), "label": f'{r["vendor"]} · {r["product"]}', "price": r["price"],
+    opt = lambda r: {"id": key(r), "vid": r["vendor_id"], "label": f'{r["vendor"]} · {r["product"]}', "price": r["price"],
                      "high": r.get("price_high"), "src": r["source_url"], "scope": r.get("scope")}
     ver = [r for r in ROWS if r["status"] == "verified"]
     return {
@@ -184,12 +202,13 @@ def calc_data():
         "platform": [opt(r) for r in ver if r["category"] == "agent" and r.get("scope") == "platform"],
         "agent": [opt(r) for r in sorted(ver, key=lambda r: r["price"]) if r["category"] == "agent" and r.get("scope") != "platform"],
         "llm": snap.get("llm_presets", []), "tel": snap.get("telephony_presets", []), "date": DATE,
+        "aff": {v: {"name": VEND[v]["name"], "url": affurl(v)} for v in ORDER if affurl(v)},
     }
 
 DEFAULT_PRESET = {"stt": "deepgram|stt|Nova-3 Monolingual (streaming, current price)",
                   "tts": "cartesia|tts|Sonic (Startup plan, $49 / 1.25M credits)"}
 
-def calculator(preset=None):
+def calculator(preset=None, prefix=""):
     data = calc_data()
     ids = {o["id"] for k in ("stt", "tts", "platform", "agent") for o in data[k]}
     pre = {k: v for k, v in DEFAULT_PRESET.items() if v in ids}
@@ -225,6 +244,7 @@ def calculator(preset=None):
 <div class="kpis"><div><b id="r-min">$0.000</b><small>per minute</small></div><div><b id="r-month">$0</b><small>per month</small></div></div>
 <div id="r-bars" class="bars"></div>
 <p class="small muted" id="r-note"></p>
+<p class="small r-try" id="r-try" hidden data-disc="{prefix}about.html"></p>
 </div></div>
 <script>window.VC_CALC={json.dumps(data)};window.VC_PRESET={pre};</script>
 </section>"""
@@ -303,7 +323,7 @@ def build_vendor(vid):
     srcs = "".join(f'<li><a href="{e(u)}" rel="nofollow noopener" target="_blank">{e(u)}</a> {"✓" if snap["fetch"].get(pid, {}).get("ok") else "<span class=unk>could not be read</span>"}</li>' for pid, u in v["pages"].items())
     body = f"""<nav class="crumbs"><a href="../index.html">Home</a> › Vendors › {e(v["name"])}</nav>
 <section class="hero sm"><h1>{e(v["name"])} pricing</h1><p class="lead">{e(summary[0].upper() + summary[1:])}.</p>{stamp()}{status}{note}
-<div class="cta">{outlink(vid)}<span class="small muted">Affiliate link placeholder</span></div></section>
+<div class="cta">{outlink(vid)}{aff_note([vid], "../")}</div></section>
 {''.join(parts)}
 <section class="card"><h2>Price history</h2><div class="tbl"><table><thead><tr><th>Product</th><th class="num">Today</th><th>History</th></tr></thead><tbody>{hist_rows}</tbody></table></div></section>
 <section class="card"><h2>Compare {e(v["name"])}</h2><div class="chips">{comp_links or '<span class="muted">No comparisons yet.</span>'}</div></section>
@@ -364,9 +384,9 @@ def build_pair(a, b):
     body = f"""<nav class="crumbs"><a href="../index.html">Home</a> › <a href="index.html">Compare</a> › {e(A['name'])} vs {e(B['name'])}</nav>
 <section class="hero sm"><h1>{e(A['name'])} vs {e(B['name'])} pricing</h1>
 <p class="lead">{e('; '.join(desc_bits))}.</p>{stamp()}
-<div class="cta">{outlink(a)}{outlink(b)}<span class="small muted">Affiliate link placeholders</span></div></section>
+<div class="cta">{outlink(a)}{outlink(b)}{aff_note([a, b], "../")}</div></section>
 {''.join(secs)}
-{calculator(preset)}
+{calculator(preset, "../")}
 <section class="card"><h2>FAQ</h2>{faq_html}
 <details><summary>How often are these prices updated?</summary><p>Every day. A script reads each vendor's public pricing page, extracts the listed rates and keeps a dated copy, so price changes show up in the history.</p></details></section>
 <p><a href="../vendors/{a}.html">All {e(A['name'])} prices</a> · <a href="../vendors/{b}.html">All {e(B['name'])} prices</a></p>"""

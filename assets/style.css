@@ -86,3 +86,4 @@ details{border-bottom:1px solid var(--line);padding:10px 0}summary{cursor:pointe
 }
 .nl-btn{margin:0;white-space:nowrap}
 .cta-soft{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#f8fafc}.cta-soft p{margin:0;max-width:640px;color:#334155;font-size:15px}.cta-soft .btn{margin:0;white-space:nowrap}
+.visit{font-size:12px;font-weight:500;white-space:nowrap}.aff-note{margin:6px 0 0}.cta .aff-note{margin:0 0 0 6px}.r-try{margin:8px 0 0}.r-try .visit{font-size:13px;margin-right:8px}
