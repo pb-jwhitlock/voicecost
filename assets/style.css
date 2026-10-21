@@ -85,3 +85,4 @@ details{border-bottom:1px solid var(--line);padding:10px 0}summary{cursor:pointe
  .card{padding:16px 11px}.wrap{padding:0 12px}
 }
 .nl-btn{margin:0;white-space:nowrap}
+.cta-soft{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#f8fafc}.cta-soft p{margin:0;max-width:640px;color:#334155;font-size:15px}.cta-soft .btn{margin:0;white-space:nowrap}

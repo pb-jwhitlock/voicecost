@@ -16,6 +16,18 @@ snap = json.load(open(os.path.join(DATA, "latest.json")))
 snaps = [json.load(open(f)) for f in sorted(glob.glob(os.path.join(DATA, "snapshots", "*.json")))]
 changelog = json.load(open(os.path.join(DATA, "changelog.json"))) if os.path.exists(os.path.join(DATA, "changelog.json")) else []
 aff = json.load(open(os.path.join(ROOT, "affiliates.json")))
+CFG = json.load(open(os.path.join(ROOT, "site.json")))
+
+def utm(url, placement):
+    return f"{url}{'&' if '?' in url else '?'}utm_source=voicecost&utm_medium=referral&utm_campaign={placement}"
+
+def author_link():
+    li = (CFG.get("author_linkedin") or "").strip()
+    return f'<a href="{e(li)}" target="_blank" rel="noopener me">{e(CFG["author_name"])}</a>' if li else e(CFG["author_name"])
+
+def agency_cta(placement):
+    return f"""<aside class="card cta-soft"><p><b>Pricing this out for your business?</b> Get a free AI assessment from {e(CFG['agency_name'])}. We build AI and voice agents for small and medium-sized businesses.</p>
+<a class="btn" href="{e(utm(CFG['agency_cta_url'], placement))}" target="_blank" rel="noopener">Get a free AI assessment</a></aside>"""
 ROWS = snap["rows"]
 VEND = {v["id"]: v for v in snap["vendors"]}
 ORDER = [v["id"] for v in snap["vendors"]]
@@ -104,8 +116,8 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="")
 </main>
 <footer class="foot"><div class="wrap">
 {newsletter()}
-<p class="small">Prices are read automatically from each vendor's public pricing page and normalized to USD. Last updated <b>{DATE_H}</b>. Always confirm on the vendor's site before buying. Some outbound links may become affiliate links; that never changes the numbers. <a href="{prefix}about.html">How we collect prices</a> · <a href="{prefix}data/latest.json">Raw data (JSON)</a></p>
-<p class="small">© {D.year} {SITE}</p>
+<p class="small">Prices are read automatically from each vendor's public pricing page and normalized to USD. Last updated <b>{DATE_H}</b>. Always confirm on the vendor's site before buying. Some outbound links are affiliate links; that never changes the numbers. <a href="{prefix}methodology.html">How we collect prices</a> · <a href="{prefix}about.html">About &amp; disclosures</a> · <a href="{prefix}data/latest.json">Raw data (JSON)</a></p>
+<p class="small">Built by {author_link()} · <a href="{e(utm(CFG['agency_url'], 'footer'))}" target="_blank" rel="noopener">{e(CFG['agency_name'])}</a> · © {D.year} {SITE}</p>
 </div></footer>
 <script src="{prefix}assets/app.js" defer></script>
 </body></html>"""
@@ -249,6 +261,7 @@ def build_index():
 <p class="lead"><b>The real price per minute, checked daily, with receipts.</b> New here? <a href="start-here.html">Start here →</a></p>
 {stamp()}<div class="kcards">{''.join(cards)}</div></section>
 {calculator()}
+{agency_cta('calculator')}
 {''.join(sections)}
 <section class="card"><h2>Popular comparisons</h2><div class="chips">{pop_links}</div><p><a href="compare/index.html">All comparisons →</a></p></section>
 <p class="small muted">{n_unk} price rows are marked <span class="unk">Unknown</span> because the vendor's page couldn't be read or doesn't publish that price. We never guess.</p>"""
@@ -398,8 +411,8 @@ def build_about():
 <li><b>Euro prices</b> are converted at the European Central Bank reference rate for that day ({snap['fx'].get('EUR_USD')} USD per EUR on {e(snap['fx'].get('date'))}).</li></ul>
 <p>If a page can't be read, or a rule stops matching because the vendor changed the page, that price shows as <span class="unk">Unknown</span>. We never fill in a number by hand. Listed prices are before volume discounts, taxes and promotions unless noted.</p>
 <h3>Currently unknown</h3><ul>{unk}</ul>
-<h3>Affiliate disclosure</h3><p>Some outbound links may become affiliate links. That never affects the prices shown or how rows are sorted.</p></section>"""
-    page("about.html", f"Methodology: How Voice AI Prices Are Collected | {SITE}", "How VoiceCost reads vendor pricing pages daily, normalizes units and handles unknown prices.", body, "", "about.html")
+<h3>Disclosures</h3><p>Some outbound links (currently ElevenLabs and Vapi) are affiliate links, and VoiceCost's builder runs a company that sells voice agent setup services. Neither affects the prices shown or how rows are sorted. <a href="about.html">More on the About page</a>.</p></section>"""
+    page("methodology.html", f"Methodology: How Voice AI Prices Are Collected | {SITE}", "How VoiceCost reads vendor pricing pages daily, normalizes units and handles unknown prices.", body, "", "methodology.html")
 
 # ------------------------------------------------------------------ guide
 def _row(k):
@@ -467,11 +480,35 @@ def build_guide():
 {exhtml}
 <p><a class="btn" href="index.html#calculator">Try your own numbers →</a></p></section>
 <section class="card prose"><h2>What "checked daily" means</h2>
-<p>A scheduled job reads {len(ORDER)} vendors' public pricing pages each morning. We currently have verified prices for {n_v} of them. If a page can't be read or doesn't publish a price, we show <span class="unk">Unknown</span> instead of guessing. Every price links to its source and the date it was checked. Full details are in <a href="about.html">how we collect prices</a>, and the raw numbers are in <a href="data/latest.json">JSON</a>.</p>
-<p class="small muted">Disclosure: some links (currently ElevenLabs and Vapi) are affiliate links. We may earn a commission at no cost to you. It never changes the prices shown or how they're sorted.</p></section>"""
+<p>A scheduled job reads {len(ORDER)} vendors' public pricing pages each morning. We currently have verified prices for {n_v} of them. If a page can't be read or doesn't publish a price, we show <span class="unk">Unknown</span> instead of guessing. Every price links to its source and the date it was checked. Full details are in <a href="methodology.html">how we collect prices</a>, and the raw numbers are in <a href="data/latest.json">JSON</a>.</p>
+<p class="small muted">Disclosure: some links (currently ElevenLabs and Vapi) are affiliate links. We may earn a commission at no cost to you. It never changes the prices shown or how they're sorted.</p></section>
+{agency_cta('start-here')}"""
     page("start-here.html", f"Start Here: Real Voice AI Cost per Minute, Checked Daily | {SITE}",
          "How to use VoiceCost: calculator, comparisons, vendor price history and changes log, plus what a voice agent call really costs once STT, LLM, TTS and telephony are added.",
          body, "", "start-here.html")
+
+def build_about_page():
+    links = [f'<a href="{e(utm(CFG["agency_url"], "about"))}" target="_blank" rel="noopener">{e(CFG["agency_name"])}</a>']
+    if CFG.get("author_linkedin"):
+        links.append(f'<a href="{e(CFG["author_linkedin"])}" target="_blank" rel="noopener me">LinkedIn</a>')
+    if CFG.get("youtube_url"):
+        links.append(f'<a href="{e(CFG["youtube_url"])}" target="_blank" rel="noopener">YouTube</a>')
+    first = snaps[0]["date"] if snaps else DATE
+    first_h = dt.date.fromisoformat(first).strftime("%b %-d, %Y")
+    body = f"""<nav class="crumbs"><a href="index.html">Home</a> › About</nav>
+<section class="hero sm"><h1>About VoiceCost</h1></section>
+<section class="card prose"><h2>Who's behind it</h2>
+<p>{e(CFG['author_name'])} runs {e(CFG['agency_name'])}, which builds AI and voice agents for small and medium-sized businesses.</p>
+<p class="small">{' · '.join(links)}</p>
+<h2>Why VoiceCost exists</h2>
+<p>Voice AI pricing is hard to compare. Vendors use different units (per minute, per hour, per character, per credit), and a platform's headline per-minute fee often leaves out speech-to-text, the LLM, text-to-speech and the phone line. Many comparison posts copy a headline price once and never update it. VoiceCost rechecks each vendor's official pricing page every day, keeps a dated history and a changes log, and helps you add up what a call really costs. Daily tracking started on {first_h}.</p>
+<h2>How prices are collected</h2>
+<p>A scheduled job reads each tracked vendor's public pricing page, saves a dated copy, and extracts the listed prices. If a price can't be read, it shows as <span class="unk">Unknown</span>; nothing is filled in by hand. Details are on the <a href="methodology.html">methodology page</a>.</p>
+<h2>Disclosures</h2>
+<ul><li><b>Affiliate links.</b> Some outbound links (currently ElevenLabs and Vapi) are affiliate links. If you sign up through them, VoiceCost may earn a commission at no cost to you.</li>
+<li><b>Services.</b> {e(CFG['author_name'])}'s company, {e(CFG['agency_name'])}, sells voice agent setup services.</li></ul>
+<p>Comparisons are based only on published vendor prices. Neither affiliate relationships nor {e(CFG['agency_name'])}'s services influence the numbers, which vendors are listed, or how rows are sorted.</p></section>"""
+    page("about.html", f"About VoiceCost and Disclosures | {SITE}", "Who builds VoiceCost, why it exists, how prices are collected, and affiliate and services disclosures.", body, "", "about.html")
 
 # ------------------------------------------------------------------ pairs
 POPULAR = [("vapi", "retell"), ("vapi", "bland"), ("retell", "bland"), ("vapi", "synthflow"), ("retell", "synthflow"),
@@ -493,7 +530,7 @@ def main():
     POPULAR_OK = [p for p in POPULAR if p in pairset]
     for a, b in ALL_PAIRS: build_pair(a, b)
     for vid in ORDER: build_vendor(vid)
-    build_compare_index(); build_changes(); build_about(); build_guide(); build_index()
+    build_compare_index(); build_changes(); build_about(); build_about_page(); build_guide(); build_index()
     urls = "".join(f"<url><loc>{SITE_URL}/{u}</loc><lastmod>{DATE}</lastmod></url>" for u in SITEMAP)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
