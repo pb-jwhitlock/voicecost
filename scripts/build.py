@@ -97,7 +97,7 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="")
 </head><body>
 <header class="top"><div class="wrap nav">
 <a class="logo" href="{prefix}index.html"><span class="mark"></span>{SITE}</a>
-<nav><a href="{prefix}index.html#agents">Agents</a><a href="{prefix}index.html#stt">STT</a><a href="{prefix}index.html#tts">TTS</a><a href="{prefix}index.html#calculator">Calculator</a><a href="{prefix}compare/index.html">Compare</a><a href="{prefix}changes.html">Changes</a></nav>
+<nav><a href="{prefix}start-here.html">Start here</a><a href="{prefix}index.html#agents">Agents</a><a href="{prefix}index.html#stt">STT</a><a href="{prefix}index.html#tts">TTS</a><a href="{prefix}index.html#calculator">Calculator</a><a href="{prefix}compare/index.html">Compare</a><a href="{prefix}changes.html">Changes</a></nav>
 </div></header>
 <main class="wrap">
 {body}
@@ -246,6 +246,7 @@ def build_index():
     pop_links = "".join(f'<a class="chip" href="compare/{slug_pair(a, b)}.html">{e(VEND[a]["name"])} vs {e(VEND[b]["name"])}</a>' for a, b in POPULAR_OK)
     body = f"""<section class="hero"><h1>Voice AI pricing, checked every day</h1>
 <p class="lead">Compare per-minute prices for AI phone agents, speech-to-text and text-to-speech across {n_v} vendors, with price history and a calculator for what a call really costs.</p>
+<p class="lead"><b>The real price per minute, checked daily, with receipts.</b> New here? <a href="start-here.html">Start here →</a></p>
 {stamp()}<div class="kcards">{''.join(cards)}</div></section>
 {calculator()}
 {''.join(sections)}
@@ -400,6 +401,78 @@ def build_about():
 <h3>Affiliate disclosure</h3><p>Some outbound links may become affiliate links. That never affects the prices shown or how rows are sorted.</p></section>"""
     page("about.html", f"Methodology: How Voice AI Prices Are Collected | {SITE}", "How VoiceCost reads vendor pricing pages daily, normalizes units and handles unknown prices.", body, "", "about.html")
 
+# ------------------------------------------------------------------ guide
+def _row(k):
+    for r in ROWS:
+        if key(r) == k and r["status"] == "verified": return r
+    return None
+
+def _preset(lst, label):
+    return next((p for p in snap.get(lst, []) if p["label"] == label), None)
+
+def example_stack():
+    """Worked example built from today's verified data. Returns None if any piece is missing."""
+    plat = _row("vapi|agent|Vapi hosting fee (platform only)")
+    stt = _row("deepgram|stt|Nova-3 Monolingual (streaming, current price)")
+    tts = _row("elevenlabs|tts|Flash / Turbo")
+    llm = _preset("llm_presets", "GPT 4.1 mini (via Retell list)")
+    tel = _preset("telephony_presets", "Twilio inbound (via Vapi list)")
+    if not all([plat, stt, tts, llm, tel]): return None
+    share, cpm, mins = 0.5, 800, 5
+    tts_min = tts["price"] / 1e6 * cpm * share
+    parts = [("Platform fee", "Vapi hosting", plat["price"], plat["source_url"]),
+             ("Speech-to-text", "Deepgram Nova-3 streaming", stt["price"], stt["source_url"]),
+             ("LLM", "GPT 4.1 mini (per-minute rate from Retell's list)", llm["price"], llm["source_url"]),
+             ("Text-to-speech", f"ElevenLabs Flash / Turbo (${tts['price']:.0f}/1M chars × {int(cpm*share)} chars/min)", tts_min, tts["source_url"]),
+             ("Telephony", "Twilio inbound (rate from Vapi's list)", tel["price"], tel["source_url"])]
+    total = sum(p[2] for p in parts)
+    return {"parts": parts, "total": total, "mins": mins, "share": share, "cpm": cpm, "plat": plat["price"]}
+
+def m4(x): return f"${x:.4f}"
+
+def build_guide():
+    n_v = len({r["vendor_id"] for r in ROWS if r["status"] == "verified"})
+    first = snaps[0]["date"] if snaps else DATE
+    first_h = dt.date.fromisoformat(first).strftime("%b %-d, %Y")
+    ex = example_stack()
+    if ex:
+        rows = "".join(f'<tr><td>{e(a)}</td><td>{e(b)}</td><td class="num"><b>{m4(c)}</b></td><td class="small"><a href="{e(u)}" rel="nofollow noopener" target="_blank">source</a></td></tr>' for a, b, c, u in ex["parts"])
+        exhtml = f"""<p><b>Example only</b>, using prices VoiceCost recorded on {DATE_H}. Assumptions: an inbound phone call, the agent speaks {int(ex['share']*100)}% of the time, and one spoken minute is about {ex['cpm']} characters (Cartesia's pricing page puts it at 750–800). Your stack and call pattern will differ.</p>
+<div class="tbl"><table><thead><tr><th>Piece</th><th>Choice in this example</th><th class="num">$/min</th><th>Source</th></tr></thead><tbody>{rows}
+<tr><td colspan="2"><b>Total per minute</b></td><td class="num"><b>{m4(ex['total'])}</b></td><td></td></tr></tbody></table></div>
+<p>So the {m4(ex['plat']).rstrip('0')}/min platform fee is about {ex['plat']/ex['total']*100:.0f}% of what a minute actually costs here. A {ex['mins']}-minute call comes to about <b>${ex['total']*ex['mins']:.2f}</b>, not ${ex['plat']*ex['mins']:.2f}. The LLM rate is the per-minute figure Retell publishes for that model; Vapi passes model costs through at cost, so your actual LLM line may differ.</p>"""
+    else:
+        exhtml = "<p>The worked example is hidden today because one of its prices couldn't be verified. Use the calculator instead.</p>"
+    vapi, el = (aff.get("vapi") or VEND["vapi"]["site"]), (aff.get("elevenlabs") or VEND["elevenlabs"]["site"])
+    body = f"""<nav class="crumbs"><a href="index.html">Home</a> › Start here</nav>
+<section class="hero sm"><h1>Start here: the real price per minute, checked daily, with receipts</h1>
+<p class="lead">Many pricing roundups copy a vendor's headline price once and never touch it again. VoiceCost rechecks each tracked vendor's official pricing page every day, keeps a dated price history and a changes log, and helps you add up the all-in cost of a minute: platform fee, speech-to-text, LLM, text-to-speech and telephony.</p>
+{stamp()}</section>
+<section class="card prose"><h2>How to use VoiceCost</h2>
+<ol>
+<li><b>Price your call in the <a href="index.html#calculator">calculator</a>.</b> Pick a speech-to-text, LLM, platform, voice and phone line, or switch to "All-in agent platform". Enter your call length and monthly volume to get cost per call and per month.</li>
+<li><b>Compare two vendors side by side.</b> Pages like <a href="compare/vapi-vs-retell.html">Vapi vs Retell</a> or <a href="compare/deepgram-vs-assemblyai.html">Deepgram vs AssemblyAI</a> line up each product's price. Browse them all on the <a href="compare/index.html">compare page</a>.</li>
+<li><b>Check a vendor's page and price history.</b> Every vendor page (for example <a href="vendors/elevenlabs.html">ElevenLabs</a>) shows each product's price, the unit the vendor uses, a link to the source page, and a price-history line built from every daily check since tracking began on {first_h}.</li>
+<li><b>Watch the <a href="changes.html">changes log</a>.</b> When a vendor edits a price, the change lands there with the old and new number and the date we spotted it.</li>
+</ol>
+<p class="small muted">Tip: in the agent table, watch the <b>Scope</b> column. "Platform fee only" means models and phone minutes cost extra. "Bundled" and "All-in" include more, but each vendor's note says what's left out.</p></section>
+<section class="card prose"><h2>What a voice agent call really costs</h2>
+<p>A voice agent stacks five meters, and each one runs every minute of the call:</p>
+<ul><li><b>Platform fee</b>: the orchestration layer (for example <a href="{e(vapi)}" rel="sponsored noopener" target="_blank">Vapi</a>, Retell, LiveKit).</li>
+<li><b>Speech-to-text</b>: turns the caller's voice into text.</li>
+<li><b>LLM</b>: decides what to say.</li>
+<li><b>Text-to-speech</b>: speaks the reply (for example <a href="{e(el)}" rel="sponsored noopener" target="_blank">ElevenLabs</a>). Billed by characters, so it depends on how much the agent talks.</li>
+<li><b>Telephony</b>: the phone number and carrier minutes.</li></ul>
+<p>Many platforms advertise only the first line. Here's what happens when you add the rest.</p>
+{exhtml}
+<p><a class="btn" href="index.html#calculator">Try your own numbers →</a></p></section>
+<section class="card prose"><h2>What "checked daily" means</h2>
+<p>A scheduled job reads {len(ORDER)} vendors' public pricing pages each morning. We currently have verified prices for {n_v} of them. If a page can't be read or doesn't publish a price, we show <span class="unk">Unknown</span> instead of guessing. Every price links to its source and the date it was checked. Full details are in <a href="about.html">how we collect prices</a>, and the raw numbers are in <a href="data/latest.json">JSON</a>.</p>
+<p class="small muted">Disclosure: some links (currently ElevenLabs and Vapi) are affiliate links. We may earn a commission at no cost to you. It never changes the prices shown or how they're sorted.</p></section>"""
+    page("start-here.html", f"Start Here: Real Voice AI Cost per Minute, Checked Daily | {SITE}",
+         "How to use VoiceCost: calculator, comparisons, vendor price history and changes log, plus what a voice agent call really costs once STT, LLM, TTS and telephony are added.",
+         body, "", "start-here.html")
+
 # ------------------------------------------------------------------ pairs
 POPULAR = [("vapi", "retell"), ("vapi", "bland"), ("retell", "bland"), ("vapi", "synthflow"), ("retell", "synthflow"),
            ("deepgram", "assemblyai"), ("deepgram", "openai"), ("assemblyai", "openai"), ("deepgram", "speechmatics"),
@@ -420,7 +493,7 @@ def main():
     POPULAR_OK = [p for p in POPULAR if p in pairset]
     for a, b in ALL_PAIRS: build_pair(a, b)
     for vid in ORDER: build_vendor(vid)
-    build_compare_index(); build_changes(); build_about(); build_index()
+    build_compare_index(); build_changes(); build_about(); build_guide(); build_index()
     urls = "".join(f"<url><loc>{SITE_URL}/{u}</loc><lastmod>{DATE}</lastmod></url>" for u in SITEMAP)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")

@@ -4,7 +4,7 @@ from playwright.async_api import async_playwright
 BASE = os.environ.get("VC_BASE", "http://127.0.0.1:8787")
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "screens")
 SHOTS = [("home.png", "/index.html", 1280), ("compare-vapi-vs-retell.png", "/compare/vapi-vs-retell.html", 1280),
-         ("home-mobile.png", "/index.html", 390), ("compare-deepgram-vs-assemblyai.png", "/compare/deepgram-vs-assemblyai.html", 1280)]
+         ("home-mobile.png", "/index.html", 390), ("start-here.png", "/start-here.html", 1280), ("start-here-mobile.png", "/start-here.html", 390), ("compare-deepgram-vs-assemblyai.png", "/compare/deepgram-vs-assemblyai.html", 1280)]
 async def main():
     os.makedirs(OUT, exist_ok=True)
     async with async_playwright() as pw:
