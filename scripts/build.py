@@ -114,12 +114,12 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="")
     open(full, "w").write(doc)
     SITEMAP.append(canonical)
 
+NEWSLETTER_URL = "https://voicecost.beehiiv.com/subscribe"
+
 def newsletter():
-    return """<section class="news" id="newsletter"><div>
-<h3>Get price changes in your inbox</h3><p>One short email when a voice AI vendor changes its prices. No spam.</p></div>
-<form class="newsletter" action="#" method="post" data-placeholder="true" onsubmit="return vcNewsletter(this)">
-<label class="sr" for="nl-email">Email</label><input id="nl-email" type="email" name="email" placeholder="you@company.com" required>
-<button type="submit">Subscribe</button><p class="nl-msg small" hidden>Thanks! (Signup isn't connected yet.)</p></form></section>"""
+    return f"""<section class="news" id="newsletter"><div>
+<h3>Get the weekly voice AI price changes. Free.</h3><p>One short email a week with what changed in voice agent, speech-to-text and text-to-speech pricing. Unsubscribe anytime.</p></div>
+<a class="btn nl-btn" href="{NEWSLETTER_URL}" target="_blank" rel="noopener">Subscribe free →</a></section>"""
 
 def stamp():
     return f'<p class="stamp"><span class="dot"></span>Last updated <time datetime="{DATE}">{DATE_H}</time> · prices checked daily</p>'

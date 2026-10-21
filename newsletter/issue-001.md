@@ -57,6 +57,8 @@ Prices still unconfirmed today (PlayHT, Hume, LMNT, OpenAI TTS, Synthflow) are m
 
 [Open VoiceCost](https://pb-jwhitlock.github.io/voicecost/) and try your own numbers. **Hit reply** and tell me which vendor, model or comparison you want added. Every reply gets read.
 
+Got this from a friend? [Get the weekly voice AI price changes. Free.](https://voicecost.beehiiv.com/subscribe)
+
 John, VoiceCost
 
 *Disclosure: the ElevenLabs and Vapi links are affiliate links. I may earn a commission at no cost to you. It never changes the numbers.*

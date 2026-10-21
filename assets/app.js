@@ -77,4 +77,4 @@
   document.querySelectorAll('.calc input,.calc select').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc)});
   setMode(mode);
 })();
-function vcNewsletter(f){var m=f.querySelector('.nl-msg');if(m)m.hidden=false;return false}
+function vcNewsletter(f){return true}
