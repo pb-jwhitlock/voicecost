@@ -59,8 +59,8 @@ Prices still unconfirmed today (PlayHT, Hume, LMNT, OpenAI TTS, Synthflow) are m
 
 Got this from a friend? [Get the weekly voice AI price changes. Free.](https://voicecost.beehiiv.com/subscribe)
 
-**Pricing this out for your business?** Get a free AI assessment from Points Beyond AI. We build AI and voice agents for small and medium-sized businesses. [Get a free AI assessment](https://pointsbeyond.ai/contact/?utm_source=voicecost&utm_medium=referral&utm_campaign=newsletter-001)
+**Pricing this out for your business?** Get a free AI assessment from Points Beyond. We build AI and voice agents for small and medium-sized businesses. [Get a free AI assessment](https://pointsbeyond.ai/contact/?utm_source=voicecost&utm_medium=referral&utm_campaign=newsletter-001)
 
-John Whitlock, VoiceCost · [Points Beyond AI](https://pointsbeyond.ai/?utm_source=voicecost&utm_medium=referral&utm_campaign=newsletter-001)
+John Whitlock, VoiceCost · [Points Beyond](https://pointsbeyond.ai/?utm_source=voicecost&utm_medium=referral&utm_campaign=newsletter-001)
 
-*Disclosure: the ElevenLabs and Vapi links are affiliate links, and I may earn a commission at no cost to you. My company, Points Beyond AI, sells voice agent setup services. VoiceCost comparisons use only published vendor prices, and neither influences the numbers.*
+*Disclosure: the ElevenLabs and Vapi links are affiliate links, and I may earn a commission at no cost to you. My company, Points Beyond, sells voice agent setup services. VoiceCost comparisons use only published vendor prices, and neither influences the numbers.*
