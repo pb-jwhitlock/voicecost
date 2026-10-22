@@ -26,8 +26,8 @@ def author_link():
     return f'<a href="{e(li)}" target="_blank" rel="noopener me">{e(CFG["author_name"])}</a>' if li else e(CFG["author_name"])
 
 def agency_cta(placement):
-    return f"""<aside class="card cta-soft"><p><b>Pricing this out for your business?</b> Get a free AI assessment from {e(CFG['agency_name'])}. We build AI and voice agents for small and medium-sized businesses.</p>
-<a class="btn" href="{e(utm(CFG['agency_cta_url'], placement))}" target="_blank" rel="noopener">Get a free AI assessment</a></aside>"""
+    return f"""<aside class="card cta-soft"><p><b>Pricing this out for your business?</b> Get a free assessment from {e(CFG['agency_name'])}. We build voice agents and automation for small and medium-sized businesses.</p>
+<a class="btn" href="{e(utm(CFG['agency_cta_url'], placement))}" target="_blank" rel="noopener">Get a free assessment</a></aside>"""
 ROWS = snap["rows"]
 VEND = {v["id"]: v for v in snap["vendors"]}
 ORDER = [v["id"] for v in snap["vendors"]]
@@ -518,7 +518,7 @@ def build_about_page():
     body = f"""<nav class="crumbs"><a href="index.html">Home</a> › About</nav>
 <section class="hero sm"><h1>About VoiceCost</h1></section>
 <section class="card prose"><h2>Who's behind it</h2>
-<p>{e(CFG['author_name'])} runs {e(CFG['agency_name'])}, which builds AI and voice agents for small and medium-sized businesses.</p>
+<p>{e(CFG['author_name'])} runs {e(CFG['agency_name'])}, which builds voice agents and automation for small and medium-sized businesses.</p>
 <p class="small">{' · '.join(links)}</p>
 <h2>Why VoiceCost exists</h2>
 <p>Voice AI pricing is hard to compare. Vendors use different units (per minute, per hour, per character, per credit), and a platform's headline per-minute fee often leaves out speech-to-text, the LLM, text-to-speech and the phone line. Many comparison posts copy a headline price once and never update it. VoiceCost rechecks each vendor's official pricing page every day, keeps a dated history and a changes log, and helps you add up what a call really costs. Daily tracking started on {first_h}.</p>
