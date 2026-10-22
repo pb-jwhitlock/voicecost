@@ -3,7 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 PY=.venv/bin/python
-[ -x "$PY" ] || { python3 -m venv .venv && .venv/bin/pip install -q playwright requests beautifulsoup4 lxml; }
+[ -x "$PY" ] || { python3 -m venv .venv && .venv/bin/pip install -q playwright requests beautifulsoup4 lxml pillow; }
 case "${1:-daily}" in
   update)    $PY scripts/update.py ;;                 # fetch pages, extract, dated snapshot, diff
   reextract) $PY scripts/update.py --offline ;;       # re-run extraction on today's saved pages (no network)

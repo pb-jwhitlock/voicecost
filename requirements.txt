@@ -2,3 +2,4 @@ playwright==1.*
 requests
 beautifulsoup4
 lxml
+pillow

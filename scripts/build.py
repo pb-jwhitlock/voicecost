@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Build the VoiceCost static site from data/ into site/ (plain HTML/CSS/JS)."""
-import datetime as dt, glob, html, itertools, json, os, shutil
+import datetime as dt, glob, html, itertools, json, os, shutil, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import og
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA, OUT, ASSETS = os.path.join(ROOT, "data"), os.path.join(ROOT, "site"), os.path.join(ROOT, "assets")
@@ -105,7 +107,11 @@ def visit_link(vid):
 def slug_pair(a, b): return f"{a}-vs-{b}"
 
 # ------------------------------------------------------------------ layout
-def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head=""):
+OG_DEFAULT = "og/voicecost.png"
+OG_HOST = SITE_URL.split("://", 1)[-1]
+
+def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="", og_img=OG_DEFAULT):
+    img = f"{SITE_URL}/{og_img}"
     ld = f'<script type="application/ld+json">{json.dumps(jsonld)}</script>' if jsonld else ""
     doc = f"""<!doctype html>
 <html lang="en"><head>
@@ -115,7 +121,9 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="")
 <link rel="canonical" href="{SITE_URL}/{canonical}">
 <meta property="og:type" content="website"><meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{SITE_URL}/{canonical}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{e(img)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{e(title)}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(title)}"><meta name="twitter:image" content="{e(img)}">
 <link rel="stylesheet" href="{prefix}assets/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234f46e5'/%3E%3Cpath d='M9 20v-8M14 24V8M19 20v-8M24 17v-2' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
 {ld}{extra_head}
@@ -330,7 +338,12 @@ def build_vendor(vid):
 <section class="card"><h2>Sources</h2><ul class="src">{srcs}</ul></section>"""
     title = f"{v['name']} Pricing ({MONTH}): Cost per Minute & Price History | {SITE}"
     desc = f"{v['name']} pricing checked {DATE_H}: {summary}. Every tier, normalized units, price history and source links."
-    page(f"vendors/{vid}.html", title, desc, body, "../", f"vendors/{vid}.html")
+    og_lines = []
+    for c in cats:
+        r = cheapest(vid, c)
+        if r: og_lines.append(f"{CAT[c]}: from {fmt(r['price'], c)} {UNIT[c]}")
+    og.page_card(os.path.join(OUT, "og", "vendors", f"{vid}.png"), f"{v['name']} pricing", "Vendor pricing", og_lines, OG_HOST)
+    page(f"vendors/{vid}.html", title, desc, body, "../", f"vendors/{vid}.html", og_img=f"og/vendors/{vid}.png")
 
 def shared_cats(a, b):
     out = []
@@ -390,7 +403,9 @@ def build_pair(a, b):
 <section class="card"><h2>FAQ</h2>{faq_html}
 <details><summary>How often are these prices updated?</summary><p>Every day. A script reads each vendor's public pricing page, extracts the listed rates and keeps a dated copy, so price changes show up in the history.</p></details></section>
 <p><a href="../vendors/{a}.html">All {e(A['name'])} prices</a> · <a href="../vendors/{b}.html">All {e(B['name'])} prices</a></p>"""
-    page(f"compare/{slug_pair(a, b)}.html", title, desc, body, "../", f"compare/{slug_pair(a, b)}.html", ld)
+    og_lines = [f"{CAT_SHORT[c]}: {A['name']} {fmt(cheapest(a, c)['price'], c)} vs {B['name']} {fmt(cheapest(b, c)['price'], c)} {UNIT[c]}" for c in cats]
+    og.page_card(os.path.join(OUT, "og", "compare", f"{slug_pair(a, b)}.png"), f"{A['name']} vs {B['name']} pricing", "Price comparison", og_lines, OG_HOST)
+    page(f"compare/{slug_pair(a, b)}.html", title, desc, body, "../", f"compare/{slug_pair(a, b)}.html", ld, og_img=f"og/compare/{slug_pair(a, b)}.png")
 
 def build_compare_index():
     groups = {}
@@ -544,6 +559,7 @@ def main():
     shutil.copytree(ASSETS, os.path.join(OUT, "assets"))
     os.makedirs(os.path.join(OUT, "data"))
     shutil.copy(os.path.join(DATA, "latest.json"), os.path.join(OUT, "data", "latest.json"))
+    og.site_card(os.path.join(OUT, OG_DEFAULT), OG_HOST)
     # all vendor pairs (in tracker order) that share at least one category with verified prices
     ALL_PAIRS = [(a, b) for a, b in itertools.combinations(ORDER, 2) if shared_cats(a, b)]
     pairset = set(ALL_PAIRS)
