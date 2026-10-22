@@ -130,7 +130,7 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="")
 <footer class="foot"><div class="wrap">
 {newsletter()}
 <p class="small">Prices are read automatically from each vendor's public pricing page and normalized to USD. Last updated <b>{DATE_H}</b>. Always confirm on the vendor's site before buying. Some outbound links are affiliate links; that never changes the numbers. <a href="{prefix}methodology.html">How we collect prices</a> · <a href="{prefix}about.html">About &amp; disclosures</a> · <a href="{prefix}data/latest.json">Raw data (JSON)</a></p>
-<p class="small">Built by {author_link()} · <a href="{e(utm(CFG['agency_url'], 'footer'))}" target="_blank" rel="noopener">{e(CFG['agency_name'])}</a> · © {D.year} {SITE}</p>
+<p class="small">Built by <a href="{e(utm(CFG['agency_url'], 'footer'))}" target="_blank" rel="noopener">{e(CFG['agency_name'])}</a> · © {D.year} {SITE}</p>
 </div></footer>
 <script src="{prefix}assets/app.js" defer></script>
 </body></html>"""
