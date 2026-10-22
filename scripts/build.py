@@ -518,7 +518,7 @@ def build_about_page():
     body = f"""<nav class="crumbs"><a href="index.html">Home</a> › About</nav>
 <section class="hero sm"><h1>About VoiceCost</h1></section>
 <section class="card prose"><h2>Who's behind it</h2>
-<p>{e(CFG['author_name'])} runs {e(CFG['agency_name'])}, which builds voice agents and automation for small and medium-sized businesses.</p>
+<p>{e(CFG['author_name'])} runs {e(CFG['agency_name'])}, which builds voice agents and automation for small and medium-sized businesses. He's also the author of <a href="https://pointsbeyond.gumroad.com/l/tctsnb?utm_source=voicecost&utm_medium=referral&utm_campaign=about" target="_blank" rel="noopener"><i>Claude Code, Solo</i></a>.</p>
 <p class="small">{' · '.join(links)}</p>
 <h2>Why VoiceCost exists</h2>
 <p>Voice AI pricing is hard to compare. Vendors use different units (per minute, per hour, per character, per credit), and a platform's headline per-minute fee often leaves out speech-to-text, the LLM, text-to-speech and the phone line. Many comparison posts copy a headline price once and never update it. VoiceCost rechecks each vendor's official pricing page every day, keeps a dated history and a changes log, and helps you add up what a call really costs. Daily tracking started on {first_h}.</p>
