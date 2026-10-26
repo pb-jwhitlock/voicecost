@@ -1,0 +1,73 @@
+<!-- VoiceCost issue #2. Paste into Beehiiv (HTML block). Snapshots 2026-10-20 to 2026-10-25. -->
+<div style="max-width:620px;margin:0 auto;padding:8px 4px">
+<h1 style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:24px;line-height:1.25;color:#0f172a;margin:0 0 16px">VoiceCost #2: Prices held steady this week (and the one line that swings your cost most)</h1>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">Hi, it's John with this week's VoiceCost update.</p>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px"><strong>Short version: prices held steady.</strong> VoiceCost checked every tracked vendor's pricing page each day from October 20 to October 25, and none of the list prices we track changed. Same 24 vendors, same 65 price lines, no new plans and none removed. A quiet week is still a useful result: if you priced a stack last week, your numbers still hold.</p>
+<h2 style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:19px;color:#0f172a;margin:28px 0 10px">What moved (barely)</h2>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">Only one vendor's numbers changed, and it wasn't really a price change. <a style="color:#4f46e5" href="https://pb-jwhitlock.github.io/voicecost/vendors/gladia.html?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=issue-002">Gladia</a> charges in euros, and we convert to dollars using the European Central Bank's daily reference rate. Its euro prices stayed exactly the same (€0.68/hr real-time and €0.16/hr Solaria-3 async), but the dollar figures drifted with the exchange rate:</p>
+<ul>
+<li style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 8px"><strong>Real-time:</strong> $0.012710/min on Oct 20, up to $0.012732 on Oct 21, then down to $0.012685 by Oct 23, where it has held.</li>
+<li style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 8px"><strong>Solaria-3 async:</strong> $0.002991/min on Oct 20, up to $0.002996 on Oct 21, then down to $0.002985 by Oct 23.</li>
+</ul>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">That's a move of about 0.2% in total. On a real call it's a rounding error. Every daily entry is in the <a style="color:#4f46e5" href="https://pb-jwhitlock.github.io/voicecost/changes.html?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=issue-002">changes log</a>.</p>
+<h2 style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:19px;color:#0f172a;margin:28px 0 10px">Our example call: still $0.0916 a minute</h2>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">Last week's example stack (an inbound call where the agent talks 50% of the time at about 800 characters per spoken minute) comes out the same on the Oct 25 snapshot:</p>
+<table style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%;font-size:14px;margin:6px 0 14px">
+<thead>
+<tr>
+<th style="text-align:left;border-bottom:2px solid #e2e8f0;padding:8px 6px;color:#64748b;font-size:12px;text-transform:uppercase">Piece</th>
+<th style="text-align:left;border-bottom:2px solid #e2e8f0;padding:8px 6px;color:#64748b;font-size:12px;text-transform:uppercase">Choice</th>
+<th style="text-align:left;border-bottom:2px solid #e2e8f0;padding:8px 6px;color:#64748b;font-size:12px;text-transform:uppercase">$/min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a">Platform</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a"><a style="color:#4f46e5" href="https://vapi.ai/?aff=johnwg" rel="sponsored noopener">Vapi</a> hosting</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a;text-align:right;white-space:nowrap">$0.0500</td>
+</tr>
+<tr>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a">Speech-to-text</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a">Deepgram Nova-3 streaming</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a;text-align:right;white-space:nowrap">$0.0048</td>
+</tr>
+<tr>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a">LLM</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a">GPT 4.1 mini (Retell's published per-minute rate)</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a;text-align:right;white-space:nowrap">$0.0128</td>
+</tr>
+<tr>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a">Text-to-speech</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a"><a style="color:#4f46e5" href="https://try.elevenlabs.io/zwx7c5awvwsw" rel="sponsored noopener">ElevenLabs</a> Flash / Turbo, $40/1M chars × 400 chars/min</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a;text-align:right;white-space:nowrap">$0.0160</td>
+</tr>
+<tr>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a">Telephony</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a">Twilio inbound (rate listed by Vapi)</td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a;text-align:right;white-space:nowrap">$0.0080</td>
+</tr>
+<tr>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a"><strong>Total</strong></td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a"></td>
+<td style="border-bottom:1px solid #e2e8f0;padding:8px 6px;color:#0f172a;text-align:right;white-space:nowrap"><strong>$0.0916</strong></td>
+</tr>
+</tbody>
+</table>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">A 5-minute call is still about <strong>$0.46</strong>.</p>
+<h2 style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:19px;color:#0f172a;margin:28px 0 10px">This week's tip: watch the LLM line</h2>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">Once you've picked a platform, the LLM is the piece that swings your cost the most. The per-minute LLM rates Retell publishes run from $0.008 (GPT 5 mini) to $0.045 (GPT 4.1), with Gemini 3.0 Flash at $0.016 and Claude 4.5 haiku at $0.025 in between.</p>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">Keep everything else in the stack above the same and only swap the model:</p>
+<ul>
+<li style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 8px"><strong>GPT 5 mini:</strong> $0.0868/min, or about $0.43 for a 5-minute call.</li>
+<li style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 8px"><strong>GPT 4.1 mini (our example):</strong> $0.0916/min, or about $0.46.</li>
+<li style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 8px"><strong>GPT 4.1:</strong> $0.1238/min, or about $0.62.</li>
+</ul>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">That's a 43% jump in cost per minute from the model choice alone. The $0.037 spread between those LLM rates is wider than the range for any other piece we track once the platform is set. Test the cheapest model that handles your calls well before you upgrade. (Vapi passes model costs through at cost, so your LLM line there may differ from Retell's list price.) Try your own mix in the <a style="color:#4f46e5" href="https://pb-jwhitlock.github.io/voicecost/index.html?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=issue-002#calculator">calculator</a>, or compare platforms with <a style="color:#4f46e5" href="https://pb-jwhitlock.github.io/voicecost/compare/vapi-vs-retell.html?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=issue-002">Vapi vs Retell</a>.</p>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">Still unconfirmed: PlayHT, Hume, LMNT and OpenAI TTS are marked Unknown on the site because we couldn't verify a published price. We never guess.</p>
+<h2 style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:19px;color:#0f172a;margin:28px 0 10px">Tell me what to track</h2>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px"><a style="color:#4f46e5" href="https://pb-jwhitlock.github.io/voicecost/?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=issue-002">Open VoiceCost</a> and try your own numbers. <strong>Hit reply</strong> and tell me which vendor, model or comparison you want added. Every reply gets read.</p>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">Got this from a friend? <a style="color:#4f46e5" href="https://voicecost.beehiiv.com/subscribe">Get the weekly voice AI price changes. Free.</a></p>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px"><strong>Pricing this out for your business?</strong> Get a free assessment from Points Beyond. We build voice agents and automation for small and medium-sized businesses. <a style="color:#4f46e5" href="https://pointsbeyond.ai/contact/?utm_source=voicecost&amp;utm_medium=referral&amp;utm_campaign=newsletter-002">Get a free assessment</a></p>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px">John Whitlock, VoiceCost · Built by <a style="color:#4f46e5" href="https://pointsbeyond.ai/?utm_source=voicecost&amp;utm_medium=referral&amp;utm_campaign=newsletter-002">Points Beyond</a></p>
+<p style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#334155;margin:0 0 14px"><em>Disclosure: the ElevenLabs and Vapi links are affiliate links, and I may earn a commission at no cost to you. My company, Points Beyond, sells voice agent setup services. VoiceCost comparisons use only published vendor prices, and neither influences the numbers.</em></p>
+</div>
