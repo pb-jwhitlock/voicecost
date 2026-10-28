@@ -19,8 +19,8 @@ Hi, I'm John. Thanks for subscribing to VoiceCost.
 
 **Three good places to start:**
 
-1. [Start here guide](https://pb-jwhitlock.github.io/voicecost/start-here.html?utm_source=newsletter&utm_medium=email&utm_campaign=welcome). How to read the site in a few minutes.
-2. [Cost calculator](https://pb-jwhitlock.github.io/voicecost/index.html?utm_source=newsletter&utm_medium=email&utm_campaign=welcome#calculator). Pick your stack and see your cost per call and per month.
+1. [Start here guide](https://voicecost.net/start-here.html?utm_source=newsletter&utm_medium=email&utm_campaign=welcome). How to read the site in a few minutes.
+2. [Cost calculator](https://voicecost.net/index.html?utm_source=newsletter&utm_medium=email&utm_campaign=welcome#calculator). Pick your stack and see your cost per call and per month.
 3. [Issue #1](https://voicecost.beehiiv.com/p/that-0-05-min-voice-agent-our-example-came-to-0-0916). One voice agent call, priced line by line.
 
 **Hit reply and tell me what you're building**, or which vendors you want tracked. I read every reply.

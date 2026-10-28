@@ -14,7 +14,7 @@ The headline covered the platform fee. Speech-to-text, the LLM, text-to-speech a
 That gap is why I built VoiceCost. Every day it checks the official pricing pages of 24 voice AI vendors, keeps a dated price history and a log of every change, and lets you add up the full cost per minute for your own stack. If a price can't be read, it says Unknown instead of guessing, and every number links back to its source.
 
 It's free. If you're pricing out a voice agent, try your own numbers here:
-https://pb-jwhitlock.github.io/voicecost/?utm_source=linkedin&utm_medium=social&utm_campaign=launch
+https://voicecost.net/?utm_source=linkedin&utm_medium=social&utm_campaign=launch
 
 There's also a short weekly newsletter with the price changes that matter. You can subscribe on the site.
 
@@ -24,4 +24,4 @@ Disclosure: some vendor links on VoiceCost are affiliate links.
 
 ## Company page first post (variant)
 
-VoiceCost checks voice AI vendors' official pricing pages every day and adds up what a call really costs, since one $0.05/min headline came to about $0.0916/min once speech, LLM, voice and phone line were included. See the daily prices and subscribe to the weekly newsletter: https://pb-jwhitlock.github.io/voicecost/?utm_source=linkedin&utm_medium=social&utm_campaign=launch
+VoiceCost checks voice AI vendors' official pricing pages every day and adds up what a call really costs, since one $0.05/min headline came to about $0.0916/min once speech, LLM, voice and phone line were included. See the daily prices and subscribe to the weekly newsletter: https://voicecost.net/?utm_source=linkedin&utm_medium=social&utm_campaign=launch

@@ -33,4 +33,4 @@ Cron example (06:00 daily): `0 6 * * * /workspace/voicecost/vc daily >> /workspa
 3. Repo Settings → Pages → Build and deployment → Source: **GitHub Actions**.
 4. Actions → "Daily price update + deploy" → Run workflow (it then runs daily at 10:00 UTC,
    commits the new snapshot to `data/`, and deploys `site/` with actions/deploy-pages).
-Live URL: https://pb-jwhitlock.github.io/voicecost/
+Live URL: https://voicecost.net/ (custom domain; once it is set in Pages, GitHub redirects the old https://pb-jwhitlock.github.io/voicecost/ here)

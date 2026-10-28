@@ -20,12 +20,12 @@ Hi, and welcome to the first VoiceCost email.
 
 ## How to use VoiceCost (4 steps)
 
-1. **Price your call in the [calculator](https://pb-jwhitlock.github.io/voicecost/index.html#calculator).** Pick your speech-to-text, LLM, platform, voice and phone line. Enter call length and monthly volume to get the cost per call and per month.
-2. **Compare two vendors.** Pages like [Vapi vs Retell](https://pb-jwhitlock.github.io/voicecost/compare/vapi-vs-retell.html) put their prices side by side.
+1. **Price your call in the [calculator](https://voicecost.net/index.html#calculator).** Pick your speech-to-text, LLM, platform, voice and phone line. Enter call length and monthly volume to get the cost per call and per month.
+2. **Compare two vendors.** Pages like [Vapi vs Retell](https://voicecost.net/compare/vapi-vs-retell.html) put their prices side by side.
 3. **Check a vendor page.** Each one shows prices, the vendor's own units, a source link and a price-history line.
-4. **Watch the [changes log](https://pb-jwhitlock.github.io/voicecost/changes.html).** Every detected price change is logged with the date and the old and new numbers.
+4. **Watch the [changes log](https://voicecost.net/changes.html).** Every detected price change is logged with the date and the old and new numbers.
 
-New to voice AI? The [Start here guide](https://pb-jwhitlock.github.io/voicecost/start-here.html) walks through all of this.
+New to voice AI? The [Start here guide](https://voicecost.net/start-here.html) walks through all of this.
 
 ## What a voice agent call really costs
 
@@ -55,7 +55,7 @@ Prices still unconfirmed today (PlayHT, Hume, LMNT, OpenAI TTS, Synthflow) are m
 
 ## Tell me what to track
 
-[Open VoiceCost](https://pb-jwhitlock.github.io/voicecost/) and try your own numbers. **Hit reply** and tell me which vendor, model or comparison you want added. Every reply gets read.
+[Open VoiceCost](https://voicecost.net/) and try your own numbers. **Hit reply** and tell me which vendor, model or comparison you want added. Every reply gets read.
 
 Got this from a friend? [Get the weekly voice AI price changes. Free.](https://voicecost.beehiiv.com/subscribe)
 

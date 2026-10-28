@@ -19,12 +19,12 @@ Hi, it's John with this week's VoiceCost update.
 
 ## What moved (barely)
 
-Only one vendor's numbers changed, and it wasn't really a price change. [Gladia](https://pb-jwhitlock.github.io/voicecost/vendors/gladia.html?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002) charges in euros, and we convert to dollars using the European Central Bank's daily reference rate. Its euro prices stayed exactly the same (€0.68/hr real-time and €0.16/hr Solaria-3 async), but the dollar figures drifted with the exchange rate:
+Only one vendor's numbers changed, and it wasn't really a price change. [Gladia](https://voicecost.net/vendors/gladia.html?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002) charges in euros, and we convert to dollars using the European Central Bank's daily reference rate. Its euro prices stayed exactly the same (€0.68/hr real-time and €0.16/hr Solaria-3 async), but the dollar figures drifted with the exchange rate:
 
 - **Real-time:** $0.012710/min on Oct 20, up to $0.012732 on Oct 21, then down to $0.012685 by Oct 23, where it has held.
 - **Solaria-3 async:** $0.002991/min on Oct 20, up to $0.002996 on Oct 21, then down to $0.002985 by Oct 23.
 
-That's a move of about 0.2% in total. On a real call it's a rounding error. Every daily entry is in the [changes log](https://pb-jwhitlock.github.io/voicecost/changes.html?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002).
+That's a move of about 0.2% in total. On a real call it's a rounding error. Every daily entry is in the [changes log](https://voicecost.net/changes.html?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002).
 
 ## Our example call: still $0.0916 a minute
 
@@ -51,13 +51,13 @@ Keep everything else in the stack above the same and only swap the model:
 - **GPT 4.1 mini (our example):** $0.0916/min, or about $0.46.
 - **GPT 4.1:** $0.1238/min, or about $0.62.
 
-That's a 43% jump in cost per minute from the model choice alone. The $0.037 spread between those LLM rates is wider than the range for any other piece we track once the platform is set. Test the cheapest model that handles your calls well before you upgrade. (Vapi passes model costs through at cost, so your LLM line there may differ from Retell's list price.) Try your own mix in the [calculator](https://pb-jwhitlock.github.io/voicecost/index.html?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002#calculator), or compare platforms with [Vapi vs Retell](https://pb-jwhitlock.github.io/voicecost/compare/vapi-vs-retell.html?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002).
+That's a 43% jump in cost per minute from the model choice alone. The $0.037 spread between those LLM rates is wider than the range for any other piece we track once the platform is set. Test the cheapest model that handles your calls well before you upgrade. (Vapi passes model costs through at cost, so your LLM line there may differ from Retell's list price.) Try your own mix in the [calculator](https://voicecost.net/index.html?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002#calculator), or compare platforms with [Vapi vs Retell](https://voicecost.net/compare/vapi-vs-retell.html?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002).
 
 Still unconfirmed: PlayHT, Hume, LMNT and OpenAI TTS are marked Unknown on the site because we couldn't verify a published price. We never guess.
 
 ## Tell me what to track
 
-[Open VoiceCost](https://pb-jwhitlock.github.io/voicecost/?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002) and try your own numbers. **Hit reply** and tell me which vendor, model or comparison you want added. Every reply gets read.
+[Open VoiceCost](https://voicecost.net/?utm_source=newsletter&utm_medium=email&utm_campaign=issue-002) and try your own numbers. **Hit reply** and tell me which vendor, model or comparison you want added. Every reply gets read.
 
 Got this from a friend? [Get the weekly voice AI price changes. Free.](https://voicecost.beehiiv.com/subscribe)
 
