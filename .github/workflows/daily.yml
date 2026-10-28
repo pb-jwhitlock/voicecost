@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  VOICECOST_URL: https://pb-jwhitlock.github.io/voicecost
+  VOICECOST_URL: https://voicecost.net
   CHROME_PATH: /usr/bin/google-chrome
   TZ: America/New_York
 
