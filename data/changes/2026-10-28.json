@@ -1,0 +1,32 @@
+{
+ "date": "2026-10-28",
+ "vs": "2026-10-27",
+ "changes": [
+  {
+   "type": "status",
+   "key": "assemblyai|agent|Voice Agent API",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.075,
+   "new_price": null
+  },
+  {
+   "type": "price",
+   "key": "gladia|stt|Real-time",
+   "old": 0.012637,
+   "new": 0.012617,
+   "old_high": null,
+   "new_high": null,
+   "pct": -0.2
+  },
+  {
+   "type": "price",
+   "key": "gladia|stt|Solaria-3 async",
+   "old": 0.002973,
+   "new": 0.002969,
+   "old_high": null,
+   "new_high": null,
+   "pct": -0.1
+  }
+ ]
+}
