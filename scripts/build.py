@@ -141,6 +141,7 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="",
 <p class="small">Built by <a href="{e(utm(CFG['agency_url'], 'footer'))}" target="_blank" rel="noopener">{e(CFG['agency_name'])}</a> · © {D.year} {SITE}</p>
 </div></footer>
 <script src="{prefix}assets/app.js" defer></script>
+{CF_ANALYTICS}
 </body></html>"""
     full = os.path.join(OUT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
@@ -148,6 +149,7 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="",
     SITEMAP.append(canonical)
 
 NEWSLETTER_URL = "https://voicecost.beehiiv.com/subscribe"
+CF_ANALYTICS = '<!-- Cloudflare Web Analytics --><script type=\'module\' src=\'https://static.cloudflareinsights.com/beacon.min.js\' data-cf-beacon=\'{"token": "03b427378ddd4e48a6c2b8ad47a5c680"}\'></script><!-- End Cloudflare Web Analytics -->'  # Cloudflare Web Analytics beacon, added before </body> on every page
 
 def newsletter():
     return f"""<section class="news" id="newsletter"><div>
@@ -570,7 +572,7 @@ def main():
     urls = "".join(f"<url><loc>{SITE_URL}/{u}</loc><lastmod>{DATE}</lastmod></url>" for u in SITEMAP)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
-    open(os.path.join(OUT, "404.html"), "w").write(f'<!doctype html><meta charset="utf-8"><title>Not found</title><p>Page not found. <a href="{SITE_URL}/index.html">VoiceCost home</a></p>')
+    open(os.path.join(OUT, "404.html"), "w").write(f'<!doctype html><meta charset="utf-8"><title>Not found</title><body><p>Page not found. <a href="{SITE_URL}/index.html">VoiceCost home</a></p>{CF_ANALYTICS}</body></html>')
     print(f"Built {len(SITEMAP)} pages ({len(ALL_PAIRS)} comparisons, {len(ORDER)} vendors) -> {OUT}")
 
 if __name__ == "__main__":
