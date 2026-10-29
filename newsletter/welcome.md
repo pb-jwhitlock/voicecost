@@ -25,7 +25,7 @@ Hi, I'm John. Thanks for subscribing to VoiceCost.
 
 **Hit reply and tell me what you're building**, or which vendors you want tracked. I read every reply.
 
-One more thing: I run Points Beyond, and we build voice agents and automation for small and medium-sized businesses. If you're pricing one out for your own business, [get a free assessment](https://pointsbeyond.ai/contact/?utm_source=voicecost&utm_medium=email&utm_campaign=welcome).
+One more thing: I run Points Beyond, and we build voice agents and automation for small and medium-sized businesses. If you're pricing one out for your own business, [get a free AI Opportunity Assessment](https://pointsbeyond.ai/contact/?utm_source=voicecost&utm_medium=email&utm_campaign=welcome).
 
 John Whitlock
 Built by Points Beyond

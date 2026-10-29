@@ -61,7 +61,7 @@ Still unconfirmed: PlayHT, Hume, LMNT and OpenAI TTS are marked Unknown on the s
 
 Got this from a friend? [Get the weekly voice AI price changes. Free.](https://voicecost.beehiiv.com/subscribe)
 
-**Pricing this out for your business?** Get a free assessment from Points Beyond. We build voice agents and automation for small and medium-sized businesses. [Get a free assessment](https://pointsbeyond.ai/contact/?utm_source=voicecost&utm_medium=referral&utm_campaign=newsletter-002)
+**Pricing this out for your business?** Get a free AI Opportunity Assessment from Points Beyond. We build voice agents and automation for small and medium-sized businesses. [Get a free AI Opportunity Assessment](https://pointsbeyond.ai/contact/?utm_source=voicecost&utm_medium=referral&utm_campaign=newsletter-002)
 
 John Whitlock, VoiceCost · Built by [Points Beyond](https://pointsbeyond.ai/?utm_source=voicecost&utm_medium=referral&utm_campaign=newsletter-002)
 
