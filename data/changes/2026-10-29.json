@@ -1,0 +1,124 @@
+{
+ "date": "2026-10-29",
+ "vs": "2026-10-28",
+ "changes": [
+  {
+   "type": "status",
+   "key": "deepgram|agent|Voice Agent API, Standard",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.075,
+   "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "deepgram|stt|Nova-3 Monolingual (streaming, current price)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.0048,
+   "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "deepgram|stt|Flux English (streaming, current price)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.0065,
+   "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "deepgram|tts|Aura-2",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 30.0,
+   "new_price": null
+  },
+  {
+   "type": "price",
+   "key": "cartesia|agent|Managed voice agents (call duration)",
+   "old": 0.06,
+   "new": 0.03,
+   "old_high": null,
+   "new_high": null,
+   "pct": -50.0
+  },
+  {
+   "type": "status",
+   "key": "cartesia|stt|Ink (Scale plan)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.0065,
+   "new_price": null
+  },
+  {
+   "type": "new_row",
+   "key": "openai|tts|tts-1 (Speech API)",
+   "new": 15.0,
+   "status": "verified"
+  },
+  {
+   "type": "new_row",
+   "key": "openai|tts|tts-1-hd (Speech API)",
+   "new": 30.0,
+   "status": "verified"
+  },
+  {
+   "type": "new_row",
+   "key": "assemblyai|tts|AssemblyAI-TTS-1",
+   "new": 15.0,
+   "status": "verified"
+  },
+  {
+   "type": "price",
+   "key": "speechmatics|stt|Melia 1 (pre-recorded)",
+   "old": 0.002,
+   "new": 0.004,
+   "old_high": null,
+   "new_high": null,
+   "pct": 100.0
+  },
+  {
+   "type": "price",
+   "key": "speechmatics|stt|Enhanced (pre-recorded)",
+   "old": 0.006333,
+   "new": 0.0125,
+   "old_high": null,
+   "new_high": null,
+   "pct": 97.4
+  },
+  {
+   "type": "price",
+   "key": "speechmatics|stt|Standard (pre-recorded)",
+   "old": 0.003833,
+   "new": 0.0075,
+   "old_high": null,
+   "new_high": null,
+   "pct": 95.7
+  },
+  {
+   "type": "status",
+   "key": "playht|tts|PlayHT TTS",
+   "old": "unknown",
+   "new": "discontinued",
+   "old_price": null,
+   "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "lmnt|tts|LMNT TTS",
+   "old": "unknown",
+   "new": "discontinued",
+   "old_price": null,
+   "new_price": null
+  },
+  {
+   "type": "removed_row",
+   "key": "openai|tts|Text-to-speech"
+  },
+  {
+   "type": "removed_row",
+   "key": "assemblyai|agent|Voice Agent API"
+  }
+ ]
+}
