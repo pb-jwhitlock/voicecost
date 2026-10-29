@@ -81,21 +81,22 @@ vendor("elevenlabs", "ElevenLabs", "https://elevenlabs.io", {"elevenlabs": "http
 
 vendor("deepgram", "Deepgram", "https://deepgram.com", {"deepgram": "https://deepgram.com/pricing"}, [
     item("agent", "Voice Agent API, Standard", "deepgram",
-         r"Tier Pay As You Go Growth Standard \$" + N + r"/min", PER_MIN, "$/min", tier="Pay as you go",
+         r"(?:Tier Pay As You Go Growth|Voice Agent API Pay as you go Growth Enterprise) Standard \$" + N + r" ?/ ?min", PER_MIN, "$/min", tier="Pay as you go",
          note="Bundled STT + LLM + TTS agent tier.", headline=True),
     item("stt", "Nova-3 Monolingual (streaming, current price)", "deepgram",
-         r"Nova-3 Monolingual i [^$]{0,300}?Current price \$" + N + r"/min Regular price \$[0-9.]+/min", PER_MIN, "$/min", tier="Pay as you go",
-         note="Page shows a discounted 'current price' next to a higher 'regular price'.", headline=True),
+         r"Nova-3 Monolingual (?:i )?[^$]{0,300}?\$" + N + r" ?/ ?min", PER_MIN, "$/min", tier="Pay as you go",
+         note="Streaming, pay as you go. Deepgram's promotional 'current price' ended with its Oct 29, 2026 page redesign; the single listed rate is shown.", headline=True),
     item("stt", "Flux English (streaming, current price)", "deepgram",
-         r"Flux English i [^$]{0,300}?Current price \$" + N + r"/min Regular price \$[0-9.]+/min", PER_MIN, "$/min", tier="Pay as you go"),
+         r"Flux (?:STT )?English (?:i )?[^$]{0,300}?\$" + N + r" ?/ ?min", PER_MIN, "$/min", tier="Pay as you go",
+         note="Streaming, pay as you go. Promotional 'current price' ended Oct 29, 2026; the single listed rate is shown."),
     item("tts", "Aura-2", "deepgram",
-         r"Aura-2 \$" + N + r"/1k characters", PER_1K, "$/1K chars", tier="Pay as you go", headline=True),
+         r"Aura-2 \$" + N + r" ?/ ?1k characters", PER_1K, "$/1K chars", tier="Pay as you go", headline=True),
 ])
 
 vendor("cartesia", "Cartesia", "https://cartesia.ai", {"cartesia": "https://cartesia.ai/pricing"}, [
     item("agent", "Managed voice agents (call duration)", "cartesia",
          r"Call duration \$" + N + r" per minute", PER_MIN, "$/min",
-         note="Telephony extra ($0.014/min on Cartesia numbers per page); LLM free for UI agents for a limited time.", headline=True),
+         note="Promotional price through Dec 31, 2026 (regular price $0.06/min per page). Telephony extra ($0.014/min on Cartesia numbers); LLM usage billed separately.", headline=True),
     item("tts", "Sonic (Startup plan, $49 / 1.25M credits)", "cartesia",
          r"Startup \$" + N + r" /mo Select Startup " + N + r"M credits / month", None, "plan $/credits",
          compute=lambda m: float(m.group(1)) / float(m.group(2)),
@@ -105,7 +106,7 @@ vendor("cartesia", "Cartesia", "https://cartesia.ai", {"cartesia": "https://cart
          compute=lambda m: float(m.group(1)) / float(m.group(2)),
          note="Derived: plan price / included credits; page states 1 credit = 1 character."),
     item("stt", "Ink (Scale plan)", "cartesia",
-         r"One hour of audio is only \$" + N + r" on the Scale plan", PER_HR, "$/hr"),
+         r"Ink speech-to-text:[^$]{0,120}?\$" + N + r" (?:per hour )?on the Scale plan", PER_HR, "$/hr"),
 ])
 
 vendor("ultravox", "Ultravox", "https://www.ultravox.ai", {"ultravox": "https://www.ultravox.ai/pricing"}, [
@@ -200,13 +201,15 @@ vendor("azure", "Microsoft Azure Speech", "https://azure.microsoft.com", {
          r"Neural/Neural HD Flash \(real-time and batch\): \$" + N + r" per 1M characters", PER_1M, "$/1M chars", headline=True),
 ])
 
+SM_NOTE = ("List rate, before Speechmatics' 33% model-training and up-to-25% volume discounts, as the page now states. "
+           "Until Oct 28, 2026 the page listed lower rates without that label.")
 vendor("speechmatics", "Speechmatics", "https://www.speechmatics.com", {"speechmatics": "https://www.speechmatics.com/pricing"}, [
     item("stt", "Melia 1 (pre-recorded)", "speechmatics",
-         r"General purpose Melia 1 \$" + N + r" / hr", PER_HR, "$/hr", headline=True),
+         r"General purpose Melia 1 \$" + N + r" / hr", PER_HR, "$/hr", headline=True, note=SM_NOTE),
     item("stt", "Enhanced (pre-recorded)", "speechmatics",
-         r"mid-sentence\. Enhanced \$" + N + r" / hr", PER_HR, "$/hr"),
+         r"mid-sentence\. Enhanced \$" + N + r" / hr", PER_HR, "$/hr", note=SM_NOTE),
     item("stt", "Standard (pre-recorded)", "speechmatics",
-         r"More models Standard \$" + N + r" / hr", PER_HR, "$/hr"),
+         r"More models Standard \$" + N + r" / hr", PER_HR, "$/hr", note=SM_NOTE),
     item("tts", "Speechmatics TTS", "speechmatics",
          r"Text to Speech Natural, low-latency speech synthesis for Voice AI use cases\. \$" + N + r" per 1,000 characters",
          PER_1K, "$/1K chars", headline=True),
