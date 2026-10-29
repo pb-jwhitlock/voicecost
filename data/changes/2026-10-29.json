@@ -3,36 +3,22 @@
  "vs": "2026-10-28",
  "changes": [
   {
-   "type": "status",
-   "key": "deepgram|agent|Voice Agent API, Standard",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.075,
-   "new_price": null
-  },
-  {
-   "type": "status",
+   "type": "price",
    "key": "deepgram|stt|Nova-3 Monolingual (streaming, current price)",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.0048,
-   "new_price": null
+   "old": 0.0048,
+   "new": 0.0077,
+   "old_high": null,
+   "new_high": null,
+   "pct": 60.4
   },
   {
-   "type": "status",
+   "type": "price",
    "key": "deepgram|stt|Flux English (streaming, current price)",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.0065,
-   "new_price": null
-  },
-  {
-   "type": "status",
-   "key": "deepgram|tts|Aura-2",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 30.0,
-   "new_price": null
+   "old": 0.0065,
+   "new": 0.0077,
+   "old_high": null,
+   "new_high": null,
+   "pct": 18.5
   },
   {
    "type": "price",
@@ -42,14 +28,6 @@
    "old_high": null,
    "new_high": null,
    "pct": -50.0
-  },
-  {
-   "type": "status",
-   "key": "cartesia|stt|Ink (Scale plan)",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.0065,
-   "new_price": null
   },
   {
    "type": "new_row",

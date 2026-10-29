@@ -1,6 +1,6 @@
 {
  "date": "2026-10-29",
- "generated_at": "2026-10-29T09:18:20-04:00",
+ "generated_at": "2026-10-29T09:31:34-04:00",
  "fx": {
   "EUR_USD": 1.1133,
   "source": "https://api.frankfurter.app (ECB reference rates)",
@@ -619,13 +619,13 @@
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
-   "price_native": null,
+   "price_native": 0.075,
    "price_native_high": null,
-   "price": null,
+   "price": 0.075,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
+   "status": "verified",
+   "reason": null,
+   "evidence": "er per-minute rate. per minute per hour Voice Agent API Pay as you go Growth Enterprise Standard $0.075 / min $0.068 / min - Stan",
    "note": "Bundled STT + LLM + TTS agent tier.",
    "scope": "bundled"
   },
@@ -641,14 +641,14 @@
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
-   "price_native": null,
+   "price_native": 0.0077,
    "price_native_high": null,
-   "price": null,
+   "price": 0.0077,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
-   "note": "Page shows a discounted 'current price' next to a higher 'regular price'.",
+   "status": "verified",
+   "reason": null,
+   "evidence": "tilingual $0.0078 / min $0.0068 / min - Nova-3 Monolingual $0.0077 / min $0.0065 / min - Nov",
+   "note": "Streaming, pay as you go. Deepgram's promotional 'current price' ended with its Oct 29, 2026 page redesign; the single listed rate is shown.",
    "scope": null
   },
   {
@@ -663,14 +663,14 @@
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
-   "price_native": null,
+   "price_native": 0.0077,
    "price_native_high": null,
-   "price": null,
+   "price": 0.0077,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
-   "note": null,
+   "status": "verified",
+   "reason": null,
+   "evidence": "ext API Pay as you go Growth Enterprise Flux STT English $0.0077 / min $0.0065 / min - Flu",
+   "note": "Streaming, pay as you go. Promotional 'current price' ended Oct 29, 2026; the single listed rate is shown.",
    "scope": null
   },
   {
@@ -685,13 +685,13 @@
    "native_unit": "$/1K chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
-   "price_native": null,
+   "price_native": 0.03,
    "price_native_high": null,
-   "price": null,
+   "price": 30.0,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
+   "status": "verified",
+   "reason": null,
+   "evidence": "/1k characters $0.0450 /1k characters - Aura-2 $0.030 /1k characters $0.027 /1k characte",
    "note": null,
    "scope": null
   },
@@ -714,7 +714,7 @@
    "status": "verified",
    "reason": null,
    "evidence": "stom Concurrent calls 8 12 20 60 Custom Call duration $0.03 per minute Regular price $0.06",
-   "note": "Telephony extra ($0.014/min on Cartesia numbers per page); LLM free for UI agents for a limited time.",
+   "note": "Promotional price through Dec 31, 2026 (regular price $0.06/min per page). Telephony extra ($0.014/min on Cartesia numbers); LLM usage billed separately.",
    "scope": "bundled"
   },
   {
@@ -773,13 +773,13 @@
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
-   "price_native": null,
+   "price_native": 0.39,
    "price_native_high": null,
-   "price": null,
+   "price": 0.0065,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
+   "status": "verified",
+   "reason": null,
+   "evidence": "750 to 800 credits per minute of audio. Ink speech-to-text: 3 credits per second of audio, or $0.39 per hour on the Scale plan. How many credits d",
    "note": null,
    "scope": null
   },
@@ -1352,7 +1352,7 @@
    "status": "verified",
    "reason": null,
    "evidence": "urs Minutes Minutes Pre-recorded models General purpose Melia 1 $0.24 / hr Our next-generation",
-   "note": null,
+   "note": "List rate, before Speechmatics' 33% model-training and up-to-25% volume discounts, as the page now states. Until Oct 28, 2026 the page listed lower rates without that label.",
    "scope": null
   },
   {
@@ -1374,7 +1374,7 @@
    "status": "verified",
    "reason": null,
    "evidence": "hoosing one up front, switches language mid-sentence. Enhanced $0.75 / hr Our highest accurac",
-   "note": null,
+   "note": "List rate, before Speechmatics' 33% model-training and up-to-25% volume discounts, as the page now states. Until Oct 28, 2026 the page listed lower rates without that label.",
    "scope": null
   },
   {
@@ -1396,7 +1396,7 @@
    "status": "verified",
    "reason": null,
    "evidence": "detection for conversational use cases. More models Standard $0.45 / hr Cost-efficient and",
-   "note": null,
+   "note": "List rate, before Speechmatics' 33% model-training and up-to-25% volume discounts, as the page now states. Until Oct 28, 2026 the page listed lower rates without that label.",
    "scope": null
   },
   {
@@ -1870,13 +1870,6 @@
    "error": null,
    "final_url": "https://synthflow.ai/pricing"
   },
-  "deepgram": {
-   "url": "https://deepgram.com/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://deepgram.com/pricing"
-  },
   "retell": {
    "url": "https://www.retellai.com/pricing",
    "ok": true,
@@ -1891,26 +1884,19 @@
    "error": null,
    "final_url": "https://vapi.ai/pricing"
   },
+  "deepgram": {
+   "url": "https://deepgram.com/pricing",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://deepgram.com/pricing"
+  },
   "ultravox": {
    "url": "https://www.ultravox.ai/pricing",
    "ok": true,
    "status": 200,
    "error": null,
    "final_url": "https://www.ultravox.ai/pricing"
-  },
-  "openai_docs": {
-   "url": "https://platform.openai.com/docs/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://developers.openai.com/api/docs/pricing"
-  },
-  "openai_tts1": {
-   "url": "https://developers.openai.com/api/docs/models/tts-1",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://developers.openai.com/api/docs/models/tts-1"
   },
   "livekit": {
    "url": "https://livekit.io/pricing",
@@ -1919,6 +1905,13 @@
    "error": null,
    "final_url": "https://livekit.com/pricing"
   },
+  "openai_docs": {
+   "url": "https://platform.openai.com/docs/pricing",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://developers.openai.com/api/docs/pricing"
+  },
   "openai_tts1hd": {
    "url": "https://developers.openai.com/api/docs/models/tts-1-hd",
    "ok": true,
@@ -1926,12 +1919,12 @@
    "error": null,
    "final_url": "https://developers.openai.com/api/docs/models/tts-1-hd"
   },
-  "cartesia": {
-   "url": "https://cartesia.ai/pricing",
+  "openai_tts1": {
+   "url": "https://developers.openai.com/api/docs/models/tts-1",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://www.cartesia.ai/pricing"
+   "final_url": "https://developers.openai.com/api/docs/models/tts-1"
   },
   "assemblyai": {
    "url": "https://www.assemblyai.com/pricing",
@@ -1940,12 +1933,12 @@
    "error": null,
    "final_url": "https://www.assemblyai.com/pricing"
   },
-  "google_tts": {
-   "url": "https://cloud.google.com/text-to-speech/pricing",
+  "cartesia": {
+   "url": "https://cartesia.ai/pricing",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://cloud.google.com/text-to-speech/pricing"
+   "final_url": "https://www.cartesia.ai/pricing"
   },
   "openai_api": {
    "url": "https://openai.com/api/pricing/",
@@ -1954,33 +1947,12 @@
    "error": null,
    "final_url": "https://openai.com/business/pricing/#api"
   },
-  "polly": {
-   "url": "https://aws.amazon.com/polly/pricing/",
+  "google_tts": {
+   "url": "https://cloud.google.com/text-to-speech/pricing",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://aws.amazon.com/polly/pricing/"
-  },
-  "aws_transcribe": {
-   "url": "https://aws.amazon.com/transcribe/pricing/",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://aws.amazon.com/transcribe/pricing/"
-  },
-  "azure_speech": {
-   "url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://azure.microsoft.com/en-us/pricing/details/speech/"
-  },
-  "rev": {
-   "url": "https://www.rev.ai/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://www.rev.ai/pricing"
+   "final_url": "https://cloud.google.com/text-to-speech/pricing"
   },
   "google_stt": {
    "url": "https://cloud.google.com/speech-to-text/pricing",
@@ -1989,12 +1961,40 @@
    "error": null,
    "final_url": "https://cloud.google.com/speech-to-text/pricing"
   },
+  "azure_speech": {
+   "url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://azure.microsoft.com/en-us/pricing/details/speech/"
+  },
   "speechmatics": {
    "url": "https://www.speechmatics.com/pricing",
    "ok": true,
    "status": 200,
    "error": null,
    "final_url": "https://www.speechmatics.com/pricing"
+  },
+  "polly": {
+   "url": "https://aws.amazon.com/polly/pricing/",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://aws.amazon.com/polly/pricing/"
+  },
+  "rev": {
+   "url": "https://www.rev.ai/pricing",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://www.rev.ai/pricing"
+  },
+  "aws_transcribe": {
+   "url": "https://aws.amazon.com/transcribe/pricing/",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://aws.amazon.com/transcribe/pricing/"
   },
   "soniox": {
    "url": "https://soniox.com/pricing",
@@ -2003,13 +2003,6 @@
    "error": null,
    "final_url": "https://soniox.com/pricing"
   },
-  "fish_docs": {
-   "url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits"
-  },
   "inworld": {
    "url": "https://inworld.ai/pricing",
    "ok": true,
@@ -2017,12 +2010,12 @@
    "error": null,
    "final_url": "https://inworld.ai/pricing"
   },
-  "gladia": {
-   "url": "https://www.gladia.io/pricing",
+  "fish_docs": {
+   "url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://www.gladia.io/pricing"
+   "final_url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits"
   },
   "fish_plans": {
    "url": "https://fish.audio/plan/",
@@ -2031,12 +2024,19 @@
    "error": null,
    "final_url": "https://fish.audio/plan/"
   },
-  "playht": {
-   "url": "https://play.ht/pricing/",
+  "gladia": {
+   "url": "https://www.gladia.io/pricing",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://www.gladia.io/pricing"
+  },
+  "lmnt": {
+   "url": "https://www.lmnt.com/pricing",
    "ok": false,
-   "status": null,
-   "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://play.ht/pricing/",
-   "final_url": null
+   "status": 200,
+   "error": null,
+   "final_url": "https://www.lmnt.com/"
   },
   "rime": {
    "url": "https://www.rime.ai/pricing",
@@ -2045,54 +2045,40 @@
    "error": null,
    "final_url": "https://www.rime.ai/pricing"
   },
+  "playht": {
+   "url": "https://play.ht/pricing/",
+   "ok": false,
+   "status": null,
+   "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://play.ht/pricing/",
+   "final_url": null
+  },
   "hume": {
    "url": "https://www.hume.ai/pricing",
    "ok": true,
    "status": 200,
    "error": null,
    "final_url": "https://www.hume.ai/"
-  },
-  "lmnt": {
-   "url": "https://www.lmnt.com/pricing",
-   "ok": false,
-   "status": 200,
-   "error": null,
-   "final_url": "https://www.lmnt.com/"
   }
  },
  "changes_vs": "2026-10-28",
  "changes": [
   {
-   "type": "status",
-   "key": "deepgram|agent|Voice Agent API, Standard",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.075,
-   "new_price": null
-  },
-  {
-   "type": "status",
+   "type": "price",
    "key": "deepgram|stt|Nova-3 Monolingual (streaming, current price)",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.0048,
-   "new_price": null
+   "old": 0.0048,
+   "new": 0.0077,
+   "old_high": null,
+   "new_high": null,
+   "pct": 60.4
   },
   {
-   "type": "status",
+   "type": "price",
    "key": "deepgram|stt|Flux English (streaming, current price)",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.0065,
-   "new_price": null
-  },
-  {
-   "type": "status",
-   "key": "deepgram|tts|Aura-2",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 30.0,
-   "new_price": null
+   "old": 0.0065,
+   "new": 0.0077,
+   "old_high": null,
+   "new_high": null,
+   "pct": 18.5
   },
   {
    "type": "price",
@@ -2102,14 +2088,6 @@
    "old_high": null,
    "new_high": null,
    "pct": -50.0
-  },
-  {
-   "type": "status",
-   "key": "cartesia|stt|Ink (Scale plan)",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.0065,
-   "new_price": null
   },
   {
    "type": "new_row",
