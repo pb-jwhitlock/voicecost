@@ -61,6 +61,8 @@ def price_html(r):
         return s
     if r["status"] == "no_rate":
         return f'<span class="unk" title="{e(r["reason"])}">No per-min rate</span>'
+    if r["status"] == "discontinued":
+        return f'<span class="unk" title="{e(r["reason"])}">Discontinued</span>'
     return f'<span class="unk" title="{e(r["reason"] or "")}">Unknown</span>'
 
 def native_html(r):
@@ -275,10 +277,10 @@ def build_index():
         if r:
             cards.append(f'<a class="kcard" href="vendors/{r["vendor_id"]}.html"><small>{label}</small><b>{fmt(r["price"], cat)}</b><span>{UNIT[cat]} · {e(r["vendor"])} {e(r["product"])}</span></a>')
     n_v = len({r["vendor_id"] for r in ver})
-    n_unk = len([r for r in ROWS if r["status"] != "verified"])
+    n_unk = len([r for r in ROWS if r["status"] not in ("verified", "discontinued")])
     sections = []
     for cat, anchor in [("agent", "agents"), ("stt", "stt"), ("tts", "tts")]:
-        rows = sorted_rows([r for r in ROWS if r["category"] == cat])
+        rows = sorted_rows([r for r in ROWS if r["category"] == cat and r["status"] != "discontinued"])
         intro = {
             "agent": "Per-minute pricing for voice agent platforms. Watch the scope: some charge a platform fee and pass speech and LLM costs through, others quote one all-in rate.",
             "stt": "Per-minute rates for transcription APIs, streaming and batch. Hourly prices are converted to per-minute.",
@@ -440,7 +442,7 @@ def build_changes():
     page("changes.html", f"Voice AI Price Changes Log | {SITE}", f"A dated log of price changes at voice AI vendors, detected by daily checks. Updated {DATE_H}.", body, "", "changes.html")
 
 def build_about():
-    unk = "".join(f"<li><b>{e(r['vendor'])}</b> · {e(r['product'])}: {e(r['reason'])}</li>" for r in ROWS if r["status"] != "verified")
+    unk = "".join(f"<li><b>{e(r['vendor'])}</b> · {e(r['product'])}: {e(r['reason'])}</li>" for r in ROWS if r["status"] not in ("verified", "discontinued"))
     body = f"""<section class="hero sm"><h1>How VoiceCost collects prices</h1>{stamp()}</section>
 <section class="card prose"><p>Every day a script opens each vendor's public pricing page in a headless browser, saves a dated copy of the page, and pulls out the listed prices with rules written for that page. Prices are converted to comparable units:</p>
 <ul><li><b>Voice agents and speech-to-text:</b> US dollars per minute. Hourly prices are divided by 60.</li>

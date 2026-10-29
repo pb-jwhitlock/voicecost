@@ -122,7 +122,9 @@ vendor("livekit", "LiveKit Agents", "https://livekit.io", {"livekit": "https://l
 
 vendor("openai", "OpenAI", "https://openai.com", {
     "openai_api": "https://openai.com/api/pricing/",
-    "openai_docs": "https://platform.openai.com/docs/pricing"}, [
+    "openai_docs": "https://platform.openai.com/docs/pricing",
+    "openai_tts1": "https://developers.openai.com/api/docs/models/tts-1",
+    "openai_tts1hd": "https://developers.openai.com/api/docs/models/tts-1-hd"}, [
     item("agent", "gpt-live-1 (speech-to-speech)", "openai_docs",
          r"gpt-live-1 \$" + N, PER_MIN, "$/min", headline=True,
          note="Per-minute session price; backend model and tool usage are charged separately."),
@@ -133,9 +135,12 @@ vendor("openai", "OpenAI", "https://openai.com", {
     item("stt", "gpt-4o-mini-transcribe (estimated)", "openai_docs",
          r"gpt-4o-mini-transcribe Transcription \$[0-9.]+ \$[0-9.]+ \$" + N + r" / minute", PER_MIN, "$/min",
          note="Token-billed; OpenAI's own per-minute estimate."),
-    item("tts", "Text-to-speech", "openai_docs",
-         r"gpt-4o-mini-tts[^$]{0,40}\$" + N + r" ?/ ?1M characters", PER_1M, "$/1M chars",
-         note="No per-character TTS price found on the pricing page."),
+    item("tts", "tts-1 (Speech API)", "openai_tts1",
+         r"Speech generation Cost / 1M characters \$" + NC, PER_1M, "$/1M chars", headline=True,
+         note="Deprecated: OpenAI shuts down tts-1, tts-1-hd and gpt-4o-mini-tts on January 6, 2027 and points to gpt-realtime-2.1-mini (token-billed)."),
+    item("tts", "tts-1-hd (Speech API)", "openai_tts1hd",
+         r"Speech generation Cost / 1M characters \$" + NC, PER_1M, "$/1M chars",
+         note="Deprecated: shuts down January 6, 2027."),
 ])
 
 vendor("assemblyai", "AssemblyAI", "https://www.assemblyai.com", {"assemblyai": "https://www.assemblyai.com/pricing"}, [
@@ -145,9 +150,11 @@ vendor("assemblyai", "AssemblyAI", "https://www.assemblyai.com", {"assemblyai": 
          r"Universal-2 Our highly accurate.{0,220}?\$" + N + r" /hr", PER_HR, "$/hr"),
     item("stt", "Universal-3.5 Pro (pre-recorded)", "assemblyai",
          r"Universal-3\.5 Pro The most accurate async.{0,260}?\$" + N + r" /hr", PER_HR, "$/hr"),
-    item("agent", "Voice Agent API", "assemblyai",
-         r"\$" + N + r"/hr Voice Agent API price", PER_HR, "$/hr"),
-])
+    item("tts", "AssemblyAI-TTS-1", "assemblyai",
+         r"AssemblyAI-TTS-1(?: New)? Streaming text-to-speech.{0,260}?\$" + NC + r" ?/1M chars", PER_1M, "$/1M chars",
+         headline=True, note="Billed on input characters; same rate for cloned voices and EU processing."),
+], note="AssemblyAI is retiring its Voice Agent API (no longer priced on the pricing page since Oct 28, 2026); "
+        "for voice agents it now points to Universal-3.6 Pro Realtime STT + LLM Gateway + its Text-to-Speech API.")
 
 vendor("google", "Google Cloud", "https://cloud.google.com", {
     "google_stt": "https://cloud.google.com/speech-to-text/pricing",
@@ -262,11 +269,13 @@ vendor("rime", "Rime", "https://www.rime.ai", {"rime": "https://www.rime.ai/pric
 # ----------------------------------------------------------------- unknown / no data
 vendor("playht", "PlayHT", "https://play.ht", {"playht": "https://play.ht/pricing/"}, [
     item("tts", "PlayHT TTS", "playht", r"(?!)", PER_1M, "$/1M chars", headline=True),
-], note="Site refused connections when checked; pricing unknown.")
+], note="play.ht no longer resolves in DNS (checked Oct 29, 2026); PlayHT appears to have shut down its public service.",
+   status="discontinued")
 
 vendor("hume", "Hume AI", "https://www.hume.ai", {"hume": "https://www.hume.ai/pricing"}, [
     item("tts", "Octave TTS", "hume", r"Octave[^$]{0,80}\$" + N + r" ?(?:per|/) ?1(?:,000|K) characters", PER_1K, "$/1K chars", headline=True),
-], note="Pricing URL now redirects to a product page without published TTS prices; unknown.")
+], note="Hume removed its public pricing page (hume.ai/pricing now redirects to the homepage), so no TTS price is published. "
+        "Hume's docs say it is sunsetting the TTS and EVI APIs; access ends November 13, 2026.")
 
 vendor("lmnt", "LMNT", "https://www.lmnt.com", {"lmnt": "https://www.lmnt.com/pricing"}, [
     item("tts", "LMNT TTS", "lmnt", r"(?!)", PER_1M, "$/1M chars", headline=True),
@@ -309,7 +318,6 @@ AGENT_SCOPE = {
     'Ultravox per-minute': 'bundled',
     'Agent session (platform only)': 'platform',
     'gpt-live-1 (speech-to-speech)': 'bundled',
-    'Voice Agent API': 'bundled',
 }
 for _v in V:
     for _i in _v['items']:

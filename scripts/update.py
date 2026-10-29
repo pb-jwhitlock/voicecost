@@ -58,6 +58,10 @@ def extract(rawdir, date, fx, fetch_log):
                        price_native=None, price_native_high=None, price=None, price_high=None,
                        status="unknown", reason=None, evidence=None, note=it["note"],
                        scope=it.get("scope"))
+            if v["status"] == "discontinued":
+                row["status"] = "discontinued"
+                row["reason"] = "Vendor appears discontinued"
+                rows.append(row); continue
             t = texts.get(it["page"])
             if t is None:
                 err = fetch_log.get(it["page"], {}).get("error") or "page could not be read"
