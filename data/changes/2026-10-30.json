@@ -1,0 +1,56 @@
+{
+ "date": "2026-10-30",
+ "vs": "2026-10-29",
+ "changes": [
+  {
+   "type": "status",
+   "key": "synthflow|agent|Synthflow enterprise minimum contract",
+   "old": "no_rate",
+   "new": "unknown",
+   "old_price": null,
+   "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "speechmatics|stt|Melia 1 (pre-recorded)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.004,
+   "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "speechmatics|stt|Enhanced (pre-recorded)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.0125,
+   "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "speechmatics|stt|Standard (pre-recorded)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.0075,
+   "new_price": null
+  },
+  {
+   "type": "price",
+   "key": "gladia|stt|Real-time",
+   "old": 0.012617,
+   "new": 0.012662,
+   "old_high": null,
+   "new_high": null,
+   "pct": 0.4
+  },
+  {
+   "type": "price",
+   "key": "gladia|stt|Solaria-3 async",
+   "old": 0.002969,
+   "new": 0.002979,
+   "old_high": null,
+   "new_high": null,
+   "pct": 0.3
+  }
+ ]
+}
