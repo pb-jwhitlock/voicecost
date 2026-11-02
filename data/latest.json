@@ -1,6 +1,6 @@
 {
  "date": "2026-11-02",
- "generated_at": "2026-11-02T14:58:27-05:00",
+ "generated_at": "2026-11-02T15:31:12-05:00",
  "fx": {
   "EUR_USD": 1.1216,
   "source": "https://api.frankfurter.app (ECB reference rates)",
@@ -53,7 +53,7 @@
    "categories": [
     "agent"
    ],
-   "note": "Pricing page lists enterprise contracts only. Per-minute price is not public.",
+   "note": "Pricing page lists enterprise contracts only, with no published price. Per-minute price is not public.",
    "status": "active",
    "pages": {
     "synthflow": "https://synthflow.ai/pricing"
@@ -217,7 +217,8 @@
    "note": "Real-time STT rates sit behind an interactive tab and were not readable; pre-recorded rates shown.",
    "status": "active",
    "pages": {
-    "speechmatics": "https://www.speechmatics.com/pricing"
+    "speechmatics": "https://www.speechmatics.com/pricing",
+    "speechmatics_rates": "https://www.speechmatics.com/pricing.md"
    }
   },
   {
@@ -469,10 +470,10 @@
    "price_native_high": null,
    "price": null,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
-   "note": "Only an annual contract minimum is published; no per-minute rate.",
+   "status": "no_rate",
+   "reason": "Published price is not a per-unit rate",
+   "evidence": "pport. It has no free plan or trial and no rate by the minute. Synthflow is built",
+   "note": "No price is published. The page says Synthflow is sold as an annual enterprise agreement with no per-minute rate. Until Oct 29, 2026 it listed a $30,000/year contract minimum; that figure is gone.",
    "scope": "all-in"
   },
   {
@@ -1340,19 +1341,19 @@
    "product": "Melia 1 (pre-recorded)",
    "tier": null,
    "headline": true,
-   "source_url": "https://www.speechmatics.com/pricing",
+   "source_url": "https://www.speechmatics.com/pricing.md",
    "checked": "2026-11-02",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
-   "price_native": null,
+   "price_native": 0.24,
    "price_native_high": null,
-   "price": null,
+   "price": 0.004,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
-   "note": "List rate, before Speechmatics' 33% model-training and up-to-25% volume discounts, as the page now states. Until Oct 28, 2026 the page listed lower rates without that label.",
+   "status": "verified",
+   "reason": null,
+   "evidence": ". - Pricing: - configuration: - models: - Melia 1: - rates: - realtime: - baseHourly: 0.4 - calculatorTrainingHourly: 0.27 - prerecorded: - baseHourly: 0.24 - calculatorTrainin",
+   "note": "List (pay-as-you-go) rate from the rate table Speechmatics publishes with its pricing page (speechmatics.com/pricing.md). Since Oct 30, 2026 the pricing page's cards show rates with the 33% model-training and 25% top-tier annual discounts switched on (e.g. Melia 1 $0.12/hr).",
    "scope": null
   },
   {
@@ -1362,19 +1363,19 @@
    "product": "Enhanced (pre-recorded)",
    "tier": null,
    "headline": false,
-   "source_url": "https://www.speechmatics.com/pricing",
+   "source_url": "https://www.speechmatics.com/pricing.md",
    "checked": "2026-11-02",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
-   "price_native": null,
+   "price_native": 0.75,
    "price_native_high": null,
-   "price": null,
+   "price": 0.0125,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
-   "note": "List rate, before Speechmatics' 33% model-training and up-to-25% volume discounts, as the page now states. Until Oct 28, 2026 the page listed lower rates without that label.",
+   "status": "verified",
+   "reason": null,
+   "evidence": "nt, and switches language mid-sentence. - Enhanced: - rates: - realtime: - baseHourly: 0.8 - calculatorTrainingHourly: 0.54 - prerecorded: - baseHourly: 0.75 - calculatorTrainin",
+   "note": "List (pay-as-you-go) rate from the rate table Speechmatics publishes with its pricing page (speechmatics.com/pricing.md). Since Oct 30, 2026 the pricing page's cards show rates with the 33% model-training and 25% top-tier annual discounts switched on (e.g. Melia 1 $0.12/hr).",
    "scope": null
   },
   {
@@ -1384,19 +1385,19 @@
    "product": "Standard (pre-recorded)",
    "tier": null,
    "headline": false,
-   "source_url": "https://www.speechmatics.com/pricing",
+   "source_url": "https://www.speechmatics.com/pricing.md",
    "checked": "2026-11-02",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
-   "price_native": null,
+   "price_native": 0.45,
    "price_native_high": null,
-   "price": null,
+   "price": 0.0075,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
-   "note": "List rate, before Speechmatics' 33% model-training and up-to-25% volume discounts, as the page now states. Until Oct 28, 2026 the page listed lower rates without that label.",
+   "status": "verified",
+   "reason": null,
+   "evidence": "transcript the moment a speaker stops. - Standard: - rates: - realtime: - baseHourly: 0.45 - calculatorTrainingHourly: 0.3 - prerecorded: - baseHourly: 0.45 - calculatorTrainin",
+   "note": "List (pay-as-you-go) rate from the rate table Speechmatics publishes with its pricing page (speechmatics.com/pricing.md). Since Oct 30, 2026 the pricing page's cards show rates with the 33% model-training and 25% top-tier annual discounts switched on (e.g. Melia 1 $0.12/hr).",
    "scope": null
   },
   {
@@ -2058,10 +2059,25 @@
    "status": 200,
    "error": null,
    "final_url": "https://www.hume.ai/"
+  },
+  "speechmatics_rates": {
+   "url": "https://www.speechmatics.com/pricing.md",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://www.speechmatics.com/pricing.md"
   }
  },
  "changes_vs": "2026-11-01",
  "changes": [
+  {
+   "type": "status",
+   "key": "synthflow|agent|Synthflow enterprise minimum contract",
+   "old": "unknown",
+   "new": "no_rate",
+   "old_price": null,
+   "new_price": null
+  },
   {
    "type": "status",
    "key": "cartesia|agent|Managed voice agents (call duration)",
@@ -2069,6 +2085,30 @@
    "new": "unknown",
    "old_price": 0.03,
    "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "speechmatics|stt|Melia 1 (pre-recorded)",
+   "old": "unknown",
+   "new": "verified",
+   "old_price": null,
+   "new_price": 0.004
+  },
+  {
+   "type": "status",
+   "key": "speechmatics|stt|Enhanced (pre-recorded)",
+   "old": "unknown",
+   "new": "verified",
+   "old_price": null,
+   "new_price": 0.0125
+  },
+  {
+   "type": "status",
+   "key": "speechmatics|stt|Standard (pre-recorded)",
+   "old": "unknown",
+   "new": "verified",
+   "old_price": null,
+   "new_price": 0.0075
   },
   {
    "type": "price",

@@ -74,7 +74,8 @@ def extract(rawdir, date, fx, fetch_log):
             s, e = m.span()
             row["evidence"] = t[max(0, s - 40): e + 20].strip()
             num = lambda g: float(m.group(g).replace(",", ""))
-            row["price_native"] = num(it["group"])
+            if it["group"] is not None:          # group=None: pattern only confirms wording, no number
+                row["price_native"] = num(it["group"])
             if it["high_group"]:
                 row["price_native_high"] = num(it["high_group"])
             if it["compute"]:

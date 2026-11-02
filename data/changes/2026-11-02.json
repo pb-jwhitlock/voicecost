@@ -4,11 +4,43 @@
  "changes": [
   {
    "type": "status",
+   "key": "synthflow|agent|Synthflow enterprise minimum contract",
+   "old": "unknown",
+   "new": "no_rate",
+   "old_price": null,
+   "new_price": null
+  },
+  {
+   "type": "status",
    "key": "cartesia|agent|Managed voice agents (call duration)",
    "old": "verified",
    "new": "unknown",
    "old_price": 0.03,
    "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "speechmatics|stt|Melia 1 (pre-recorded)",
+   "old": "unknown",
+   "new": "verified",
+   "old_price": null,
+   "new_price": 0.004
+  },
+  {
+   "type": "status",
+   "key": "speechmatics|stt|Enhanced (pre-recorded)",
+   "old": "unknown",
+   "new": "verified",
+   "old_price": null,
+   "new_price": 0.0125
+  },
+  {
+   "type": "status",
+   "key": "speechmatics|stt|Standard (pre-recorded)",
+   "old": "unknown",
+   "new": "verified",
+   "old_price": null,
+   "new_price": 0.0075
   },
   {
    "type": "price",

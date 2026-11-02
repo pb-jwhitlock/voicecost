@@ -239,6 +239,14 @@
       "error": null,
       "final_url": "https://www.hume.ai/",
       "chars": 7369
+    },
+    "speechmatics_rates": {
+      "url": "https://www.speechmatics.com/pricing.md",
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "final_url": "https://www.speechmatics.com/pricing.md",
+      "chars": 89623
     }
   }
 }

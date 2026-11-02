@@ -59,9 +59,11 @@ vendor("bland", "Bland AI", "https://www.bland.ai", {"bland": "https://www.bland
 
 vendor("synthflow", "Synthflow", "https://synthflow.ai", {"synthflow": "https://synthflow.ai/pricing"}, [
     item("agent", "Synthflow enterprise minimum contract", "synthflow",
-         r"Enterprise contracts start at \$" + NC + r" annually", None, "$/year minimum",
-         note="Only an annual contract minimum is published; no per-minute rate.", headline=True),
-], note="Pricing page lists enterprise contracts only. Per-minute price is not public.")
+         r"no rate by the minute", None, "$/year minimum", group=None,
+         note="No price is published. The page says Synthflow is sold as an annual enterprise agreement with no "
+              "per-minute rate. Until Oct 29, 2026 it listed a $30,000/year contract minimum; that figure is gone.",
+         headline=True),
+], note="Pricing page lists enterprise contracts only, with no published price. Per-minute price is not public.")
 
 vendor("elevenlabs", "ElevenLabs", "https://elevenlabs.io", {"elevenlabs": "https://elevenlabs.io/pricing/api"}, [
     item("agent", "ElevenLabs Agents (Speech Engine)", "elevenlabs",
@@ -201,15 +203,19 @@ vendor("azure", "Microsoft Azure Speech", "https://azure.microsoft.com", {
          r"Neural/Neural HD Flash \(real-time and batch\): \$" + N + r" per 1M characters", PER_1M, "$/1M chars", headline=True),
 ])
 
-SM_NOTE = ("List rate, before Speechmatics' 33% model-training and up-to-25% volume discounts, as the page now states. "
-           "Until Oct 28, 2026 the page listed lower rates without that label.")
-vendor("speechmatics", "Speechmatics", "https://www.speechmatics.com", {"speechmatics": "https://www.speechmatics.com/pricing"}, [
-    item("stt", "Melia 1 (pre-recorded)", "speechmatics",
-         r"General purpose Melia 1 \$" + N + r" / hr", PER_HR, "$/hr", headline=True, note=SM_NOTE),
-    item("stt", "Enhanced (pre-recorded)", "speechmatics",
-         r"mid-sentence\. Enhanced \$" + N + r" / hr", PER_HR, "$/hr", note=SM_NOTE),
-    item("stt", "Standard (pre-recorded)", "speechmatics",
-         r"More models Standard \$" + N + r" / hr", PER_HR, "$/hr", note=SM_NOTE),
+SM_NOTE = ("List (pay-as-you-go) rate from the rate table Speechmatics publishes with its pricing page "
+           "(speechmatics.com/pricing.md). Since Oct 30, 2026 the pricing page's cards show rates with the 33% "
+           "model-training and 25% top-tier annual discounts switched on (e.g. Melia 1 $0.12/hr).")
+SM_RATE = r"- {model}: - rates: - realtime: - baseHourly: [0-9.]+ - calculatorTrainingHourly: [0-9.]+ - prerecorded: - baseHourly: " + N
+vendor("speechmatics", "Speechmatics", "https://www.speechmatics.com",
+       {"speechmatics": "https://www.speechmatics.com/pricing",
+        "speechmatics_rates": "https://www.speechmatics.com/pricing.md"}, [
+    item("stt", "Melia 1 (pre-recorded)", "speechmatics_rates",
+         SM_RATE.format(model="Melia 1"), PER_HR, "$/hr", headline=True, note=SM_NOTE),
+    item("stt", "Enhanced (pre-recorded)", "speechmatics_rates",
+         SM_RATE.format(model="Enhanced"), PER_HR, "$/hr", note=SM_NOTE),
+    item("stt", "Standard (pre-recorded)", "speechmatics_rates",
+         SM_RATE.format(model="Standard"), PER_HR, "$/hr", note=SM_NOTE),
     item("tts", "Speechmatics TTS", "speechmatics",
          r"Text to Speech Natural, low-latency speech synthesis for Voice AI use cases\. \$" + N + r" per 1,000 characters",
          PER_1K, "$/1K chars", headline=True),
