@@ -97,8 +97,10 @@ vendor("deepgram", "Deepgram", "https://deepgram.com", {"deepgram": "https://dee
 
 vendor("cartesia", "Cartesia", "https://cartesia.ai", {"cartesia": "https://cartesia.ai/pricing"}, [
     item("agent", "Managed voice agents (call duration)", "cartesia",
-         r"Call duration \$" + N + r" per minute", PER_MIN, "$/min",
-         note="Promotional price through Dec 31, 2026 (regular price $0.06/min per page). Telephony extra ($0.014/min on Cartesia numbers); LLM usage billed separately.", headline=True),
+         r"Call duration (?:Previously \$[0-9.]+ per minute \$[0-9.]+ )?\$" + N + r" per minute", PER_MIN, "$/min",
+         note="Since Nov 2, 2026 the page shows $0.03/min next to a struck-through \"Previously $0.06 per minute\", and its FAQ "
+              "calls $0.03/min the standard rate; no promotion end date is shown any more. Telephony extra ($0.014/min on "
+              "Cartesia numbers); LLM usage billed separately.", headline=True),
     item("tts", "Sonic (Startup plan, $49 / 1.25M credits)", "cartesia",
          r"Startup \$" + N + r" /mo Select Startup " + N + r"M credits / month", None, "plan $/credits",
          compute=lambda m: float(m.group(1)) / float(m.group(2)),

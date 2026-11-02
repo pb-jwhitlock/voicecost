@@ -1,6 +1,6 @@
 {
  "date": "2026-11-02",
- "generated_at": "2026-11-02T15:31:12-05:00",
+ "generated_at": "2026-11-02T15:54:45-05:00",
  "fx": {
   "EUR_USD": 1.1216,
   "source": "https://api.frankfurter.app (ECB reference rates)",
@@ -708,14 +708,14 @@
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
-   "price_native": null,
+   "price_native": 0.03,
    "price_native_high": null,
-   "price": null,
+   "price": 0.03,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
-   "evidence": null,
-   "note": "Promotional price through Dec 31, 2026 (regular price $0.06/min per page). Telephony extra ($0.014/min on Cartesia numbers); LLM usage billed separately.",
+   "status": "verified",
+   "reason": null,
+   "evidence": "stom Concurrent calls 8 12 20 60 Custom Call duration Previously $0.06 per minute $0.06 $0.03 per minute Previously $0.06 pe",
+   "note": "Since Nov 2, 2026 the page shows $0.03/min next to a struck-through \"Previously $0.06 per minute\", and its FAQ calls $0.03/min the standard rate; no promotion end date is shown any more. Telephony extra ($0.014/min on Cartesia numbers); LLM usage billed separately.",
    "scope": "bundled"
   },
   {
@@ -2076,14 +2076,6 @@
    "old": "unknown",
    "new": "no_rate",
    "old_price": null,
-   "new_price": null
-  },
-  {
-   "type": "status",
-   "key": "cartesia|agent|Managed voice agents (call duration)",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.03,
    "new_price": null
   },
   {

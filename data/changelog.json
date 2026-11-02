@@ -13,14 +13,6 @@
    },
    {
     "type": "status",
-    "key": "cartesia|agent|Managed voice agents (call duration)",
-    "old": "verified",
-    "new": "unknown",
-    "old_price": 0.03,
-    "new_price": null
-   },
-   {
-    "type": "status",
     "key": "speechmatics|stt|Melia 1 (pre-recorded)",
     "old": "unknown",
     "new": "verified",
