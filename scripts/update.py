@@ -68,6 +68,10 @@ def extract(rawdir, date, fx, fetch_log):
                 row["reason"] = f"Page fetch failed: {err}"
                 rows.append(row); continue
             m = re.search(it["pattern"], t)
+            if not m and it.get("unpublished"):
+                row["status"] = "not_published"
+                row["reason"] = it["unpublished"]
+                rows.append(row); continue
             if not m:
                 row["reason"] = "Price not found on page (layout changed or not published)"
                 rows.append(row); continue

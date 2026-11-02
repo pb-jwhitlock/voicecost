@@ -63,6 +63,8 @@ def price_html(r):
         return f'<span class="unk" title="{e(r["reason"])}">No per-min rate</span>'
     if r["status"] == "discontinued":
         return f'<span class="unk" title="{e(r["reason"])}">Discontinued</span>'
+    if r["status"] == "not_published":
+        return f'<span class="unk" title="{e(r["reason"])}">Not published</span>'
     return f'<span class="unk" title="{e(r["reason"] or "")}">Unknown</span>'
 
 def native_html(r):

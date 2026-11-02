@@ -51,6 +51,14 @@
    "old_high": null,
    "new_high": null,
    "pct": 0.4
+  },
+  {
+   "type": "status",
+   "key": "hume|tts|Octave TTS",
+   "old": "unknown",
+   "new": "not_published",
+   "old_price": null,
+   "new_price": null
   }
  ]
 }

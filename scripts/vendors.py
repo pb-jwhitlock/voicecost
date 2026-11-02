@@ -25,10 +25,14 @@ def vendor(id, name, site, pages, items=(), cats=(), note=None, status="active")
                   note=note, status=status))
 
 def item(category, product, page, pattern, factor, unit, note=None, group=1,
-         high_group=None, currency="USD", compute=None, tier=None, headline=False, scope=None):
+         high_group=None, currency="USD", compute=None, tier=None, headline=False, scope=None,
+         unpublished=None):
+    # unpublished: reason string. If the pattern does not match, the row is recorded as
+    # "not_published" (vendor confirmed to publish no price) instead of "unknown".
     return dict(category=category, product=product, page=page, pattern=pattern,
                 factor=factor, unit=unit, note=note, group=group, high_group=high_group,
-                currency=currency, compute=compute, tier=tier, headline=headline, scope=scope)
+                currency=currency, compute=compute, tier=tier, headline=headline, scope=scope,
+                unpublished=unpublished)
 
 # ----------------------------------------------------------------- agent platforms
 vendor("vapi", "Vapi", "https://vapi.ai", {"vapi": "https://vapi.ai/pricing"}, [
@@ -284,7 +288,9 @@ vendor("playht", "PlayHT", "https://play.ht", {"playht": "https://play.ht/pricin
    status="discontinued")
 
 vendor("hume", "Hume AI", "https://www.hume.ai", {"hume": "https://www.hume.ai/pricing"}, [
-    item("tts", "Octave TTS", "hume", r"Octave[^$]{0,80}\$" + N + r" ?(?:per|/) ?1(?:,000|K) characters", PER_1K, "$/1K chars", headline=True),
+    item("tts", "Octave TTS", "hume", r"Octave[^$]{0,80}\$" + N + r" ?(?:per|/) ?1(?:,000|K) characters", PER_1K, "$/1K chars", headline=True,
+         unpublished="Hume publishes no TTS price: hume.ai/pricing redirects to the homepage, and the TTS API is being "
+                     "sunset (access ends Nov 13, 2026)."),
 ], note="Hume removed its public pricing page (hume.ai/pricing now redirects to the homepage), so no TTS price is published. "
         "Hume's docs say it is sunsetting the TTS and EVI APIs; access ends November 13, 2026.")
 

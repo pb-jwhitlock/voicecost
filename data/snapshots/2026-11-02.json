@@ -1,6 +1,6 @@
 {
  "date": "2026-11-02",
- "generated_at": "2026-11-02T15:54:45-05:00",
+ "generated_at": "2026-11-02T15:57:11-05:00",
  "fx": {
   "EUR_USD": 1.1216,
   "source": "https://api.frankfurter.app (ECB reference rates)",
@@ -1776,8 +1776,8 @@
    "price_native_high": null,
    "price": null,
    "price_high": null,
-   "status": "unknown",
-   "reason": "Price not found on page (layout changed or not published)",
+   "status": "not_published",
+   "reason": "Hume publishes no TTS price: hume.ai/pricing redirects to the homepage, and the TTS API is being sunset (access ends Nov 13, 2026).",
    "evidence": null,
    "note": null,
    "scope": null
@@ -2119,6 +2119,14 @@
    "old_high": null,
    "new_high": null,
    "pct": 0.4
+  },
+  {
+   "type": "status",
+   "key": "hume|tts|Octave TTS",
+   "old": "unknown",
+   "new": "not_published",
+   "old_price": null,
+   "new_price": null
   }
  ]
 }
