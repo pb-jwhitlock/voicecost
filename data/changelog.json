@@ -1,5 +1,37 @@
 [
  {
+  "date": "2026-11-02",
+  "vs": "2026-11-01",
+  "changes": [
+   {
+    "type": "status",
+    "key": "cartesia|agent|Managed voice agents (call duration)",
+    "old": "verified",
+    "new": "unknown",
+    "old_price": 0.03,
+    "new_price": null
+   },
+   {
+    "type": "price",
+    "key": "gladia|stt|Real-time",
+    "old": 0.012662,
+    "new": 0.012711,
+    "old_high": null,
+    "new_high": null,
+    "pct": 0.4
+   },
+   {
+    "type": "price",
+    "key": "gladia|stt|Solaria-3 async",
+    "old": 0.002979,
+    "new": 0.002991,
+    "old_high": null,
+    "new_high": null,
+    "pct": 0.4
+   }
+  ]
+ },
+ {
   "date": "2026-10-30",
   "vs": "2026-10-29",
   "changes": [
