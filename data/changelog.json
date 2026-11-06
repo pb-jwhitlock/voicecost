@@ -1,5 +1,29 @@
 [
  {
+  "date": "2026-11-06",
+  "vs": "2026-11-05",
+  "changes": [
+   {
+    "type": "price",
+    "key": "gladia|stt|Real-time",
+    "old": 0.012721,
+    "new": 0.012654,
+    "old_high": null,
+    "new_high": null,
+    "pct": -0.5
+   },
+   {
+    "type": "price",
+    "key": "gladia|stt|Solaria-3 async",
+    "old": 0.002993,
+    "new": 0.002977,
+    "old_high": null,
+    "new_high": null,
+    "pct": -0.5
+   }
+  ]
+ },
+ {
   "date": "2026-11-05",
   "vs": "2026-11-04",
   "changes": [
