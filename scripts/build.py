@@ -6,7 +6,7 @@ import og
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA, OUT, ASSETS = os.path.join(ROOT, "data"), os.path.join(ROOT, "site"), os.path.join(ROOT, "assets")
-SITE_URL = os.environ.get("VOICECOST_URL", "https://voicecost.example")  # placeholder domain
+SITE_URL = os.environ.get("VOICECOST_URL", "https://voicecost.net")  # canonical production URL
 SITE = "VoiceCost"
 CAT = {"agent": "Voice agent platforms", "stt": "Speech-to-text", "tts": "Text-to-speech"}
 CAT_SHORT = {"agent": "Voice agents", "stt": "STT", "tts": "TTS"}
@@ -114,17 +114,20 @@ def slug_pair(a, b): return f"{a}-vs-{b}"
 OG_DEFAULT = "og/voicecost.png"
 OG_HOST = SITE_URL.split("://", 1)[-1]
 
-def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="", og_img=OG_DEFAULT):
+def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="", og_img=OG_DEFAULT, indexable=True):
     img = f"{SITE_URL}/{og_img}"
     ld = f'<script type="application/ld+json">{json.dumps(jsonld)}</script>' if jsonld else ""
+    robots = "" if indexable else '<meta name="robots" content="noindex,follow">\n'
+    # Self-referencing canonical always uses the production SITE_URL + path (homepage is SITE_URL/).
+    canon_href = SITE_URL + ("/" if canonical in ("", "/") else "/" + canonical.lstrip("/"))
     doc = f"""<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
-<link rel="canonical" href="{SITE_URL}/{canonical}">
+{robots}<link rel="canonical" href="{canon_href}">
 <meta property="og:type" content="website"><meta property="og:title" content="{e(title)}">
-<meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{SITE_URL}/{canonical}">
+<meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{canon_href}">
 <meta property="og:image" content="{e(img)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{e(title)}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(title)}"><meta name="twitter:image" content="{e(img)}">
@@ -150,7 +153,8 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="",
     full = os.path.join(OUT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     open(full, "w").write(doc)
-    SITEMAP.append(canonical)
+    if indexable:
+        SITEMAP.append(canonical if canonical not in ("", "/") else "")
 
 NEWSLETTER_URL = "https://voicecost.beehiiv.com/subscribe"
 CF_ANALYTICS = '<!-- Cloudflare Web Analytics --><script type=\'module\' src=\'https://static.cloudflareinsights.com/beacon.min.js\' data-cf-beacon=\'{"token": "03b427378ddd4e48a6c2b8ad47a5c680"}\'></script><!-- End Cloudflare Web Analytics -->'  # Cloudflare Web Analytics beacon, added before </body> on every page
@@ -290,6 +294,10 @@ def build_index():
         }[cat]
         sections.append(f'<section id="{anchor}" class="card"><div class="sec-h"><h2>{CAT[cat]}</h2><label class="toggle"><input type="checkbox" class="only-head" checked> Main products only</label></div><p class="muted">{intro} Click a column to sort.</p>{table(cat, rows, "", tid="t-"+cat)}</section>')
     pop_links = "".join(f'<a class="chip" href="compare/{slug_pair(a, b)}.html">{e(VEND[a]["name"])} vs {e(VEND[b]["name"])}</a>' for a, b in POPULAR_OK)
+    active_vids = [vid for vid in ORDER if VEND[vid].get("status") != "discontinued"]
+    vend_links = "".join(
+        f'<a class="chip" href="vendors/{vid}.html">{e(VEND[vid]["name"])}</a>' for vid in active_vids
+    )
     body = f"""<section class="hero"><h1>Voice AI pricing, checked every day</h1>
 <p class="lead">Compare per-minute prices for AI phone agents, speech-to-text and text-to-speech across {n_v} vendors, with price history and a calculator for what a call really costs.</p>
 <p class="lead"><b>The real price per minute, checked daily, with receipts.</b> New here? <a href="start-here.html">Start here →</a></p>
@@ -297,7 +305,8 @@ def build_index():
 {calculator()}
 {agency_cta('calculator')}
 {''.join(sections)}
-<section class="card"><h2>Popular comparisons</h2><div class="chips">{pop_links}</div><p><a href="compare/index.html">All comparisons →</a></p></section>
+<section class="card" id="vendors"><h2>Vendor pricing pages</h2><p class="muted">Every tracked vendor with today's rates, units, sources and price history.</p><div class="chips">{vend_links}</div></section>
+<section class="card"><h2>Popular comparisons</h2><div class="chips">{pop_links}</div><p><a href="compare/index.html">All {len(ALL_PAIRS)} comparisons →</a> · <a href="index.html#agents">Agents table</a> · <a href="index.html#stt">STT table</a> · <a href="index.html#tts">TTS table</a></p></section>
 <p class="small muted">{n_unk} price rows are marked <span class="unk">Unknown</span> because the vendor's page couldn't be read or doesn't publish that price. We never guess.</p>"""
     title = f"Voice AI Pricing Tracker ({MONTH}): Agents, STT & TTS Cost per Minute | {SITE}"
     desc = f"Daily-updated prices for Vapi, Retell, Bland, ElevenLabs, Deepgram, AssemblyAI, Cartesia and more. Cost per minute, per 1M characters, price history and a cost-per-call calculator. Updated {DATE_H}."
@@ -341,7 +350,8 @@ def build_vendor(vid):
 {''.join(parts)}
 <section class="card"><h2>Price history</h2><div class="tbl"><table><thead><tr><th>Product</th><th class="num">Today</th><th>History</th></tr></thead><tbody>{hist_rows}</tbody></table></div></section>
 <section class="card"><h2>Compare {e(v["name"])}</h2><div class="chips">{comp_links or '<span class="muted">No comparisons yet.</span>'}</div></section>
-<section class="card"><h2>Sources</h2><ul class="src">{srcs}</ul></section>"""
+<section class="card"><h2>Sources</h2><ul class="src">{srcs}</ul></section>
+<p><a href="../index.html">All price tables</a> · <a href="../compare/index.html">All comparisons</a> · <a href="../changes.html">Changes log</a></p>"""
     title = f"{v['name']} Pricing ({MONTH}): Cost per Minute & Price History | {SITE}"
     desc = f"{v['name']} pricing checked {DATE_H}: {summary}. Every tier, normalized units, price history and source links."
     og_lines = []
@@ -349,7 +359,62 @@ def build_vendor(vid):
         r = cheapest(vid, c)
         if r: og_lines.append(f"{CAT[c]}: from {fmt(r['price'], c)} {UNIT[c]}")
     og.page_card(os.path.join(OUT, "og", "vendors", f"{vid}.png"), f"{v['name']} pricing", "Vendor pricing", og_lines, OG_HOST)
-    page(f"vendors/{vid}.html", title, desc, body, "../", f"vendors/{vid}.html", og_img=f"og/vendors/{vid}.png")
+    # Discontinued vendors with no verified prices are thin orphans — keep the page for old links but noindex + drop from sitemap.
+    indexable = not (v.get("status") == "discontinued" and not ver)
+    page(f"vendors/{vid}.html", title, desc, body, "../", f"vendors/{vid}.html", og_img=f"og/vendors/{vid}.png", indexable=indexable)
+
+
+def vendor_recent_changes(vids, limit=6):
+    """Changelog lines for the given vendor ids, newest first, from real changelog data only."""
+    items = []
+    for day in changelog:
+        for c in day["changes"]:
+            vid = c["key"].split("|", 1)[0]
+            if vid not in vids:
+                continue
+            cat = c["key"].split("|")[1]
+            prod = c["key"].split("|", 2)[2]
+            name = VEND.get(vid, {}).get("name", vid)
+            if c["type"] == "price":
+                items.append((day["date"], f'<li><time datetime="{e(day["date"])}">{e(day["date"])}</time>: <b>{e(name)}</b> {e(prod)} {fmt(c["old"], cat)} → {fmt(c["new"], cat)} ({c["pct"]:+.1f}%)</li>'))
+            elif c["type"] == "status":
+                items.append((day["date"], f'<li><time datetime="{e(day["date"])}">{e(day["date"])}</time>: <b>{e(name)}</b> {e(prod)} status {e(c["old"])} → {e(c["new"])}</li>'))
+            if len(items) >= limit:
+                return items
+    return items
+
+def pair_diff_bits(a, b, cats):
+    """Page-specific bullets from real row notes, scopes, and tier counts — never invented prices."""
+    bits = []
+    for c in cats:
+        rows = [r for r in ROWS if r["vendor_id"] in (a, b) and r["category"] == c and r["status"] == "verified"]
+        for r in rows:
+            if r.get("note"):
+                bits.append(f'<li><b>{e(r["vendor"])} · {e(r["product"])}:</b> {e(r["note"])}</li>')
+            elif r.get("scope") and r["category"] == "agent":
+                bits.append(f'<li><b>{e(r["vendor"])} · {e(r["product"])}:</b> Listed scope is {e(SCOPE_LABEL.get(r["scope"], r["scope"])).lower()}.</li>')
+        na = len([r for r in rows if r["vendor_id"] == a])
+        nb = len([r for r in rows if r["vendor_id"] == b])
+        if na or nb:
+            bits.append(f'<li>{CAT[c]} tiers with a verified price today: {e(VEND[a]["name"])} {na}, {e(VEND[b]["name"])} {nb}.</li>')
+    # de-dupe while preserving order
+    seen, out = set(), []
+    for b_ in bits:
+        if b_ in seen: continue
+        seen.add(b_); out.append(b_)
+    return out[:12]
+
+def related_pairs(a, b, limit=12):
+    """Other comparisons sharing a vendor, for internal linking."""
+    out = []
+    for x, y in ALL_PAIRS:
+        if (x, y) == (a, b):
+            continue
+        if a in (x, y) or b in (x, y):
+            out.append((x, y))
+        if len(out) >= limit:
+            break
+    return out
 
 def shared_cats(a, b):
     out = []
@@ -400,15 +465,37 @@ def build_pair(a, b):
     ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": t}} for q, t in faq]}
     faq_html = "".join(f"<details><summary>{e(q)}</summary><p>{e(t)}</p></details>" for q, t in faq)
+    diff_bits = pair_diff_bits(a, b, cats)
+    diff_html = (
+        f'<section class="card"><h2>What differs on the pricing pages</h2><ul>{"".join(diff_bits)}</ul>'
+        f'<p class="small muted">Notes come from each vendor\'s public pricing page as recorded on {DATE_H}. We never invent a price.</p></section>'
+    ) if diff_bits else ""
+    chg = vendor_recent_changes({a, b})
+    chg_html = f'<section class="card"><h2>Recent price changes for {e(A["name"])} and {e(B["name"])}</h2><ul>{"".join(t for _, t in chg)}</ul><p class="small"><a href="../changes.html">Full changes log →</a></p></section>' if chg else f'<section class="card"><h2>Recent price changes for {e(A["name"])} and {e(B["name"])}</h2><p class="muted">No price or status changes recorded for these two vendors in the current changelog window. See the <a href="../changes.html">changes log</a> for the full tracker.</p></section>'
+    src_urls = []
+    for vid in (a, b):
+        for pid, u in VEND[vid]["pages"].items():
+            ok = snap["fetch"].get(pid, {}).get("ok")
+            src_urls.append(f'<li><b>{e(VEND[vid]["name"])}:</b> <a href="{e(u)}" rel="nofollow noopener" target="_blank">{e(u)}</a> {"✓" if ok else "<span class=unk>could not be read</span>"}</li>')
+    src_html = f'<section class="card"><h2>Sources checked {DATE_H}</h2><ul class="src">{"".join(src_urls)}</ul></section>'
+    rel = related_pairs(a, b)
+    rel_html = ""
+    if rel:
+        chips = "".join(f'<a class="chip" href="{slug_pair(x, y)}.html">{e(VEND[x]["name"])} vs {e(VEND[y]["name"])}</a>' for x, y in rel)
+        rel_html = f'<section class="card"><h2>Related comparisons</h2><div class="chips">{chips}</div><p><a href="index.html">All comparisons →</a></p></section>'
     body = f"""<nav class="crumbs"><a href="../index.html">Home</a> › <a href="index.html">Compare</a> › {e(A['name'])} vs {e(B['name'])}</nav>
 <section class="hero sm"><h1>{e(A['name'])} vs {e(B['name'])} pricing</h1>
 <p class="lead">{e('; '.join(desc_bits))}.</p>{stamp()}
 <div class="cta">{outlink(a)}{outlink(b)}{aff_note([a, b], "../")}</div></section>
 {''.join(secs)}
+{diff_html}
+{chg_html}
+{src_html}
 {calculator(preset, "../")}
 <section class="card"><h2>FAQ</h2>{faq_html}
 <details><summary>How often are these prices updated?</summary><p>Every day. A script reads each vendor's public pricing page, extracts the listed rates and keeps a dated copy, so price changes show up in the history.</p></details></section>
-<p><a href="../vendors/{a}.html">All {e(A['name'])} prices</a> · <a href="../vendors/{b}.html">All {e(B['name'])} prices</a></p>"""
+{rel_html}
+<p><a href="../vendors/{a}.html">All {e(A['name'])} prices</a> · <a href="../vendors/{b}.html">All {e(B['name'])} prices</a> · <a href="index.html">All comparisons</a> · <a href="../index.html">Price tables</a></p>"""
     og_lines = [f"{CAT_SHORT[c]}: {A['name']} {fmt(cheapest(a, c)['price'], c)} vs {B['name']} {fmt(cheapest(b, c)['price'], c)} {UNIT[c]}" for c in cats]
     og.page_card(os.path.join(OUT, "og", "compare", f"{slug_pair(a, b)}.png"), f"{A['name']} vs {B['name']} pricing", "Price comparison", og_lines, OG_HOST)
     page(f"compare/{slug_pair(a, b)}.html", title, desc, body, "../", f"compare/{slug_pair(a, b)}.html", ld, og_img=f"og/compare/{slug_pair(a, b)}.png")
@@ -423,7 +510,7 @@ def build_compare_index():
                    "</div></section>" for c, ps in groups.items())
     page("compare/index.html", f"Voice AI Pricing Comparisons ({MONTH}) | {SITE}",
          f"Side-by-side price comparisons of {len(ALL_PAIRS)} voice AI vendor pairs: agents, speech-to-text and text-to-speech. Updated {DATE_H}.",
-         f'<section class="hero sm"><h1>Compare voice AI prices</h1>{stamp()}</section>{secs}', "../", "compare/index.html")
+         f'<section class="hero sm"><h1>Compare voice AI prices</h1><p class="lead">{len(ALL_PAIRS)} side-by-side pages built from today\'s verified rates. Start from a <a href="../index.html#vendors">vendor page</a> or the <a href="../index.html">price tables</a>.</p>{stamp()}</section>{secs}', "../", "compare/index.html")
 
 def build_changes():
     items = []
@@ -506,7 +593,7 @@ def build_guide():
 <ol>
 <li><b>Price your call in the <a href="index.html#calculator">calculator</a>.</b> Pick a speech-to-text, LLM, platform, voice and phone line, or switch to "All-in agent platform". Enter your call length and monthly volume to get cost per call and per month.</li>
 <li><b>Compare two vendors side by side.</b> Pages like <a href="compare/vapi-vs-retell.html">Vapi vs Retell</a> or <a href="compare/deepgram-vs-assemblyai.html">Deepgram vs AssemblyAI</a> line up each product's price. Browse them all on the <a href="compare/index.html">compare page</a>.</li>
-<li><b>Check a vendor's page and price history.</b> Every vendor page (for example <a href="vendors/elevenlabs.html">ElevenLabs</a>) shows each product's price, the unit the vendor uses, a link to the source page, and a price-history line built from every daily check since tracking began on {first_h}.</li>
+<li><b>Check a vendor's page and price history.</b> Every vendor page (for example <a href="vendors/elevenlabs.html">ElevenLabs</a>, <a href="vendors/deepgram.html">Deepgram</a>, <a href="vendors/vapi.html">Vapi</a>, <a href="vendors/openai.html">OpenAI</a>) shows each product's price, the unit the vendor uses, a link to the source page, and a price-history line built from every daily check since tracking began on {first_h}. Browse the full list from the <a href="index.html#vendors">vendors section on the homepage</a>.</li>
 <li><b>Watch the <a href="changes.html">changes log</a>.</b> When a vendor edits a price, the change lands there with the old and new number and the date we spotted it.</li>
 </ol>
 <p class="small muted">Tip: in the agent table, watch the <b>Scope</b> column. "Platform fee only" means models and phone minutes cost extra. "Bundled" and "All-in" include more, but each vendor's note says what's left out.</p></section>
@@ -573,7 +660,7 @@ def main():
     for a, b in ALL_PAIRS: build_pair(a, b)
     for vid in ORDER: build_vendor(vid)
     build_compare_index(); build_changes(); build_about(); build_about_page(); build_guide(); build_index()
-    urls = "".join(f"<url><loc>{SITE_URL}/{u}</loc><lastmod>{DATE}</lastmod></url>" for u in SITEMAP)
+    urls = "".join(f"<url><loc>{SITE_URL + ('/' if not u else '/' + u)}</loc><lastmod>{DATE}</lastmod></url>" for u in SITEMAP)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
     open(os.path.join(OUT, "404.html"), "w").write(f'<!doctype html><meta charset="utf-8"><title>Not found</title><body><p>Page not found. <a href="{SITE_URL}/index.html">VoiceCost home</a></p>{CF_ANALYTICS}</body></html>')
