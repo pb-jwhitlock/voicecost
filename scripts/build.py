@@ -145,7 +145,7 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="",
 <footer class="foot"><div class="wrap">
 {newsletter()}
 <p class="small">Prices are read automatically from each vendor's public pricing page and normalized to USD. Last updated <b>{DATE_H}</b>. Always confirm on the vendor's site before buying. Some outbound links are affiliate links; that never changes the numbers. <a href="{prefix}methodology.html">How we collect prices</a> · <a href="{prefix}about.html">About &amp; disclosures</a> · <a href="{prefix}data/latest.json">Raw data (JSON)</a></p>
-<p class="small">Built by <a href="{e(utm(CFG['agency_url'], 'footer'))}" target="_blank" rel="noopener">{e(CFG['agency_name'])}</a> · © {D.year} {SITE}</p>
+<p class="small"><a href="https://x.com/VoiceCost" target="_blank" rel="noopener">Follow @VoiceCost on X</a> · Built by <a href="{e(utm(CFG['agency_url'], 'footer'))}" target="_blank" rel="noopener">{e(CFG['agency_name'])}</a> · © {D.year} {SITE}</p>
 </div></footer>
 <script src="{prefix}assets/app.js" defer></script>
 {CF_ANALYTICS}
@@ -310,7 +310,7 @@ def build_index():
 <p class="small muted">{n_unk} price rows are marked <span class="unk">Unknown</span> because the vendor's page couldn't be read or doesn't publish that price. We never guess.</p>"""
     title = f"Voice AI Pricing Tracker ({MONTH}): Agents, STT & TTS Cost per Minute | {SITE}"
     desc = f"Daily-updated prices for Vapi, Retell, Bland, ElevenLabs, Deepgram, AssemblyAI, Cartesia and more. Cost per minute, per 1M characters, price history and a cost-per-call calculator. Updated {DATE_H}."
-    ld = {"@context": "https://schema.org", "@type": "WebSite", "name": SITE, "url": SITE_URL + "/", "dateModified": DATE}
+    ld = {"@context": "https://schema.org", "@type": "WebSite", "name": SITE, "url": SITE_URL + "/", "dateModified": DATE, "sameAs": ["https://x.com/VoiceCost"]}
     page("index.html", title, desc, body, "", "", ld)
 
 def history_block(r):
