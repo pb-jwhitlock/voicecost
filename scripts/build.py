@@ -120,6 +120,13 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="",
     robots = "" if indexable else '<meta name="robots" content="noindex,follow">\n'
     # Self-referencing canonical always uses the production SITE_URL + path (homepage is SITE_URL/).
     canon_href = SITE_URL + ("/" if canonical in ("", "/") else "/" + canonical.lstrip("/"))
+    # Visible digest signup after the first section (hero / intro), not only a footer link.
+    marker = "</section>"
+    idx = body.find(marker)
+    if idx != -1:
+        body = body[: idx + len(marker)] + "\n" + newsletter() + body[idx + len(marker) :]
+    else:
+        body = newsletter() + body
     doc = f"""<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -143,9 +150,8 @@ def page(path, title, desc, body, prefix, canonical, jsonld=None, extra_head="",
 {body}
 </main>
 <footer class="foot"><div class="wrap">
-{newsletter()}
-<p class="small">Prices are read automatically from each vendor's public pricing page and normalized to USD. Last updated <b>{DATE_H}</b>. Always confirm on the vendor's site before buying. Some outbound links are affiliate links; that never changes the numbers. <a href="{prefix}methodology.html">How we collect prices</a> · <a href="{prefix}about.html">About &amp; disclosures</a> · <a href="{prefix}data/latest.json">Raw data (JSON)</a></p>
-<p class="small"><a href="https://x.com/VoiceCost" target="_blank" rel="noopener">Follow @VoiceCost on X</a> · Built by <a href="{e(utm(CFG['agency_url'], 'footer'))}" target="_blank" rel="noopener">{e(CFG['agency_name'])}</a> · © {D.year} {SITE}</p>
+<p class="small">Prices are read automatically from each vendor's public pricing page and normalized to USD. Last updated <b>{DATE_H}</b>. Always confirm on the vendor's site before buying. Some outbound links are affiliate links; that never changes the numbers. <a href="{prefix}methodology.html">How we collect prices</a> · <a href="{prefix}about.html">About &amp; disclosures</a> · <a href="{prefix}data/latest.json">Raw data (JSON)</a> · <a href="{prefix}changes.json">Changes feed (JSON)</a></p>
+<p class="small"><a href="#newsletter">Subscribe free</a> · <a href="https://x.com/VoiceCost" target="_blank" rel="noopener">Follow @VoiceCost on X</a> · Built by <a href="{e(utm(CFG['agency_url'], 'footer'))}" target="_blank" rel="noopener">{e(CFG['agency_name'])}</a> · © {D.year} {SITE}</p>
 </div></footer>
 <script src="{prefix}assets/app.js" defer></script>
 {CF_ANALYTICS}
@@ -306,6 +312,15 @@ def build_index():
 {agency_cta('calculator')}
 {''.join(sections)}
 <section class="card" id="vendors"><h2>Vendor pricing pages</h2><p class="muted">Every tracked vendor with today's rates, units, sources and price history.</p><div class="chips">{vend_links}</div></section>
+<section class="card" id="guides"><h2>Price guides people search for</h2><div class="chips">
+<a class="chip" href="cheapest-voice-ai-agent.html">Cheapest voice AI agent</a>
+<a class="chip" href="cheapest-speech-to-text.html">Cheapest speech-to-text</a>
+<a class="chip" href="cheapest-text-to-speech.html">Cheapest text-to-speech</a>
+<a class="chip" href="voice-agent-cost-calculator.html">Voice agent cost calculator</a>
+<a class="chip" href="compare/retell-vs-vapi-vs-bland.html">Retell vs Vapi vs Bland</a>
+<a class="chip" href="compare/deepgram-vs-assemblyai-vs-openai.html">Deepgram vs AssemblyAI vs OpenAI</a>
+<a class="chip" href="compare/elevenlabs-vs-openai-vs-cartesia.html">ElevenLabs vs OpenAI vs Cartesia</a>
+</div></section>
 <section class="card"><h2>Popular comparisons</h2><div class="chips">{pop_links}</div><p><a href="compare/index.html">All {len(ALL_PAIRS)} comparisons →</a> · <a href="index.html#agents">Agents table</a> · <a href="index.html#stt">STT table</a> · <a href="index.html#tts">TTS table</a></p></section>
 <p class="small muted">{n_unk} price rows are marked <span class="unk">Unknown</span> because the vendor's page couldn't be read or doesn't publish that price. We never guess.</p>"""
     title = f"Voice AI Pricing Tracker ({MONTH}): Agents, STT & TTS Cost per Minute | {SITE}"
@@ -508,9 +523,18 @@ def build_compare_index():
     secs = "".join(f'<section class="card"><h2>{CAT[c]}</h2><div class="chips">' +
                    "".join(f'<a class="chip" href="{slug_pair(a, b)}.html">{e(VEND[a]["name"])} vs {e(VEND[b]["name"])}</a>' for a, b in ps) +
                    "</div></section>" for c, ps in groups.items())
+    multi = """<section class="card"><h2>High-intent comparisons</h2><div class="chips">
+<a class="chip" href="retell-vs-vapi-vs-bland.html">Retell vs Vapi vs Bland</a>
+<a class="chip" href="deepgram-vs-assemblyai-vs-openai.html">Deepgram vs AssemblyAI vs OpenAI</a>
+<a class="chip" href="elevenlabs-vs-openai-vs-cartesia.html">ElevenLabs vs OpenAI vs Cartesia</a>
+<a class="chip" href="../cheapest-voice-ai-agent.html">Cheapest voice AI agent</a>
+<a class="chip" href="../cheapest-speech-to-text.html">Cheapest STT</a>
+<a class="chip" href="../cheapest-text-to-speech.html">Cheapest TTS</a>
+<a class="chip" href="../voice-agent-cost-calculator.html">Cost calculator</a>
+</div></section>"""
     page("compare/index.html", f"Voice AI Pricing Comparisons ({MONTH}) | {SITE}",
          f"Side-by-side price comparisons of {len(ALL_PAIRS)} voice AI vendor pairs: agents, speech-to-text and text-to-speech. Updated {DATE_H}.",
-         f'<section class="hero sm"><h1>Compare voice AI prices</h1><p class="lead">{len(ALL_PAIRS)} side-by-side pages built from today\'s verified rates. Start from a <a href="../index.html#vendors">vendor page</a> or the <a href="../index.html">price tables</a>.</p>{stamp()}</section>{secs}', "../", "compare/index.html")
+         f'<section class="hero sm"><h1>Compare voice AI prices</h1><p class="lead">{len(ALL_PAIRS)} side-by-side pages built from today\'s verified rates. Start from a <a href="../index.html#vendors">vendor page</a> or the <a href="../index.html">price tables</a>.</p>{stamp()}</section>{multi}{secs}', "../", "compare/index.html")
 
 def build_changes():
     items = []
@@ -526,7 +550,7 @@ def build_changes():
             else:
                 lis.append(f"<li><b>{e(name)}</b> {e(prod)}: {e(c['type'].replace('_', ' '))}</li>")
         items.append(f"<section class='card'><h2>{e(day['date'])}</h2><p class='muted small'>vs {e(day['vs'])}</p><ul>{''.join(lis)}</ul></section>")
-    body = f'<section class="hero sm"><h1>Voice AI price changes</h1><p class="lead">Every change our daily check has detected, newest first.</p>{stamp()}</section>' + \
+    body = f'<section class="hero sm"><h1>Voice AI price changes</h1><p class="lead">Every change our daily check has detected, newest first. Machine-readable feed: <a href="changes.json">changes.json</a> (last 30 days).</p>{stamp()}</section>' + \
         ("".join(items) or f'<section class="card"><p>No price changes detected yet. Tracking started {e(snaps[0]["date"] if snaps else DATE)}; changes appear here as soon as a vendor edits its pricing page.</p></section>')
     page("changes.html", f"Voice AI Price Changes Log | {SITE}", f"A dated log of price changes at voice AI vendors, detected by daily checks. Updated {DATE_H}.", body, "", "changes.html")
 
@@ -638,6 +662,329 @@ def build_about_page():
 <p>Comparisons are based only on published vendor prices. Neither affiliate relationships nor {e(CFG['agency_name'])}'s services influence the numbers, which vendors are listed, or how rows are sorted.</p></section>"""
     page("about.html", f"About VoiceCost and Disclosures | {SITE}", "Who builds VoiceCost, why it exists, how prices are collected, and affiliate and services disclosures.", body, "", "about.html")
 
+# ------------------------------------------------------------------ changes feed + intent pages
+def row_by_key(k):
+    for r in ROWS:
+        if key(r) == k:
+            return r
+    return None
+
+def write_changes_json(window_days=30):
+    """Machine-readable price-change feed for Kilimanjaro / X posting (last ~30 days)."""
+    cut = (D - dt.timedelta(days=window_days)).isoformat()
+    items = []
+    for day in changelog:
+        if day["date"] < cut:
+            continue
+        for c in day["changes"]:
+            parts = c["key"].split("|", 2)
+            if len(parts) != 3:
+                continue
+            vid, cat, prod = parts
+            name = VEND.get(vid, {}).get("name", vid)
+            row = row_by_key(c["key"])
+            source_url = (row or {}).get("source_url") or next(iter((VEND.get(vid) or {}).get("pages", {}).values()), None)
+            item = {
+                "date": day["date"],
+                "vs": day.get("vs"),
+                "type": c["type"],
+                "vendor_id": vid,
+                "vendor": name,
+                "category": cat,
+                "product": prod,
+                "vendor_page_url": f"{SITE_URL}/vendors/{vid}.html",
+                "source_url": source_url,
+            }
+            if c["type"] == "price":
+                item.update({
+                    "old": c.get("old"),
+                    "new": c.get("new"),
+                    "old_high": c.get("old_high"),
+                    "new_high": c.get("new_high"),
+                    "pct": c.get("pct"),
+                    "unit": UNIT.get(cat),
+                })
+            elif c["type"] == "status":
+                item.update({"old": c.get("old"), "new": c.get("new"), "pct": None})
+            else:
+                item.update({"old": c.get("old"), "new": c.get("new"), "pct": c.get("pct")})
+            items.append(item)
+    # newest first (changelog is already newest-first; keep that)
+    feed = {
+        "generated_at": snap.get("generated_at") or DATE,
+        "site": SITE_URL,
+        "window_days": window_days,
+        "count": len(items),
+        "human_page": f"{SITE_URL}/changes.html",
+        "changes": items,
+    }
+    open(os.path.join(OUT, "changes.json"), "w").write(json.dumps(feed, indent=2) + "\n")
+    return feed
+
+def _rank_verified(cat, pred=lambda r: True):
+    rows = [r for r in ROWS if r["category"] == cat and r["status"] == "verified" and pred(r)]
+    return sorted(rows, key=lambda r: r["price"])
+
+def _volume_rows(r, cat):
+    if cat == "tts":
+        return "".join(f"<tr><td>{m:,}M characters</td><td class='num'><b>${r['price']*m:,.2f}</b></td></tr>" for m in (1, 10, 100))
+    return "".join(f"<tr><td>{m:,} minutes</td><td class='num'><b>${r['price']*m:,.2f}</b></td></tr>" for m in (1_000, 10_000, 100_000))
+
+def build_cheapest_page(slug, cat, heading, lead, pred, meta_title, meta_desc, extra_html=""):
+    ranked = _rank_verified(cat, pred)
+    if not ranked:
+        return None
+    winner = ranked[0]
+    scope_note = ""
+    if cat == "agent":
+        scope_note = "<p class='warn'>Scope matters. A platform-fee-only rate leaves out STT, LLM, TTS and telephony. Bundled and all-in rates cover more, but each vendor's note says what is still billed separately.</p>"
+    rows_html = table(cat, ranked, "", tid=f"t-cheap-{cat}")
+    vol = _volume_rows(winner, cat)
+    related = {
+        "agent": [('compare/vapi-vs-retell.html', 'Vapi vs Retell'), ('compare/retell-vs-bland.html', 'Retell vs Bland'), ('compare/vapi-vs-bland.html', 'Vapi vs Bland'), ('cheapest-speech-to-text.html', 'Cheapest STT'), ('cheapest-text-to-speech.html', 'Cheapest TTS'), ('voice-agent-cost-calculator.html', 'Cost calculator')],
+        "stt": [('compare/deepgram-vs-assemblyai.html', 'Deepgram vs AssemblyAI'), ('compare/deepgram-vs-openai.html', 'Deepgram vs OpenAI'), ('compare/assemblyai-vs-openai.html', 'AssemblyAI vs OpenAI Whisper'), ('cheapest-voice-ai-agent.html', 'Cheapest voice agent'), ('cheapest-text-to-speech.html', 'Cheapest TTS')],
+        "tts": [('compare/elevenlabs-vs-cartesia.html', 'ElevenLabs vs Cartesia'), ('compare/elevenlabs-vs-openai.html', 'ElevenLabs vs OpenAI TTS'), ('compare/cartesia-vs-openai.html', 'Cartesia vs OpenAI'), ('cheapest-voice-ai-agent.html', 'Cheapest voice agent'), ('cheapest-speech-to-text.html', 'Cheapest STT')],
+    }.get(cat, [])
+    # filter related that exist or are our new pages
+    chips = "".join(f'<a class="chip" href="{e(href)}">{e(label)}</a>' for href, label in related)
+    body = f"""<nav class="crumbs"><a href="index.html">Home</a> › {e(heading)}</nav>
+<section class="hero sm"><h1>{e(heading)}</h1>
+<p class="lead">{e(lead)}</p>
+<p class="lead"><b>Lowest listed today:</b> {fmt(winner['price'], cat)} {UNIT[cat]} · <a href="vendors/{winner['vendor_id']}.html">{e(winner['vendor'])}</a> · {e(winner['product'])}.</p>
+{stamp()}</section>
+{scope_note}
+<section class="card"><h2>Ranked by today's verified list price</h2>
+<p class="muted">Only rows VoiceCost verified on {DATE_H}. We never invent a number. Click a column to sort.</p>
+{rows_html}</section>
+<section class="card"><h2>What the cheapest option costs at volume</h2>
+<p class="muted">Using {e(winner['vendor'])} · {e(winner['product'])} at {fmt(winner['price'], cat)} {UNIT[cat]}.</p>
+<div class="tbl"><table><thead><tr><th>Volume</th><th class="num">Cost</th></tr></thead><tbody>{vol}</tbody></table></div>
+<p class="small muted">Source: <a href="{e(winner['source_url'])}" rel="nofollow noopener" target="_blank">{e(winner['source_url'])}</a></p></section>
+{extra_html}
+<section class="card"><h2>Related</h2><div class="chips">{chips}</div>
+<p><a href="index.html#{'agents' if cat=='agent' else cat}">Full {CAT_SHORT[cat]} table</a> · <a href="compare/index.html">All comparisons</a> · <a href="changes.html">Changes log</a></p></section>
+{agency_cta(slug)}"""
+    page(f"{slug}.html", meta_title, meta_desc, body, "", f"{slug}.html")
+    return slug
+
+def build_cost_calculator_page():
+    ex = example_stack()
+    ranked_agents = _rank_verified("agent", lambda r: r.get("scope") != "platform")
+    examples = []
+    for mins in (3, 5, 10):
+        for r in ranked_agents[:5]:
+            examples.append((mins, r, r["price"] * mins, r["price"] * mins * 1000))
+    ex_rows = "".join(
+        f"<tr><td>{mins} min</td><td><a href='vendors/{r['vendor_id']}.html'>{e(r['vendor'])}</a> · {e(r['product'])}</td>"
+        f"<td class='num'>{fmt(r['price'], 'agent')}</td><td class='num'><b>${per_call:,.2f}</b></td>"
+        f"<td class='num'>${per_month:,.0f}</td></tr>"
+        for mins, r, per_call, per_month in examples
+    )
+    if ex:
+        stack_rows = "".join(
+            f'<tr><td>{e(a)}</td><td>{e(b)}</td><td class="num"><b>{m4(c)}</b></td>'
+            f'<td class="small"><a href="{e(u)}" rel="nofollow noopener" target="_blank">source</a></td></tr>'
+            for a, b, c, u in ex["parts"]
+        )
+        stack_html = f"""<section class="card"><h2>Worked DIY stack example (real list prices)</h2>
+<p class="muted">Assumptions: inbound call, agent speaks {int(ex['share']*100)}% of the time, ~{ex['cpm']} characters per spoken minute. Prices from {DATE_H}.</p>
+<div class="tbl"><table><thead><tr><th>Piece</th><th>Choice</th><th class="num">$/min</th><th>Source</th></tr></thead><tbody>{stack_rows}
+<tr><td colspan="2"><b>Total per minute</b></td><td class="num"><b>{m4(ex['total'])}</b></td><td></td></tr>
+<tr><td colspan="2"><b>{ex['mins']}-minute call</b></td><td class="num"><b>${ex['total']*ex['mins']:.2f}</b></td><td></td></tr>
+<tr><td colspan="2"><b>1,000 calls / month</b></td><td class="num"><b>${ex['total']*ex['mins']*1000:,.0f}</b></td><td></td></tr>
+</tbody></table></div></section>"""
+    else:
+        stack_html = ""
+    body = f"""<nav class="crumbs"><a href="index.html">Home</a> › Voice agent cost calculator</nav>
+<section class="hero sm"><h1>Voice agent cost calculator</h1>
+<p class="lead">Estimate cost per call and per month from today's verified list prices. Use the interactive calculator, or skim the worked examples below.</p>
+{stamp()}</section>
+{calculator()}
+{stack_html}
+<section class="card"><h2>Cost per call examples (bundled / all-in list rates)</h2>
+<p class="muted">Each row multiplies a verified non-platform agent rate by call length. 1,000 calls/month is shown for scale. Platform-fee-only rows are left out because they are not all-in.</p>
+<div class="tbl"><table><thead><tr><th>Call length</th><th>Vendor / product</th><th class="num">$/min</th><th class="num">Per call</th><th class="num">1,000 calls/mo</th></tr></thead><tbody>{ex_rows}</tbody></table></div>
+<p class="small muted">Always confirm on the vendor's pricing page before buying. Some rates exclude telephony or LLM usage — see each product note on the <a href="index.html#agents">agents table</a>.</p></section>
+<section class="card"><h2>Also see</h2><div class="chips">
+<a class="chip" href="cheapest-voice-ai-agent.html">Cheapest voice AI agent</a>
+<a class="chip" href="cheapest-speech-to-text.html">Cheapest STT</a>
+<a class="chip" href="cheapest-text-to-speech.html">Cheapest TTS</a>
+<a class="chip" href="compare/retell-vs-vapi-vs-bland.html">Retell vs Vapi vs Bland</a>
+<a class="chip" href="start-here.html">Start here</a>
+</div></section>
+{agency_cta('cost-calculator')}"""
+    page(
+        "voice-agent-cost-calculator.html",
+        f"Voice Agent Cost Calculator ({MONTH}): Cost per Call & per Minute | {SITE}",
+        f"Calculate voice agent cost per call and per month from daily-checked list prices. Worked examples for Retell, Vapi, Bland, Cartesia, Deepgram and more. Updated {DATE_H}.",
+        body, "", "voice-agent-cost-calculator.html",
+    )
+
+def build_multi_agent_compare():
+    """High-intent multi-vendor agent page: Retell vs Vapi vs Bland (+ Synthflow note)."""
+    ids = ["retell", "vapi", "bland", "synthflow"]
+    rows = sorted_rows([r for r in ROWS if r["vendor_id"] in ids and r["category"] == "agent" and r["status"] != "discontinued"])
+    cards = []
+    for vid in ids:
+        v = VEND[vid]
+        ver = [r for r in rows if r["vendor_id"] == vid and r["status"] == "verified"]
+        if ver:
+            cheap = min(ver, key=lambda r: r["price"])
+            cards.append(
+                f'<a class="kcard" href="vendors/{vid}.html"><small>{e(v["name"])}</small>'
+                f'<b>{fmt(cheap["price"], "agent")}</b><span>{UNIT["agent"]} · {e(cheap["product"])} · {e(SCOPE_LABEL.get(cheap.get("scope"), ""))}</span></a>'
+            )
+        else:
+            r0 = next((r for r in rows if r["vendor_id"] == vid), None)
+            label = price_html(r0) if r0 else "—"
+            cards.append(
+                f'<a class="kcard" href="vendors/{vid}.html"><small>{e(v["name"])}</small>'
+                f'<b>{label}</b><span>No public per-minute rate today</span></a>'
+            )
+    pair_chips = "".join(
+        f'<a class="chip" href="{slug_pair(a, b)}.html">{e(VEND[a]["name"])} vs {e(VEND[b]["name"])}</a>'
+        for a, b in [("vapi", "retell"), ("vapi", "bland"), ("retell", "bland")]
+        if (a, b) in set(ALL_PAIRS) or (b, a) in set(ALL_PAIRS) or True
+    )
+    # fix pair chips to only existing pair pages
+    pair_chips = ""
+    for a, b in [("vapi", "retell"), ("vapi", "bland"), ("retell", "bland")]:
+        if (a, b) in ALL_PAIRS:
+            href = f"{slug_pair(a, b)}.html"
+        elif (b, a) in ALL_PAIRS:
+            href = f"{slug_pair(b, a)}.html"
+        else:
+            continue
+        pair_chips += f'<a class="chip" href="{href}">{e(VEND[a]["name"])} vs {e(VEND[b]["name"])}</a>'
+    body = f"""<nav class="crumbs"><a href="../index.html">Home</a> › <a href="index.html">Compare</a> › Retell vs Vapi vs Bland</nav>
+<section class="hero sm"><h1>Retell vs Vapi vs Bland pricing</h1>
+<p class="lead">Side-by-side voice agent list prices for the three most-compared phone-agent platforms, plus Synthflow's published enterprise stance. Checked {DATE_H}.</p>
+{stamp()}<div class="kcards">{''.join(cards)}</div></section>
+<section class="card"><h2>All agent rows for these vendors</h2>
+{table("agent", rows, "../")}
+<p class="small muted">Synthflow publishes no per-minute rate (enterprise contracts only), so it cannot be ranked on $/min. Pair pages for Synthflow are not generated until a verified rate appears.</p></section>
+<section class="card"><h2>Pair pages</h2><div class="chips">{pair_chips}
+<a class="chip" href="../cheapest-voice-ai-agent.html">Cheapest voice AI agent</a>
+<a class="chip" href="../voice-agent-cost-calculator.html">Cost calculator</a>
+</div></section>
+{calculator({"mode": "all"}, "../")}
+{agency_cta('retell-vapi-bland')}"""
+    page(
+        "compare/retell-vs-vapi-vs-bland.html",
+        f"Retell vs Vapi vs Bland Pricing ({MONTH}): Voice Agent Cost Compared | {SITE}",
+        f"Compare Retell, Vapi and Bland voice agent per-minute prices side by side, with Synthflow's no-rate note. Updated {DATE_H}.",
+        body, "../", "compare/retell-vs-vapi-vs-bland.html",
+    )
+
+def build_multi_stt_compare():
+    ids = ["deepgram", "assemblyai", "openai"]
+    rows = sorted_rows([r for r in ROWS if r["vendor_id"] in ids and r["category"] == "stt" and r["status"] == "verified"])
+    cards = []
+    for vid in ids:
+        cheap = cheapest(vid, "stt")
+        if not cheap:
+            continue
+        cards.append(
+            f'<a class="kcard" href="../vendors/{vid}.html"><small>{e(VEND[vid]["name"])}</small>'
+            f'<b>{fmt(cheap["price"], "stt")}</b><span>{UNIT["stt"]} · {e(cheap["product"])}</span></a>'
+        )
+    pair_chips = ""
+    for a, b in [("deepgram", "assemblyai"), ("deepgram", "openai"), ("assemblyai", "openai")]:
+        pair = (a, b) if (a, b) in ALL_PAIRS else ((b, a) if (b, a) in ALL_PAIRS else None)
+        if not pair:
+            continue
+        x, y = pair
+        pair_chips += f'<a class="chip" href="{slug_pair(x, y)}.html">{e(VEND[a]["name"])} vs {e(VEND[b]["name"])}</a>'
+    body = f"""<nav class="crumbs"><a href="../index.html">Home</a> › <a href="index.html">Compare</a> › Deepgram vs AssemblyAI vs OpenAI</nav>
+<section class="hero sm"><h1>Deepgram vs AssemblyAI vs OpenAI Whisper pricing</h1>
+<p class="lead">Speech-to-text list prices for the three APIs people compare most often. OpenAI rows use the rates VoiceCost extracts from OpenAI's public pricing; "Whisper" in search usually maps to those transcription products.</p>
+{stamp()}<div class="kcards">{''.join(cards)}</div></section>
+<section class="card"><h2>All verified STT rows</h2>{table("stt", rows, "../")}</section>
+<section class="card"><h2>Pair pages</h2><div class="chips">{pair_chips}
+<a class="chip" href="../cheapest-speech-to-text.html">Cheapest speech-to-text</a>
+</div></section>
+{agency_cta('deepgram-assembly-openai')}"""
+    page(
+        "compare/deepgram-vs-assemblyai-vs-openai.html",
+        f"Deepgram vs AssemblyAI vs OpenAI Whisper Pricing ({MONTH}) | {SITE}",
+        f"Compare Deepgram, AssemblyAI and OpenAI speech-to-text API prices per minute. Updated {DATE_H}.",
+        body, "../", "compare/deepgram-vs-assemblyai-vs-openai.html",
+    )
+
+def build_multi_tts_compare():
+    ids = ["elevenlabs", "openai", "cartesia"]
+    rows = sorted_rows([r for r in ROWS if r["vendor_id"] in ids and r["category"] == "tts" and r["status"] == "verified"])
+    cards = []
+    for vid in ids:
+        cheap = cheapest(vid, "tts")
+        if not cheap:
+            continue
+        cards.append(
+            f'<a class="kcard" href="../vendors/{vid}.html"><small>{e(VEND[vid]["name"])}</small>'
+            f'<b>{fmt(cheap["price"], "tts")}</b><span>{UNIT["tts"]} · {e(cheap["product"])}</span></a>'
+        )
+    pair_chips = ""
+    for a, b in [("elevenlabs", "cartesia"), ("elevenlabs", "openai"), ("cartesia", "openai")]:
+        pair = (a, b) if (a, b) in ALL_PAIRS else ((b, a) if (b, a) in ALL_PAIRS else None)
+        if not pair:
+            continue
+        x, y = pair
+        pair_chips += f'<a class="chip" href="{slug_pair(x, y)}.html">{e(VEND[a]["name"])} vs {e(VEND[b]["name"])}</a>'
+    body = f"""<nav class="crumbs"><a href="../index.html">Home</a> › <a href="index.html">Compare</a> › ElevenLabs vs OpenAI vs Cartesia</nav>
+<section class="hero sm"><h1>ElevenLabs vs OpenAI TTS vs Cartesia pricing</h1>
+<p class="lead">Text-to-speech list prices per 1M characters for the three voices teams compare most when building agents.</p>
+{stamp()}<div class="kcards">{''.join(cards)}</div></section>
+<section class="card"><h2>All verified TTS rows</h2>{table("tts", rows, "../")}</section>
+<section class="card"><h2>Pair pages</h2><div class="chips">{pair_chips}
+<a class="chip" href="../cheapest-text-to-speech.html">Cheapest text-to-speech</a>
+</div></section>
+{agency_cta('elevenlabs-openai-cartesia')}"""
+    page(
+        "compare/elevenlabs-vs-openai-vs-cartesia.html",
+        f"ElevenLabs vs OpenAI TTS vs Cartesia Pricing ({MONTH}) | {SITE}",
+        f"Compare ElevenLabs, OpenAI TTS and Cartesia text-to-speech prices per 1M characters. Updated {DATE_H}.",
+        body, "../", "compare/elevenlabs-vs-openai-vs-cartesia.html",
+    )
+
+def build_intent_pages():
+    build_cheapest_page(
+        "cheapest-voice-ai-agent",
+        "agent",
+        "Cheapest voice AI agent per minute",
+        "Ranked list of verified voice-agent platform rates, lowest first. Platform-fee-only rows are included but called out — they are not all-in call costs.",
+        lambda r: True,
+        f"Cheapest Voice AI Agent per Minute ({MONTH}) | {SITE}",
+        f"Cheapest voice AI agent pricing per minute from daily-checked list rates: Cartesia, Vapi, Retell, Bland, Deepgram, ElevenLabs and more. Updated {DATE_H}.",
+        extra_html=f"""<section class="card"><h2>Want all-in / bundled only?</h2>
+<p class="muted">Excluding platform-fee-only rows (which omit STT/LLM/TTS/telephony).</p>
+{table("agent", _rank_verified("agent", lambda r: r.get("scope") != "platform"), "", tid="t-cheap-agent-allin")}
+<p><a href="voice-agent-cost-calculator.html">Open the cost-per-call calculator →</a> · <a href="compare/retell-vs-vapi-vs-bland.html">Retell vs Vapi vs Bland →</a></p></section>""",
+    )
+    build_cheapest_page(
+        "cheapest-speech-to-text",
+        "stt",
+        "Cheapest speech-to-text API",
+        "Lowest verified speech-to-text API prices per minute, streaming and batch, from today's VoiceCost check.",
+        lambda r: True,
+        f"Cheapest Speech-to-Text API ({MONTH}): STT Cost per Minute | {SITE}",
+        f"Cheapest speech-to-text API pricing per minute: Soniox, AssemblyAI, Deepgram, OpenAI, Gladia and more. Updated {DATE_H}.",
+        extra_html='<section class="card"><p><a href="compare/deepgram-vs-assemblyai-vs-openai.html">Deepgram vs AssemblyAI vs OpenAI Whisper →</a></p></section>',
+    )
+    build_cheapest_page(
+        "cheapest-text-to-speech",
+        "tts",
+        "Cheapest text-to-speech API",
+        "Lowest verified text-to-speech API prices per 1 million characters from today's VoiceCost check.",
+        lambda r: True,
+        f"Cheapest Text-to-Speech API ({MONTH}): TTS Cost per 1M Characters | {SITE}",
+        f"Cheapest text-to-speech API pricing per 1M characters: Google, Amazon Polly, OpenAI, ElevenLabs, Cartesia and more. Updated {DATE_H}.",
+        extra_html='<section class="card"><p><a href="compare/elevenlabs-vs-openai-vs-cartesia.html">ElevenLabs vs OpenAI vs Cartesia →</a></p></section>',
+    )
+    build_cost_calculator_page()
+    build_multi_agent_compare()
+    build_multi_stt_compare()
+    build_multi_tts_compare()
+
 # ------------------------------------------------------------------ pairs
 POPULAR = [("vapi", "retell"), ("vapi", "bland"), ("retell", "bland"), ("vapi", "synthflow"), ("retell", "synthflow"),
            ("deepgram", "assemblyai"), ("deepgram", "openai"), ("assemblyai", "openai"), ("deepgram", "speechmatics"),
@@ -660,11 +1007,13 @@ def main():
     for a, b in ALL_PAIRS: build_pair(a, b)
     for vid in ORDER: build_vendor(vid)
     build_compare_index(); build_changes(); build_about(); build_about_page(); build_guide(); build_index()
+    build_intent_pages()
+    feed = write_changes_json(30)
     urls = "".join(f"<url><loc>{SITE_URL + ('/' if not u else '/' + u)}</loc><lastmod>{DATE}</lastmod></url>" for u in SITEMAP)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
     open(os.path.join(OUT, "404.html"), "w").write(f'<!doctype html><meta charset="utf-8"><title>Not found</title><body><p>Page not found. <a href="{SITE_URL}/index.html">VoiceCost home</a></p>{CF_ANALYTICS}</body></html>')
-    print(f"Built {len(SITEMAP)} pages ({len(ALL_PAIRS)} comparisons, {len(ORDER)} vendors) -> {OUT}")
+    print(f"Built {len(SITEMAP)} pages ({len(ALL_PAIRS)} comparisons, {len(ORDER)} vendors, changes.json={feed['count']}) -> {OUT}")
 
 if __name__ == "__main__":
     main()
