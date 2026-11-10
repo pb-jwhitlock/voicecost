@@ -1,5 +1,63 @@
 [
  {
+  "date": "2026-11-10",
+  "vs": "2026-11-09",
+  "changes": [
+   {
+    "type": "price",
+    "key": "elevenlabs|stt|Scribe v2 (batch)",
+    "old": 0.003667,
+    "new": 0.003333,
+    "old_high": null,
+    "new_high": null,
+    "pct": -9.1
+   },
+   {
+    "type": "price",
+    "key": "elevenlabs|stt|Scribe v2 Realtime",
+    "old": 0.0065,
+    "new": 0.003667,
+    "old_high": null,
+    "new_high": null,
+    "pct": -43.6
+   },
+   {
+    "type": "status",
+    "key": "openai|stt|gpt-transcribe (batch)",
+    "old": "verified",
+    "new": "unknown",
+    "old_price": 0.0045,
+    "new_price": null
+   },
+   {
+    "type": "status",
+    "key": "openai|stt|gpt-4o-mini-transcribe (estimated)",
+    "old": "verified",
+    "new": "unknown",
+    "old_price": 0.003,
+    "new_price": null
+   },
+   {
+    "type": "price",
+    "key": "gladia|stt|Real-time",
+    "old": 0.012685,
+    "new": 0.012709,
+    "old_high": null,
+    "new_high": null,
+    "pct": 0.2
+   },
+   {
+    "type": "price",
+    "key": "gladia|stt|Solaria-3 async",
+    "old": 0.002985,
+    "new": 0.00299,
+    "old_high": null,
+    "new_high": null,
+    "pct": 0.2
+   }
+  ]
+ },
+ {
   "date": "2026-11-09",
   "vs": "2026-11-08",
   "changes": [
