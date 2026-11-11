@@ -1,5 +1,53 @@
 [
  {
+  "date": "2026-11-11",
+  "vs": "2026-11-10",
+  "changes": [
+   {
+    "type": "status",
+    "key": "speechmatics|stt|Melia 1 (pre-recorded)",
+    "old": "verified",
+    "new": "unknown",
+    "old_price": 0.004,
+    "new_price": null
+   },
+   {
+    "type": "status",
+    "key": "speechmatics|stt|Enhanced (pre-recorded)",
+    "old": "verified",
+    "new": "unknown",
+    "old_price": 0.0125,
+    "new_price": null
+   },
+   {
+    "type": "status",
+    "key": "speechmatics|stt|Standard (pre-recorded)",
+    "old": "verified",
+    "new": "unknown",
+    "old_price": 0.0075,
+    "new_price": null
+   },
+   {
+    "type": "price",
+    "key": "gladia|stt|Real-time",
+    "old": 0.012709,
+    "new": 0.012611,
+    "old_high": null,
+    "new_high": null,
+    "pct": -0.8
+   },
+   {
+    "type": "price",
+    "key": "gladia|stt|Solaria-3 async",
+    "old": 0.00299,
+    "new": 0.002967,
+    "old_high": null,
+    "new_high": null,
+    "pct": -0.8
+   }
+  ]
+ },
+ {
   "date": "2026-11-10",
   "vs": "2026-11-09",
   "changes": [
