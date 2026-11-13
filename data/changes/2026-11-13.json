@@ -1,0 +1,40 @@
+{
+ "date": "2026-11-13",
+ "vs": "2026-11-12",
+ "changes": [
+  {
+   "type": "status",
+   "key": "deepgram|stt|Nova-3 Monolingual (streaming, current price)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.0077,
+   "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "deepgram|stt|Flux English (streaming, current price)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.0077,
+   "new_price": null
+  },
+  {
+   "type": "price",
+   "key": "gladia|stt|Real-time",
+   "old": 0.012558,
+   "new": 0.012526,
+   "old_high": null,
+   "new_high": null,
+   "pct": -0.3
+  },
+  {
+   "type": "price",
+   "key": "gladia|stt|Solaria-3 async",
+   "old": 0.002955,
+   "new": 0.002947,
+   "old_high": null,
+   "new_high": null,
+   "pct": -0.3
+  }
+ ]
+}
