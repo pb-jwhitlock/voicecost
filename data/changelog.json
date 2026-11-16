@@ -1,5 +1,67 @@
 [
  {
+  "date": "2026-11-16",
+  "vs": "2026-11-15",
+  "changes": [
+   {
+    "type": "status",
+    "key": "deepgram|stt|Nova-3 Monolingual (streaming, current price)",
+    "old": "unknown",
+    "new": "verified",
+    "old_price": null,
+    "new_price": 0.0048
+   },
+   {
+    "type": "status",
+    "key": "deepgram|stt|Flux English (streaming, current price)",
+    "old": "unknown",
+    "new": "verified",
+    "old_price": null,
+    "new_price": 0.0065
+   },
+   {
+    "type": "status",
+    "key": "openai|stt|gpt-transcribe (batch)",
+    "old": "unknown",
+    "new": "verified",
+    "old_price": null,
+    "new_price": 0.0045
+   },
+   {
+    "type": "status",
+    "key": "openai|stt|gpt-4o-mini-transcribe (estimated)",
+    "old": "unknown",
+    "new": "verified",
+    "old_price": null,
+    "new_price": 0.003
+   },
+   {
+    "type": "status",
+    "key": "speechmatics|stt|Melia 1 (pre-recorded)",
+    "old": "unknown",
+    "new": "verified",
+    "old_price": null,
+    "new_price": 0.004
+   },
+   {
+    "type": "status",
+    "key": "speechmatics|stt|Enhanced (pre-recorded)",
+    "old": "unknown",
+    "new": "verified",
+    "old_price": null,
+    "new_price": 0.0125
+   },
+   {
+    "type": "status",
+    "key": "speechmatics|stt|Standard (pre-recorded)",
+    "old": "unknown",
+    "new": "verified",
+    "old_price": null,
+    "new_price": 0.0075
+   }
+  ]
+ },
+ {
   "date": "2026-11-13",
   "vs": "2026-11-12",
   "changes": [

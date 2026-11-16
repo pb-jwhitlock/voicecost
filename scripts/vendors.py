@@ -90,11 +90,11 @@ vendor("deepgram", "Deepgram", "https://deepgram.com", {"deepgram": "https://dee
          r"(?:Tier Pay As You Go Growth|Voice Agent API Pay as you go Growth Enterprise) Standard \$" + N + r" ?/ ?min", PER_MIN, "$/min", tier="Pay as you go",
          note="Bundled STT + LLM + TTS agent tier.", headline=True),
     item("stt", "Nova-3 Monolingual (streaming, current price)", "deepgram",
-         r"Nova-3 Monolingual (?:i )?[^$]{0,300}?\$" + N + r" ?/ ?min", PER_MIN, "$/min", tier="Pay as you go",
-         note="Streaming, pay as you go. Deepgram's promotional 'current price' ended with its Oct 29, 2026 page redesign; the single listed rate is shown.", headline=True),
+         r"Nova-3 Monolingual (?:i )?[^$]{0,300}?\$" + N + r"(?: \(?was \$[0-9.]+\)?)? ?/ ?min", PER_MIN, "$/min", tier="Pay as you go",
+         note="Streaming, pay as you go. Since Nov 13, 2026 the page shows a promotional current rate next to a struck-through 'was' list rate; the current rate is shown.", headline=True),
     item("stt", "Flux English (streaming, current price)", "deepgram",
-         r"Flux (?:STT )?English (?:i )?[^$]{0,300}?\$" + N + r" ?/ ?min", PER_MIN, "$/min", tier="Pay as you go",
-         note="Streaming, pay as you go. Promotional 'current price' ended Oct 29, 2026; the single listed rate is shown."),
+         r"Flux (?:STT )?English (?:i )?[^$]{0,300}?\$" + N + r"(?: \(?was \$[0-9.]+\)?)? ?/ ?min", PER_MIN, "$/min", tier="Pay as you go",
+         note="Streaming, pay as you go. Since Nov 13, 2026 the page shows a promotional current rate next to a struck-through 'was' list rate; the current rate is shown."),
     item("tts", "Aura-2", "deepgram",
          r"Aura-2 \$" + N + r" ?/ ?1k characters", PER_1K, "$/1K chars", tier="Pay as you go", headline=True),
 ])
@@ -132,6 +132,7 @@ vendor("livekit", "LiveKit Agents", "https://livekit.io", {"livekit": "https://l
 vendor("openai", "OpenAI", "https://openai.com", {
     "openai_api": "https://openai.com/api/pricing/",
     "openai_docs": "https://platform.openai.com/docs/pricing",
+    "openai_docs_md": "https://platform.openai.com/docs/pricing.md",
     "openai_tts1": "https://developers.openai.com/api/docs/models/tts-1",
     "openai_tts1hd": "https://developers.openai.com/api/docs/models/tts-1-hd"}, [
     item("agent", "gpt-live-1 (speech-to-speech)", "openai_docs",
@@ -139,11 +140,12 @@ vendor("openai", "OpenAI", "https://openai.com", {
          note="Per-minute session price; backend model and tool usage are charged separately."),
     item("stt", "gpt-live-transcribe (streaming)", "openai_docs",
          r"gpt-live-transcribe Live transcription - - \$" + N + r" / minute", PER_MIN, "$/min", headline=True),
-    item("stt", "gpt-transcribe (batch)", "openai_docs",
-         r"gpt-transcribe Transcription - - \$" + N + r" / minute", PER_MIN, "$/min"),
-    item("stt", "gpt-4o-mini-transcribe (estimated)", "openai_docs",
-         r"gpt-4o-mini-transcribe Transcription \$[0-9.]+ \$[0-9.]+ \$" + N + r" / minute", PER_MIN, "$/min",
-         note="Token-billed; OpenAI's own per-minute estimate."),
+    item("stt", "gpt-transcribe (batch)", "openai_docs_md",
+         r"gpt-transcribe[\s|]*Transcription[\s|]*-[\s|]*-[\s|]*\$" + N + r" / minute", PER_MIN, "$/min",
+         note="Read from the official markdown of platform.openai.com/docs/pricing; the interactive HTML table no longer exposes every transcription row to the scraper."),
+    item("stt", "gpt-4o-mini-transcribe (estimated)", "openai_docs_md",
+         r"gpt-4o-mini-transcribe[\s|]*Transcription[\s|]*\$[0-9.]+[\s|]*\$[0-9.]+[\s|]*\$" + N + r" / minute", PER_MIN, "$/min",
+         note="Token-billed; OpenAI's own per-minute estimate, from the official markdown of the pricing docs. The model page marks this model deprecated."),
     item("tts", "tts-1 (Speech API)", "openai_tts1",
          r"Speech generation Cost / 1M characters \$" + NC, PER_1M, "$/1M chars", headline=True,
          note="Deprecated: OpenAI shuts down tts-1, tts-1-hd and gpt-4o-mini-tts on January 6, 2027 and points to gpt-realtime-2.1-mini (token-billed)."),
@@ -152,9 +154,11 @@ vendor("openai", "OpenAI", "https://openai.com", {
          note="Deprecated: shuts down January 6, 2027."),
 ])
 
-vendor("assemblyai", "AssemblyAI", "https://www.assemblyai.com", {"assemblyai": "https://www.assemblyai.com/pricing"}, [
-    item("stt", "Universal-Streaming (English)", "assemblyai",
-         r"Universal-Streaming High-quality realtime model.{0,220}?\$" + N + r" /hr", PER_HR, "$/hr", headline=True),
+vendor("assemblyai", "AssemblyAI", "https://www.assemblyai.com", {"assemblyai": "https://www.assemblyai.com/pricing", "assemblyai_md": "https://www.assemblyai.com/pricing.md"}, [
+    item("stt", "Universal-Streaming (English)", "assemblyai_md",
+         r"(?:Universal-Streaming English \| `universal-streaming-english` \| \*{0,2}\$|Universal-Streaming High-quality realtime model.{0,220}?\$)" + N + r" ?/hr",
+         PER_HR, "$/hr", headline=True,
+         note="List rate from assemblyai.com/pricing.md. Since Nov 16, 2026 the marketing pricing page no longer shows the English streaming model card (STT 3.7 Realtime launched in its place); the official markdown rate card still lists this model."),
     item("stt", "Universal-2 (pre-recorded)", "assemblyai",
          r"Universal-2 Our highly accurate.{0,220}?\$" + N + r" /hr", PER_HR, "$/hr"),
     item("stt", "Universal-3.5 Pro (pre-recorded)", "assemblyai",
@@ -212,7 +216,9 @@ vendor("azure", "Microsoft Azure Speech", "https://azure.microsoft.com", {
 SM_NOTE = ("List (pay-as-you-go) rate from the rate table Speechmatics publishes with its pricing page "
            "(speechmatics.com/pricing.md). Since Oct 30, 2026 the pricing page's cards show rates with the 33% "
            "model-training and 25% top-tier annual discounts switched on (e.g. Melia 1 $0.12/hr).")
-SM_RATE = r"- {model}: - rates: - realtime: - baseHourly: [0-9.]+ - calculatorTrainingHourly: [0-9.]+ - prerecorded: - baseHourly: " + N
+# pricing.md switched from a YAML rate blob (through Nov 10) to a markdown list-rate table (Nov 11+).
+SM_RATE = (r"(?:\| Pre-recorded \| {model} \| "
+           r"|- {model}: - rates: - realtime: - baseHourly: [0-9.]+ - calculatorTrainingHourly: [0-9.]+ - prerecorded: - baseHourly: )" + N)
 vendor("speechmatics", "Speechmatics", "https://www.speechmatics.com",
        {"speechmatics": "https://www.speechmatics.com/pricing",
         "speechmatics_rates": "https://www.speechmatics.com/pricing.md"}, [
