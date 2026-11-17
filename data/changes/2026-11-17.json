@@ -1,0 +1,40 @@
+{
+ "date": "2026-11-17",
+ "vs": "2026-11-16",
+ "changes": [
+  {
+   "type": "status",
+   "key": "assemblyai|stt|Universal-Streaming (English)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.0025,
+   "new_price": null
+  },
+  {
+   "type": "status",
+   "key": "assemblyai|stt|Universal-3.5 Pro (pre-recorded)",
+   "old": "verified",
+   "new": "unknown",
+   "old_price": 0.0035,
+   "new_price": null
+  },
+  {
+   "type": "price",
+   "key": "gladia|stt|Real-time",
+   "old": 0.012526,
+   "new": 0.012454,
+   "old_high": null,
+   "new_high": null,
+   "pct": -0.6
+  },
+  {
+   "type": "price",
+   "key": "gladia|stt|Solaria-3 async",
+   "old": 0.002947,
+   "new": 0.00293,
+   "old_high": null,
+   "new_high": null,
+   "pct": -0.6
+  }
+ ]
+}
