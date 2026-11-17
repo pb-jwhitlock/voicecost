@@ -1,6 +1,6 @@
 {
  "date": "2026-11-16",
- "generated_at": "2026-11-16T15:00:09-05:00",
+ "generated_at": "2026-11-16T20:57:20-05:00",
  "fx": {
   "EUR_USD": 1.1052,
   "source": "https://api.frankfurter.app (ECB reference rates)",
@@ -325,8 +325,8 @@
    "categories": [
     "tts"
    ],
-   "note": "Hume removed its public pricing page (hume.ai/pricing now redirects to the homepage), so no TTS price is published. Hume's docs say it is sunsetting the TTS and EVI APIs; access ends November 13, 2026.",
-   "status": "active",
+   "note": "Hume's official docs no longer list the Octave TTS or EVI APIs (checked Nov 16, 2026): dev.hume.ai/llms.txt and the docs sitemap include only Audio Decisions and Expression Measurement, and former TTS/EVI doc URLs (including the changelog) now redirect to the Audio Decisions overview. hume.ai/pricing still redirects to the homepage, which does not publish a TTS price.",
+   "status": "discontinued",
    "pages": {
     "hume": "https://www.hume.ai/pricing"
    }
@@ -1778,8 +1778,8 @@
    "price_native_high": null,
    "price": null,
    "price_high": null,
-   "status": "not_published",
-   "reason": "Hume publishes no TTS price: hume.ai/pricing redirects to the homepage, and the TTS API is being sunset (access ends Nov 13, 2026).",
+   "status": "discontinued",
+   "reason": "Vendor appears discontinued",
    "evidence": null,
    "note": null,
    "scope": null
@@ -2141,6 +2141,14 @@
    "new": "verified",
    "old_price": null,
    "new_price": 0.0075
+  },
+  {
+   "type": "status",
+   "key": "hume|tts|Octave TTS",
+   "old": "not_published",
+   "new": "discontinued",
+   "old_price": null,
+   "new_price": null
   }
  ]
 }

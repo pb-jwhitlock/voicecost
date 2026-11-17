@@ -57,6 +57,14 @@
    "new": "verified",
    "old_price": null,
    "new_price": 0.0075
+  },
+  {
+   "type": "status",
+   "key": "hume|tts|Octave TTS",
+   "old": "not_published",
+   "new": "discontinued",
+   "old_price": null,
+   "new_price": null
   }
  ]
 }

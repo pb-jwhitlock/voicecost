@@ -294,11 +294,9 @@ vendor("playht", "PlayHT", "https://play.ht", {"playht": "https://play.ht/pricin
    status="discontinued")
 
 vendor("hume", "Hume AI", "https://www.hume.ai", {"hume": "https://www.hume.ai/pricing"}, [
-    item("tts", "Octave TTS", "hume", r"Octave[^$]{0,80}\$" + N + r" ?(?:per|/) ?1(?:,000|K) characters", PER_1K, "$/1K chars", headline=True,
-         unpublished="Hume publishes no TTS price: hume.ai/pricing redirects to the homepage, and the TTS API is being "
-                     "sunset (access ends Nov 13, 2026)."),
-], note="Hume removed its public pricing page (hume.ai/pricing now redirects to the homepage), so no TTS price is published. "
-        "Hume's docs say it is sunsetting the TTS and EVI APIs; access ends November 13, 2026.")
+    item("tts", "Octave TTS", "hume", r"(?!)", PER_1K, "$/1K chars", headline=True),
+], note="Hume's official docs no longer list the Octave TTS or EVI APIs (checked Nov 16, 2026): dev.hume.ai/llms.txt and the docs sitemap include only Audio Decisions and Expression Measurement, and former TTS/EVI doc URLs (including the changelog) now redirect to the Audio Decisions overview. hume.ai/pricing still redirects to the homepage, which does not publish a TTS price.",
+   status="discontinued")
 
 vendor("lmnt", "LMNT", "https://www.lmnt.com", {"lmnt": "https://www.lmnt.com/pricing"}, [
     item("tts", "LMNT TTS", "lmnt", r"(?!)", PER_1M, "$/1M chars", headline=True),
