@@ -1,10 +1,10 @@
 {
- "date": "2026-11-17",
- "generated_at": "2026-11-17T13:57:10-05:00",
+ "date": "2026-11-18",
+ "generated_at": "2026-11-18T13:38:58-05:00",
  "fx": {
-  "EUR_USD": 1.0989,
+  "EUR_USD": 1.0968,
   "source": "https://api.frankfurter.app (ECB reference rates)",
-  "date": "2026-11-17"
+  "date": "2026-11-18"
  },
  "vendors": [
   {
@@ -354,7 +354,7 @@
    "tier": "Pay as you go",
    "headline": true,
    "source_url": "https://vapi.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -376,7 +376,7 @@
    "tier": "Pay as you go",
    "headline": true,
    "source_url": "https://www.retellai.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -398,7 +398,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://www.retellai.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -420,7 +420,7 @@
    "tier": "Start",
    "headline": true,
    "source_url": "https://www.bland.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -442,7 +442,7 @@
    "tier": "Build",
    "headline": false,
    "source_url": "https://www.bland.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -464,7 +464,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://synthflow.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/year minimum",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -486,7 +486,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://elevenlabs.io/pricing/api",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -508,7 +508,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://elevenlabs.io/pricing/api",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -530,7 +530,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://elevenlabs.io/pricing/api",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -552,7 +552,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://elevenlabs.io/pricing/api",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1K chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -574,7 +574,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://elevenlabs.io/pricing/api",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1K chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -596,7 +596,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://elevenlabs.io/pricing/api",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1K chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -618,7 +618,7 @@
    "tier": "Pay as you go",
    "headline": true,
    "source_url": "https://deepgram.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -640,7 +640,7 @@
    "tier": "Pay as you go",
    "headline": true,
    "source_url": "https://deepgram.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -662,7 +662,7 @@
    "tier": "Pay as you go",
    "headline": false,
    "source_url": "https://deepgram.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -684,7 +684,7 @@
    "tier": "Pay as you go",
    "headline": true,
    "source_url": "https://deepgram.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1K chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -694,7 +694,7 @@
    "price_high": null,
    "status": "verified",
    "reason": null,
-   "evidence": "/1k characters $0.0450 /1k characters - Aura-2 $0.030 /1k characters $0.027 /1k characte",
+   "evidence": "/1k characters $0.0405 /1k characters - Aura-2 $0.030 /1k characters $0.027 /1k characte",
    "note": null,
    "scope": null
   },
@@ -706,7 +706,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://cartesia.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -728,7 +728,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://cartesia.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "plan $/credits",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -750,7 +750,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://cartesia.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "plan $/credits",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -772,7 +772,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://cartesia.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -794,7 +794,7 @@
    "tier": "Pay as you go",
    "headline": true,
    "source_url": "https://www.ultravox.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -816,7 +816,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://livekit.io/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -838,7 +838,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://platform.openai.com/docs/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -860,7 +860,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://platform.openai.com/docs/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -882,7 +882,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://platform.openai.com/docs/pricing.md",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -904,7 +904,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://platform.openai.com/docs/pricing.md",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -926,7 +926,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://developers.openai.com/api/docs/models/tts-1",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -948,7 +948,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://developers.openai.com/api/docs/models/tts-1-hd",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -970,7 +970,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://www.assemblyai.com/pricing.md",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -992,7 +992,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://www.assemblyai.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1014,7 +1014,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://www.assemblyai.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1036,7 +1036,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://www.assemblyai.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1058,7 +1058,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://cloud.google.com/speech-to-text/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1080,7 +1080,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://cloud.google.com/speech-to-text/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1102,7 +1102,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://cloud.google.com/text-to-speech/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1124,7 +1124,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://cloud.google.com/text-to-speech/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1146,7 +1146,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://cloud.google.com/text-to-speech/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1168,7 +1168,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://aws.amazon.com/transcribe/pricing/",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1190,7 +1190,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://aws.amazon.com/transcribe/pricing/",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1212,7 +1212,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://aws.amazon.com/polly/pricing/",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1234,7 +1234,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://aws.amazon.com/polly/pricing/",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1256,7 +1256,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://aws.amazon.com/polly/pricing/",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1278,7 +1278,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1300,7 +1300,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1322,7 +1322,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1344,7 +1344,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://www.speechmatics.com/pricing.md",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1366,7 +1366,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://www.speechmatics.com/pricing.md",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1388,7 +1388,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://www.speechmatics.com/pricing.md",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1410,7 +1410,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://www.speechmatics.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1K chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1432,7 +1432,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://www.rev.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1454,7 +1454,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://www.rev.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1476,13 +1476,13 @@
    "tier": null,
    "headline": true,
    "source_url": "https://www.gladia.io/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "\u20ac/hr",
    "currency": "EUR",
    "norm_unit": "USD/min",
    "price_native": 0.68,
    "price_native_high": null,
-   "price": 0.012454,
+   "price": 0.01243,
    "price_high": null,
    "status": "verified",
    "reason": null,
@@ -1490,8 +1490,8 @@
    "note": null,
    "scope": null,
    "fx": {
-    "EUR_USD": 1.0989,
-    "date": "2026-11-17"
+    "EUR_USD": 1.0968,
+    "date": "2026-11-18"
    }
   },
   {
@@ -1502,13 +1502,13 @@
    "tier": null,
    "headline": false,
    "source_url": "https://www.gladia.io/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "\u20ac/hr",
    "currency": "EUR",
    "norm_unit": "USD/min",
    "price_native": 0.16,
    "price_native_high": null,
-   "price": 0.00293,
+   "price": 0.002925,
    "price_high": null,
    "status": "verified",
    "reason": null,
@@ -1516,8 +1516,8 @@
    "note": null,
    "scope": null,
    "fx": {
-    "EUR_USD": 1.0989,
-    "date": "2026-11-17"
+    "EUR_USD": 1.0968,
+    "date": "2026-11-18"
    }
   },
   {
@@ -1528,7 +1528,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://soniox.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1550,7 +1550,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://soniox.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1572,7 +1572,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M UTF-8 bytes",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1594,7 +1594,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1616,7 +1616,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://inworld.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1638,7 +1638,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://inworld.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1660,7 +1660,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://inworld.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/hr",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1682,7 +1682,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://www.rime.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min (~1K chars)",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1704,7 +1704,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://www.rime.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min (~1K chars)",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1726,7 +1726,7 @@
    "tier": null,
    "headline": false,
    "source_url": "https://www.rime.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/min",
    "currency": "USD",
    "norm_unit": "USD/min",
@@ -1748,7 +1748,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://play.ht/pricing/",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1770,7 +1770,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://www.hume.ai/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1K chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1792,7 +1792,7 @@
    "tier": null,
    "headline": true,
    "source_url": "https://www.lmnt.com/pricing",
-   "checked": "2026-11-17",
+   "checked": "2026-11-18",
    "native_unit": "$/1M chars",
    "currency": "USD",
    "norm_unit": "USD/1M chars",
@@ -1852,6 +1852,20 @@
   }
  ],
  "fetch": {
+  "deepgram": {
+   "url": "https://deepgram.com/pricing",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://deepgram.com/pricing"
+  },
+  "synthflow": {
+   "url": "https://synthflow.ai/pricing",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://synthflow.ai/pricing"
+  },
   "elevenlabs": {
    "url": "https://elevenlabs.io/pricing/api",
    "ok": true,
@@ -1866,19 +1880,12 @@
    "error": null,
    "final_url": "https://www.bland.ai/pricing"
   },
-  "deepgram": {
-   "url": "https://deepgram.com/pricing",
+  "retell": {
+   "url": "https://www.retellai.com/pricing",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://deepgram.com/pricing"
-  },
-  "ultravox": {
-   "url": "https://www.ultravox.ai/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://www.ultravox.ai/pricing"
+   "final_url": "https://www.retellai.com/pricing"
   },
   "livekit": {
    "url": "https://livekit.io/pricing",
@@ -1887,26 +1894,12 @@
    "error": null,
    "final_url": "https://livekit.com/pricing"
   },
-  "vapi": {
-   "url": "https://vapi.ai/pricing",
+  "ultravox": {
+   "url": "https://www.ultravox.ai/pricing",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://vapi.ai/pricing"
-  },
-  "synthflow": {
-   "url": "https://synthflow.ai/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://synthflow.ai/pricing"
-  },
-  "retell": {
-   "url": "https://www.retellai.com/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://www.retellai.com/pricing"
+   "final_url": "https://www.ultravox.ai/pricing"
   },
   "openai_docs_md": {
    "url": "https://platform.openai.com/docs/pricing.md",
@@ -1922,19 +1915,19 @@
    "error": null,
    "final_url": "https://developers.openai.com/api/docs/pricing"
   },
+  "vapi": {
+   "url": "https://vapi.ai/pricing",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://vapi.ai/pricing"
+  },
   "openai_tts1": {
    "url": "https://developers.openai.com/api/docs/models/tts-1",
    "ok": true,
    "status": 200,
    "error": null,
    "final_url": "https://developers.openai.com/api/docs/models/tts-1"
-  },
-  "cartesia": {
-   "url": "https://cartesia.ai/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://www.cartesia.ai/pricing"
   },
   "openai_tts1hd": {
    "url": "https://developers.openai.com/api/docs/models/tts-1-hd",
@@ -1950,6 +1943,13 @@
    "error": null,
    "final_url": "https://www.assemblyai.com/pricing.md"
   },
+  "cartesia": {
+   "url": "https://cartesia.ai/pricing",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://www.cartesia.ai/pricing"
+  },
   "assemblyai": {
    "url": "https://www.assemblyai.com/pricing",
    "ok": true,
@@ -1964,33 +1964,12 @@
    "error": null,
    "final_url": "https://openai.com/business/pricing/#api"
   },
-  "google_tts": {
-   "url": "https://cloud.google.com/text-to-speech/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://cloud.google.com/text-to-speech/pricing"
-  },
   "google_stt": {
    "url": "https://cloud.google.com/speech-to-text/pricing",
    "ok": true,
    "status": 200,
    "error": null,
    "final_url": "https://cloud.google.com/speech-to-text/pricing"
-  },
-  "polly": {
-   "url": "https://aws.amazon.com/polly/pricing/",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://aws.amazon.com/polly/pricing/"
-  },
-  "aws_transcribe": {
-   "url": "https://aws.amazon.com/transcribe/pricing/",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://aws.amazon.com/transcribe/pricing/"
   },
   "speechmatics": {
    "url": "https://www.speechmatics.com/pricing",
@@ -1999,19 +1978,26 @@
    "error": null,
    "final_url": "https://www.speechmatics.com/pricing"
   },
+  "google_tts": {
+   "url": "https://cloud.google.com/text-to-speech/pricing",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://cloud.google.com/text-to-speech/pricing"
+  },
+  "aws_transcribe": {
+   "url": "https://aws.amazon.com/transcribe/pricing/",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://aws.amazon.com/transcribe/pricing/"
+  },
   "speechmatics_rates": {
    "url": "https://www.speechmatics.com/pricing.md",
    "ok": true,
    "status": 200,
    "error": null,
    "final_url": "https://www.speechmatics.com/pricing.md"
-  },
-  "rev": {
-   "url": "https://www.rev.ai/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://www.rev.ai/pricing"
   },
   "azure_speech": {
    "url": "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
@@ -2020,26 +2006,19 @@
    "error": null,
    "final_url": "https://azure.microsoft.com/en-us/pricing/details/speech/"
   },
-  "soniox": {
-   "url": "https://soniox.com/pricing",
+  "polly": {
+   "url": "https://aws.amazon.com/polly/pricing/",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://soniox.com/pricing"
+   "final_url": "https://aws.amazon.com/polly/pricing/"
   },
-  "fish_docs": {
-   "url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits",
+  "rev": {
+   "url": "https://www.rev.ai/pricing",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits"
-  },
-  "inworld": {
-   "url": "https://inworld.ai/pricing",
-   "ok": true,
-   "status": 200,
-   "error": null,
-   "final_url": "https://inworld.ai/pricing"
+   "final_url": "https://www.rev.ai/pricing"
   },
   "gladia": {
    "url": "https://www.gladia.io/pricing",
@@ -2048,19 +2027,33 @@
    "error": null,
    "final_url": "https://www.gladia.io/pricing"
   },
-  "rime": {
-   "url": "https://www.rime.ai/pricing",
+  "soniox": {
+   "url": "https://soniox.com/pricing",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://www.rime.ai/pricing"
+   "final_url": "https://soniox.com/pricing"
   },
-  "lmnt": {
-   "url": "https://www.lmnt.com/pricing",
-   "ok": false,
+  "inworld": {
+   "url": "https://inworld.ai/pricing",
+   "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://www.lmnt.com/"
+   "final_url": "https://inworld.ai/pricing"
+  },
+  "fish_docs": {
+   "url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits"
+  },
+  "fish_plans": {
+   "url": "https://fish.audio/plan/",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "final_url": "https://fish.audio/plan/"
   },
   "playht": {
    "url": "https://play.ht/pricing/",
@@ -2069,12 +2062,19 @@
    "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://play.ht/pricing/",
    "final_url": null
   },
-  "fish_plans": {
-   "url": "https://fish.audio/plan/",
+  "lmnt": {
+   "url": "https://www.lmnt.com/pricing",
+   "ok": false,
+   "status": 200,
+   "error": null,
+   "final_url": "https://www.lmnt.com/"
+  },
+  "rime": {
+   "url": "https://www.rime.ai/pricing",
    "ok": true,
    "status": 200,
    "error": null,
-   "final_url": "https://fish.audio/plan/"
+   "final_url": "https://www.rime.ai/pricing"
   },
   "hume": {
    "url": "https://www.hume.ai/pricing",
@@ -2084,41 +2084,25 @@
    "final_url": "https://www.hume.ai/"
   }
  },
- "changes_vs": "2026-11-16",
+ "changes_vs": "2026-11-17",
  "changes": [
-  {
-   "type": "status",
-   "key": "assemblyai|stt|Universal-Streaming (English)",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.0025,
-   "new_price": null
-  },
-  {
-   "type": "status",
-   "key": "assemblyai|stt|Universal-3.5 Pro (pre-recorded)",
-   "old": "verified",
-   "new": "unknown",
-   "old_price": 0.0035,
-   "new_price": null
-  },
   {
    "type": "price",
    "key": "gladia|stt|Real-time",
-   "old": 0.012526,
-   "new": 0.012454,
+   "old": 0.012454,
+   "new": 0.01243,
    "old_high": null,
    "new_high": null,
-   "pct": -0.6
+   "pct": -0.2
   },
   {
    "type": "price",
    "key": "gladia|stt|Solaria-3 async",
-   "old": 0.002947,
-   "new": 0.00293,
+   "old": 0.00293,
+   "new": 0.002925,
    "old_high": null,
    "new_high": null,
-   "pct": -0.6
+   "pct": -0.2
   }
  ]
 }
